@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   output: "export",
   distDir: "dist",
   turbopack: {
-    root: "/home/samarth/frameworks/portfolio-resume",
+    root: "/home/samarth/portfolios/portfolio-resume",
   },
 };
 

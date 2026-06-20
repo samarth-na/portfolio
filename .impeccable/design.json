@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-20T13:00:00.000Z",
+  "title": "Design System: Samarth Nagar — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Orange Signal",
+        "canonical": "oklch(62.1% 0.223 38.7)",
+        "tonalRamp": [
+          "oklch(15% 0.07 38.7)",
+          "oklch(25% 0.12 38.7)",
+          "oklch(35% 0.16 38.7)",
+          "oklch(45% 0.19 38.7)",
+          "oklch(55% 0.22 38.7)",
+          "oklch(62% 0.223 38.7)",
+          "oklch(75% 0.18 38.7)",
+          "oklch(88% 0.08 38.7)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(5% 0.003 150)",
+        "tonalRamp": [
+          "oklch(5% 0.003 150)",
+          "oklch(15% 0.004 150)",
+          "oklch(25% 0.005 150)",
+          "oklch(35% 0.006 150)",
+          "oklch(50% 0.007 150)",
+          "oklch(65% 0.006 150)",
+          "oklch(80% 0.004 150)",
+          "oklch(93% 0.002 150)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(93% 0.015 72)",
+        "tonalRamp": [
+          "oklch(15% 0.005 72)",
+          "oklch(30% 0.008 72)",
+          "oklch(45% 0.012 72)",
+          "oklch(60% 0.014 72)",
+          "oklch(75% 0.015 72)",
+          "oklch(85% 0.015 72)",
+          "oklch(90% 0.015 72)",
+          "oklch(93% 0.015 72)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Cream",
+        "canonical": "oklch(95% 0.01 72)",
+        "tonalRamp": [
+          "oklch(15% 0.005 72)",
+          "oklch(30% 0.006 72)",
+          "oklch(45% 0.008 72)",
+          "oklch(60% 0.01 72)",
+          "oklch(75% 0.01 72)",
+          "oklch(86% 0.01 72)",
+          "oklch(92% 0.01 72)",
+          "oklch(95% 0.01 72)"
+        ]
+      },
+      "steel": {
+        "role": "secondary",
+        "displayName": "Steel",
+        "canonical": "oklch(60% 0.04 250)",
+        "tonalRamp": [
+          "oklch(15% 0.01 250)",
+          "oklch(25% 0.02 250)",
+          "oklch(38% 0.03 250)",
+          "oklch(48% 0.04 250)",
+          "oklch(60% 0.04 250)",
+          "oklch(72% 0.035 250)",
+          "oklch(84% 0.02 250)",
+          "oklch(93% 0.008 250)"
+        ]
+      },
+      "slate": {
+        "role": "secondary",
+        "displayName": "Slate",
+        "canonical": "oklch(72% 0.04 240)",
+        "tonalRamp": [
+          "oklch(15% 0.01 240)",
+          "oklch(28% 0.02 240)",
+          "oklch(42% 0.03 240)",
+          "oklch(55% 0.04 240)",
+          "oklch(72% 0.04 240)",
+          "oklch(80% 0.03 240)",
+          "oklch(88% 0.02 240)",
+          "oklch(95% 0.008 240)"
+        ]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Text Secondary",
+        "canonical": "oklch(30% 0.008 147)",
+        "tonalRamp": []
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Text Muted",
+        "canonical": "oklch(50% 0.008 147)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero wordmark only — single words at extreme scale."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles across the portfolio."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card headings, role names, project titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions, prose, experience details. Capped at 65–75ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metadata, tags, document IDs, section numbers. Always uppercase mono."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "reveal",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The exponential ease-out curve used for all reveal animations, hover transitions, and state changes."
+      },
+      {
+        "name": "marquee",
+        "value": "30s linear infinite",
+        "purpose": "Ticker bar scroll — slow, continuous, never reversing."
+      },
+      {
+        "name": "spin-slow",
+        "value": "20s linear infinite",
+        "purpose": "Decorative geometric ring rotation."
+      },
+      {
+        "name": "pulse-ring",
+        "value": "3s ease-in-out infinite",
+        "purpose": "Status indicator pulse — used on orange dot for 'available' signal."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Border-only action link. Used for external links and secondary CTAs. Background fills with ink on hover.",
+      "html": "<button class=\"ds-btn-outline\">READ FULL REPORT</button>",
+      "css": ".ds-btn-outline { font-family: Geist Mono, ui-monospace, monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(15, 17, 16, 0.14); padding: 0.5rem 1rem; background: transparent; color: #0f1110; cursor: pointer; transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-outline:hover { background: #0f1110; color: #f6f2eb; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Interactive project card with border-hover-to-accent. Links externally, opens in new tab.",
+      "html": "<a class=\"ds-card-project\" href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\"><div class=\"ds-card-project-head\"><span class=\"ds-tag\">PRJ-01</span><span class=\"ds-card-project-arrow\">→</span></div><h3 class=\"ds-card-project-title\">Personal Blog Platform</h3><p class=\"ds-card-project-desc\">SEO-optimized static site built with Next.js and MDX. Server-side rendering and edge caching deliver sub-200ms page loads on Vercel's edge network.</p><div class=\"ds-card-project-tags\"><span class=\"ds-tag\">Next.js</span><span class=\"ds-tag\">MDX</span><span class=\"ds-tag\">SEO</span></div></a>",
+      "css": ".ds-card-project { display: block; border: 1px solid rgba(15, 17, 16, 0.1); background: #f6f2eb; padding: 1.5rem; text-decoration: none; color: #0f1110; transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-card-project:hover { border-color: #ff4b00; background: rgba(255, 75, 0, 0.05); } .ds-card-project-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; } .ds-card-project-arrow { font-size: 1.5rem; line-height: 1; color: rgba(15, 17, 16, 0.3); transition: color 0.3s, transform 0.3s; } .ds-card-project:hover .ds-card-project-arrow { color: #ff4b00; transform: translateX(4px); } .ds-card-project-title { font-size: clamp(1.25rem, 3vw, 1.875rem); font-weight: 500; margin-bottom: 0.75rem; line-height: 1.3; } .ds-card-project-desc { color: #3e4440; line-height: 1.6; margin-bottom: 1.5rem; } .ds-card-project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }"
+    },
+    {
+      "name": "Tag / Chip",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Small mono uppercase label in a border frame. Used for tech tags, project IDs, skill labels.",
+      "html": "<span class=\"ds-tag\">WebAssembly</span>",
+      "css": ".ds-tag { font-family: Geist Mono, ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid rgba(15, 17, 16, 0.1); padding: 0.25rem 0.5rem; color: #3e4440; transition: border-color 0.3s; }"
+    },
+    {
+      "name": "Section Nav (Hero Bottom Bar)",
+      "kind": "nav",
+      "refersTo": "nav-hero",
+      "description": "Inline section-anchor links at the bottom of the hero section. Underline reveals on hover.",
+      "html": "<nav class=\"ds-nav-hero\"><a class=\"ds-nav-hero-link\" href=\"#experience\">EXPERIENCE</a><a class=\"ds-nav-hero-link\" href=\"#projects\">PROJECTS</a><a class=\"ds-nav-hero-link\" href=\"#stack\">STACK</a></nav>",
+      "css": ".ds-nav-hero { display: flex; align-items: center; gap: 2rem; } .ds-nav-hero-link { font-family: Geist Mono, ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #3e4440; text-decoration: none; position: relative; transition: color 0.3s; } .ds-nav-hero-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-hero-link:hover { color: #0f1110; } .ds-nav-hero-link:hover::after { transform: scaleX(1); transform-origin: left; }"
+    },
+    {
+      "name": "Experience Item",
+      "kind": "custom",
+      "refersTo": "experience-item",
+      "description": "Bordered article row on the dark (ink) background. Role, org, tags, and bullet points.",
+      "html": "<article class=\"ds-exp-item\"><div class=\"ds-exp-item-head\"><div><div class=\"ds-exp-item-meta\"><span class=\"ds-tag ds-tag-ghost\">EXP-01</span><span class=\"ds-exp-period\">Jan 2026 – Present</span></div><h3 class=\"ds-exp-role\">Backend Engineering Intern</h3><p class=\"ds-exp-org\">@ Brand Collabs</p></div><div class=\"ds-exp-tags\"><span class=\"ds-tag ds-tag-ghost\">Security</span><span class=\"ds-tag ds-tag-ghost\">Docker</span></div></div><ul class=\"ds-exp-list\"><li class=\"ds-exp-list-item\"><span class=\"ds-exp-bullet\"></span>Built static code generation pipeline automating asset workflows</li></ul></article>",
+      "css": ".ds-exp-item { border-top: 1px solid rgba(246, 242, 235, 0.2); padding-top: 1.5rem; padding-bottom: 0.5rem; transition: background 0.5s; } .ds-exp-item:hover { background: rgba(246, 242, 235, 0.05); } .ds-exp-item-head { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; } @media (min-width: 768px) { .ds-exp-item-head { flex-direction: row; align-items: flex-start; justify-content: space-between; } } .ds-exp-item-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; } .ds-exp-period { font-family: Geist Mono, ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7d8fa3; } .ds-tag-ghost { border-color: rgba(246, 242, 235, 0.2); color: rgba(246, 242, 235, 0.8); } .ds-exp-role { font-size: clamp(1.25rem, 3vw, 1.875rem); font-weight: 500; line-height: 1.3; color: #f6f2eb; } .ds-exp-org { color: rgba(246, 242, 235, 0.6); margin-top: 0.25rem; } .ds-exp-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; } @media (min-width: 768px) { .ds-exp-tags { justify-content: flex-end; } } .ds-exp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; } .ds-exp-list-item { display: flex; align-items: flex-start; gap: 0.75rem; color: rgba(246, 242, 235, 0.8); line-height: 1.6; } .ds-exp-bullet { margin-top: 0.5rem; width: 0.25rem; height: 0.25rem; border-radius: 50%; background: #ff4b00; flex-shrink: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Field Console",
+    "overview": "A warm paper document meets a cold terminal interface. Every page reads like a systems operations log — labeled, documented, stamped with IDs and classifications — rendered in the tactile warmth of paper, cream, and orange signal light. The system treats the portfolio as a deployable artifact: something with a DOC ID, a version, a classification, and an operator.\n\nThe mood is grounded, technical, and deliberate. The warm neutral background (paper) and the orange accent (the status light, the exception, the alert state) create tension — the visitor is in a human space reading machine documentation. The three-font stack (Playfair Display for editorial warmth, Geist Sans for clean body, Geist Mono for terminal labels) reinforces the dual identity.\n\nThis system explicitly rejects: SaaS-cream generic dev portfolios, over-engineered motion that hides content, editorial-magazine layout clichés, and any pattern that reads as \"AI made this\" — repeated uppercase eyebrows, identical card grids, gradient text, ghost-card shadows, oversized radii.",
+    "keyCharacteristics": [
+      "Flat surfaces with tonal layering, never shadows",
+      "Squared corners throughout (0px radius); shape comes from layout, not rounding",
+      "Terminal-influenced label taxonomy (DOC ID, CLASSIFICATION, STATUS, FIELD REPORT)",
+      "One orange accent used sparingly as signal, not decoration",
+      "Motion that reveals content already present — never gated behind a transition firing",
+      "A single columnar grid on mobile, expanding to asymmetric grids on desktop"
+    ],
+    "rules": [
+      { "name": "The Signal Rule", "body": "Orange is applied on ≤10% of any given screen. Its rarity is the point — it signals something active, available, or worth attending to. The Stack section is the exception: it earns a full orange background because it's the inventory of the operator's toolchain.", "section": "colors" },
+      { "name": "The One-Family Limit", "body": "Only one font family per element — Playfair never mixes with Geist inline. Display is Playfair; everything else is Geist. The distinction is the hierarchy.", "section": "typography" }
+    ],
+    "dos": [
+      "Do use the orange signal sparingly — one accent element per section at most, outside the Stack section.",
+      "Do keep corners squared. Rounding undermines the mechanical precision.",
+      "Do use font-mono .label text for all metadata, section numbers, tags, and document IDs.",
+      "Do lay backgrounds by tonal step: paper → cream → ink for increasing visual weight.",
+      "Do reveal content that's already in the DOM. Never gate content behind a scroll-triggered class that might not fire.",
+      "Do cap body text at 65–75ch and use text-wrap: pretty for prose."
+    ],
+    "donts": [
+      "Don't use border-left greater than 1px as a colored accent stripe on cards, list items, or callouts.",
+      "Don't apply gradient text via background-clip: text. Use solid colors only.",
+      "Don't use glassmorphism (backdrop-filter blur) decoratively.",
+      "Don't use the big-number-small-label hero-metric template.",
+      "Don't pair a 1px border with a soft wide box-shadow on the same element. Pick one.",
+      "Don't use border-radius above 16px on cards, sections, or inputs. Tags and buttons at 0px only.",
+      "Don't use repeating-linear-gradient diagonal stripe backgrounds as section decoration.",
+      "Don't gate content visibility on a scroll-triggered class that starts as opacity: 0 and transitions to opacity: 1."
+    ]
+  }
+}

@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Samarth Nagar — Portfolio
 
-## Getting Started
+A personal portfolio and resume site for a backend/systems/DevOps developer. Built as a static-exported Next.js app with a warm, mechanical, opinionated design voice.
 
-First, run the development server:
+## Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) 16.2.9 (App Router)
+- **UI library**: [React](https://react.dev/) 19.2.4
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4 with custom CSS theme tokens
+- **Linting / formatting**: [Biome](https://biomejs.dev/)
+- **Package manager**: [Bun](https://bun.sh/)
+
+## Getting started
+
+Install dependencies and run the dev server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is configured for static export:
 
-## Learn More
+```bash
+bun run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+The output is written to `dist/` (not `.next/`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Lint and format
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+bun run lint
+bun run format
+```
 
-## Deploy on Vercel
+## Project structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/app/` — Next.js app entry points (`page.tsx`, `layout.tsx`, `globals.css`)
+- `src/components/` — page sections and UI components
+- `src/hooks/` — shared React hooks
+- `public/` — static assets
+- `PRODUCT.md` — product intent, audience, and design principles
+- `DESIGN.md` — design tokens, typography, and component rules
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design notes
+
+- Custom fonts: Geist Sans, Geist Mono, Playfair Display (loaded via `next/font/google`)
+- Color and animation tokens live in `src/app/globals.css`
+- Tailwind v4 theme extensions are defined via `@theme inline` in `globals.css`

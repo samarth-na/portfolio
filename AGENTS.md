@@ -1,5 +1,10 @@
 # Agent notes for portfolio-resume
 
+## Forbidden commands
+
+- **NEVER run `bun run dev` or `bun run build`** without explicit, in-the-moment user permission. They are strictly forbidden as autonomous actions. If a verification feels needed, ask first or use a read-only alternative (e.g. read files, run `bun run lint`).
+- Do not run `next start` either — it requires a built site.
+
 ## This is NOT the Next.js from training data
 
 - Next.js here is **16.2.9** with React **19.2.4**. APIs and conventions may differ from your training data.
@@ -8,11 +13,12 @@
 ## Repo layout
 
 - **Root**: Next.js app. Entry page is `src/app/page.tsx`; layout is `src/app/layout.tsx`.
-- **`scraper/`**: separate Bun package that scrapes GitHub / LinkedIn / X data. Entry is `scraper/scrape.ts`.
+- **Path alias**: `@/*` maps to `./src/*` (see `tsconfig.json`).
+- **No scraper package**: `scraper/` is listed in `.gitignore` and no longer exists in the working tree.
 
 ## Package manager & commands
 
-- Use **Bun** in both root and `scraper/` (`bun.lock` files are present).
+- Use **Bun** (`bun.lock` is present). Do not use npm/yarn/pnpm.
 - Root scripts:
   - `bun run dev` — dev server on http://localhost:3000
   - `bun run build` — static export into `dist/`
@@ -25,7 +31,7 @@
 
 - `next.config.ts` sets `output: "export"` and `distDir: "dist"`, so `bun run build` writes a static site to `dist/`, not `.next/`.
 - `reactCompiler: true` is enabled; `babel-plugin-react-compiler` is installed.
-- `turbopack.root` is hardcoded to `/home/samarth/frameworks/portfolio-resume`. If the repo is moved or regenerated, update or remove that path.
+- `turbopack.root` is hardcoded to `/home/samarth/portfolios/portfolio-resume`. If the repo is moved or regenerated, update or remove that path.
 - `next-env.d.ts` is generated; do not edit it.
 
 ## Tailwind v4 setup
@@ -41,24 +47,6 @@
 - Biome respects `.gitignore` and ignores `node_modules`, `.next`, `dist`, `build`.
 - Indent: 2 spaces.
 
-## Scraper (`scraper/`)
-
-Install and run from inside the `scraper/` directory:
-
-```bash
-cd scraper
-bun install
-bunx playwright install chromium   # one-time, ~150MB
-bun run scrape                     # all platforms
-bun run scrape:github
-bun run scrape:linkedin
-bun run scrape:twitter
-```
-
-- Optional env in `scraper/.env`: `GITHUB_TOKEN`, `LINKEDIN_COOKIE`, `HEADLESS`.
-- Output is written to `scraper/out/` (`github.json`, `linkedin.json`, `twitter.json`, `portfolio.json`).
-- LinkedIn often fails or returns partial data without a valid `li_at` cookie; Twitter/X is brittle and may be rate-limited.
-
 ## Verification order
 
 ```bash
@@ -67,3 +55,10 @@ bun run build
 ```
 
 There are no tests to run.
+
+## Design context
+
+- See `PRODUCT.md` for brand register, users, personality, and design principles.
+- See `DESIGN.md` for tokens, typography, and component rules.
+- Run `$impeccable document` to generate or refresh `DESIGN.md`.
+- Run `$impeccable live` once configured for in-browser visual variants.
