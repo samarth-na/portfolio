@@ -18,9 +18,9 @@ export function ProfileCard() {
           }`}
         >
           {/* Left: label + large display */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6 overflow-hidden">
             <p className="label text-text-muted mb-6">01 :: ABOUT RECORD</p>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-ink">
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-ink">
               COLLECTED
             </h2>
             <p className="mt-6 text-lg md:text-xl text-text-secondary leading-relaxed max-w-md">
@@ -30,7 +30,7 @@ export function ProfileCard() {
           </div>
 
           {/* Right: dotted frame card */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <div className="relative">
               <div className="absolute -inset-3 dotted-frame opacity-30 pointer-events-none" />
               <div className="relative border border-ink/20 bg-paper p-6 md:p-10">

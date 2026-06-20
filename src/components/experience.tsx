@@ -4,7 +4,7 @@ import { useStaggerReveal } from "@/hooks/use-reveal";
 
 const experiences = [
   {
-    id: "EXP-03",
+    id: "EXP-01",
     role: "Backend Engineering Intern",
     org: "Brand Collabs",
     period: "Jan 2026 – Present",
@@ -14,28 +14,6 @@ const experiences = [
       "Deployed fully offline Supabase instance with containerized infrastructure",
       "Audited API security across internal services and resolved critical vulnerabilities",
       "Authored backend documentation and technical workflows",
-    ],
-  },
-  {
-    id: "EXP-02",
-    role: "Smart India Hackathon Finalist",
-    org: "National Competition",
-    period: "2025",
-    tags: ["Healthcare", "Mapping", "Full Stack"],
-    points: [
-      "Built healthcare mapping platform for locating nearby medical facilities",
-      "Competed nationally with a production-ready prototype",
-    ],
-  },
-  {
-    id: "EXP-01",
-    role: "MSME Incubation Collaboration",
-    org: "Government-backed Initiative",
-    period: "2024",
-    tags: ["Data Pipeline", "Architecture", "Research"],
-    points: [
-      "Designed data collection pipelines with postgraduate researchers",
-      "Shaped system architecture for a public-sector initiative",
     ],
   },
 ];
@@ -50,19 +28,18 @@ export function Experience() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-5 overflow-hidden">
             <p className="label text-steel mb-6">02 :: FIELD REPORT</p>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9]">
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">
               Experience
             </h2>
             <p className="mt-6 text-cream/70 leading-relaxed max-w-sm">
-              Deployment logs from internships, hackathons, and research
-              collaborations. Each entry represents a live system I helped ship
-              or secure.
+              Deployment logs from live systems I helped ship, secure, or
+              automate.
             </p>
           </div>
 
-          <div ref={containerRef} className="lg:col-span-8 flex flex-col gap-6">
+          <div ref={containerRef} className="lg:col-span-7 flex flex-col gap-6">
             {experiences.map((exp) => (
               <article
                 key={exp.id}

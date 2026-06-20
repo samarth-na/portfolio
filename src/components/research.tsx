@@ -14,9 +14,9 @@ export function Research() {
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6 overflow-hidden">
             <p className="label text-text-muted mb-6">05 :: CASE STUDIES</p>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-ink">
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-ink">
               Research
             </h2>
             <p className="mt-6 text-text-secondary leading-relaxed max-w-md">
@@ -25,7 +25,7 @@ export function Research() {
             </p>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <div className="border border-ink/10 bg-cream p-6 md:p-10 hover:border-ink/30 transition-colors duration-500">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-2 h-2 rounded-full bg-accent animate-pulse-ring" />

@@ -21,9 +21,9 @@ export function Footer() {
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8 overflow-hidden">
             <p className="label text-steel mb-6">06 :: TRANSMISSION</p>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9] mb-8">
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-8">
               Let&apos;s build systems.
             </h2>
             <p className="text-cream/70 text-lg md:text-xl leading-relaxed max-w-2xl">
@@ -32,7 +32,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          <div className="lg:col-span-4 flex flex-col justify-between">
             <div className="space-y-6">
               <div>
                 <p className="label text-steel mb-2">EMAIL</p>

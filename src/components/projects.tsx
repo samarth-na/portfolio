@@ -43,13 +43,13 @@ export function Projects() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
-          <div>
+          <div className="min-w-0">
             <p className="label text-text-muted mb-4">03 :: DEPLOYED SYSTEMS</p>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-ink">
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-ink">
               Projects
             </h2>
           </div>
-          <p className="text-text-secondary max-w-md leading-relaxed">
+          <p className="text-text-secondary max-w-md leading-relaxed shrink-0">
             Selected builds where I explored browser-native tech, local AI
             orchestration, and performance-first web systems.
           </p>

@@ -118,9 +118,9 @@ export function TechStack() {
 
       <div className="relative max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-5 overflow-hidden">
             <p className="label text-ink/60 mb-6">04 :: TOOLCHAIN</p>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.9]">
+            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">
               Stack
             </h2>
             <p className="mt-6 text-ink/70 leading-relaxed max-w-sm">
@@ -131,7 +131,7 @@ export function TechStack() {
 
           <div
             ref={containerRef}
-            className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6"
+            className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
             {categories.map((cat) => (
               <div
