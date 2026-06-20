@@ -1,7 +1,3 @@
-"use client";
-
-import { useStaggerReveal } from "@/hooks/use-reveal";
-
 const projects = [
   {
     id: "PRJ-03",
@@ -34,8 +30,6 @@ const projects = [
 ];
 
 export function Projects() {
-  const containerRef = useStaggerReveal<HTMLDivElement>(".project-card", 100);
-
   return (
     <section
       id="projects"
@@ -55,17 +49,14 @@ export function Projects() {
           </p>
         </div>
 
-        <div
-          ref={containerRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map((project) => (
             <a
               key={project.id}
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="project-card group relative border border-ink/10 bg-cream p-6 md:p-8 hover:border-accent hover:bg-accent/5 transition-all duration-500"
+              className="group relative border border-ink/10 bg-cream p-6 md:p-8 hover:border-accent hover:bg-accent/5 transition-all duration-500"
             >
               <div className="flex items-start justify-between mb-6">
                 <span className="font-mono text-xs text-text-muted border border-ink/10 px-2 py-0.5">

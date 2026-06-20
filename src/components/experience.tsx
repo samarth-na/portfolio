@@ -1,7 +1,3 @@
-"use client";
-
-import { useStaggerReveal } from "@/hooks/use-reveal";
-
 const experiences = [
   {
     id: "EXP-01",
@@ -19,8 +15,6 @@ const experiences = [
 ];
 
 export function Experience() {
-  const containerRef = useStaggerReveal<HTMLDivElement>(".exp-item", 120);
-
   return (
     <section
       id="experience"
@@ -39,11 +33,11 @@ export function Experience() {
             </p>
           </div>
 
-          <div ref={containerRef} className="lg:col-span-7 flex flex-col gap-6">
+          <div className="lg:col-span-7 flex flex-col gap-6">
             {experiences.map((exp) => (
               <article
                 key={exp.id}
-                className="exp-item group border-t border-cream/20 pt-6 pb-2 hover:bg-cream/5 transition-colors duration-500"
+                className="group border-t border-cream/20 pt-6 pb-2 hover:bg-cream/5 transition-colors duration-500"
               >
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
                   <div>

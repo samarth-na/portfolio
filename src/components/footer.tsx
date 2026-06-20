@@ -1,7 +1,3 @@
-"use client";
-
-import { useReveal } from "@/hooks/use-reveal";
-
 const links = [
   { label: "GitHub", url: "https://github.com/samarth-na" },
   { label: "X / Twitter", url: "https://x.com/samarth7na" },
@@ -10,17 +6,10 @@ const links = [
 ];
 
 export function Footer() {
-  const { ref, visible } = useReveal<HTMLDivElement>();
-
   return (
     <footer className="relative bg-ink text-cream px-6 py-20 md:px-12 md:py-32">
       <div className="max-w-7xl mx-auto">
-        <div
-          ref={ref}
-          className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-8 overflow-hidden">
             <p className="label text-steel mb-6">06 :: TRANSMISSION</p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-8">

@@ -1,7 +1,3 @@
-"use client";
-
-import { useStaggerReveal } from "@/hooks/use-reveal";
-
 const categories = [
   {
     name: "Languages",
@@ -49,8 +45,6 @@ const categories = [
 ];
 
 export function TechStack() {
-  const containerRef = useStaggerReveal<HTMLDivElement>(".stack-group", 100);
-
   return (
     <section
       id="stack"
@@ -129,14 +123,11 @@ export function TechStack() {
             </p>
           </div>
 
-          <div
-            ref={containerRef}
-            className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6"
-          >
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {categories.map((cat) => (
               <div
                 key={cat.name}
-                className="stack-group border border-ink/20 p-5 hover:bg-ink hover:text-cream transition-colors duration-500"
+                className="border border-ink/20 p-5 hover:bg-ink hover:text-cream transition-colors duration-500"
               >
                 <p className="label text-xs mb-4 opacity-70">{cat.name}</p>
                 <div className="flex flex-wrap gap-2">
