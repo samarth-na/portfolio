@@ -1,3 +1,5 @@
+"use client";
+
 import { Experience } from "@/components/experience";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";

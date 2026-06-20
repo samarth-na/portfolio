@@ -1,13 +1,6 @@
-"use client";
-
-import { useReveal } from "@/hooks/use-reveal";
-
 export function Hero() {
-  const { ref: titleRef, visible: titleVisible } = useReveal<HTMLDivElement>();
-  const { ref: metaRef, visible: metaVisible } = useReveal<HTMLDivElement>();
-
   return (
-    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-paper px-6 py-8 md:px-12 md:py-10">
+    <section className="relative min-h-[100svh] flex flex-col justify-between overflow-hidden bg-paper px-6 py-8 md:px-12 md:py-10">
       {/* Top ticker */}
       <div className="absolute top-0 left-0 right-0 border-b border-ink/10 bg-cream/50 overflow-hidden py-2">
         <div className="flex whitespace-nowrap animate-marquee-slow">
@@ -65,30 +58,19 @@ export function Hero() {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col justify-center pt-24 md:pt-32">
-        <div
-          ref={titleRef}
-          className={`transition-all duration-1000 ${
-            titleVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
+        <div className="animate-reveal-up">
           <p className="label text-text-muted mb-4 md:mb-6">
             SUBJECT :: SAMARTH NAGAR
           </p>
-          <h1 className="font-display text-[clamp(4rem,16vw,14rem)] leading-[0.82] tracking-tight text-ink">
+          <h1 className="font-display text-[clamp(3rem,16vw,14rem)] leading-[0.82] tracking-tight text-ink">
             SYSTEM
             <span className="block text-steel">OPERATOR</span>
           </h1>
         </div>
 
         <div
-          ref={metaRef}
-          className={`mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 max-w-5xl transition-all duration-1000 delay-200 ${
-            metaVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
-          }`}
+          className="mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 max-w-5xl animate-reveal-up"
+          style={{ animationDelay: "0.15s" }}
         >
           <div className="border-t border-ink/20 pt-4">
             <p className="label text-text-muted mb-2">ROLE</p>

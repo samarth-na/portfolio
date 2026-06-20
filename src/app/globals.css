@@ -161,16 +161,16 @@ body {
 }
 
 .animate-reveal-up {
-  animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-reveal-left {
-  animation: reveal-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: reveal-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-draw-line {
   transform-origin: left;
-  animation: draw-line 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: draw-line 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-spin-slow {
@@ -183,6 +183,28 @@ body {
 
 .animate-blink {
   animation: blink 1.2s step-end infinite;
+}
+
+/* Respect reduced motion: disable decorative animations and force
+   reveal content to its final visible state. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-slow,
+  .animate-marquee-vertical,
+  .animate-reveal-up,
+  .animate-reveal-left,
+  .animate-draw-line,
+  .animate-spin-slow,
+  .animate-pulse-ring,
+  .animate-blink {
+    animation: none;
+  }
+
+  .reveal,
+  .reveal-left {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Scroll-triggered reveal helpers */
