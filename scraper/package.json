@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-scraper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Scrapes GitHub, LinkedIn, and X/Twitter data for the portfolio.",
+  "scripts": {
+    "scrape": "bun run scrape.ts",
+    "scrape:github": "bun run scrape.ts --platform=github",
+    "scrape:linkedin": "bun run scrape.ts --platform=linkedin",
+    "scrape:twitter": "bun run scrape.ts --platform=twitter",
+    "install-browsers": "bunx playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}
