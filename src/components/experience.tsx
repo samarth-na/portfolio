@@ -2,14 +2,13 @@ const experiences = [
   {
     id: "EXP-01",
     role: "Backend Engineering Intern",
-    org: "Brand Collabs",
-    period: "Jan 2026 – Present",
-    tags: ["Security", "Docker", "Supabase", "API Audit"],
+    org: "BrandCollabs",
+    period: "Jan 2026 – Mar 2026",
+    tags: ["TypeScript", "Supabase", "API Security", "Codegen"],
     points: [
-      "Built static code generation pipeline automating asset workflows",
-      "Deployed fully offline Supabase instance with containerized infrastructure",
-      "Audited API security across internal services and resolved critical vulnerabilities",
-      "Authored backend documentation and technical workflows",
+      "Eliminated server-side asset inference and storage by generating assets on-demand on the client — cut associated inference and storage usage by 100%",
+      "Built an internal static code-generation pipeline for the asset-generation workflow; audited internal APIs and fixed security issues across 118 endpoints",
+      "Configured Supabase services for offline deployments and designed an offline-online data synchronization engine for event operations",
     ],
   },
 ];

@@ -1,5 +1,40 @@
 const projects = [
   {
+    id: "PRJ-07",
+    title: "Cloud Workspace",
+    desc: "Collaborative cloud workspace with real-time messaging, shared tasks, file/image uploads, scheduled meetings, and peer-to-peer video calls. Chat runs on WebSockets with Cloudflare Durable Objects for stateful coordination; role-based access via Better Auth.",
+    tags: [
+      "Next.js",
+      "Cloudflare Workers",
+      "Durable Objects",
+      "WebSockets",
+      "WebRTC",
+      "Better Auth",
+    ],
+    link: "https://github.com/samarth-na/workspace",
+  },
+  {
+    id: "PRJ-06",
+    title: "Live Token Meter",
+    desc: "OpenCode plugin that tracks live token generation rate, tokens from the last response, total session output, and per-turn usage in real time through the v2 API.",
+    tags: ["OpenCode Plugin", "TypeScript", "Streaming Telemetry"],
+    link: "https://github.com/samarth-na/live-token-meter",
+  },
+  {
+    id: "PRJ-05",
+    title: "SQL Visualizer",
+    desc: "SPA that parses SQL schema definitions and renders relational schemas as an interactive architecture graph — tables laid out with their foreign-key relationships.",
+    tags: ["SQL Parsing", "Interactive Graph", "SPA"],
+    link: "https://schema-visualizer-plum.vercel.app",
+  },
+  {
+    id: "PRJ-04",
+    title: "Multi-Tenant SSO Service",
+    desc: "Single Sign-On service providing centralized sign-in and authorization across multiple applications. Implements authentication flows, tenant isolation, and security controls on API routes.",
+    tags: ["Node.js", "Nitro", "Cloudflare Workers", "D1"],
+    link: "https://github.com/samarth-na/single-sign-on",
+  },
+  {
     id: "PRJ-03",
     title: "WASM Video Editor",
     desc: "Browser-based video processing with WebAssembly and FFmpeg. Real-time encoding, decoding, and export pipelines — desktop-grade media processing inside the browser with zero server compute.",

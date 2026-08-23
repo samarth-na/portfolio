@@ -51,9 +51,11 @@ export function ProfileCard() {
                     <p className="font-mono text-sm md:text-base leading-relaxed">
                       SAGE University Indore
                       <br />
-                      B.Tech Computer Science
+                      Institute of Advanced Computing
                       <br />
-                      Expected 2026 · CGPA 7.8/10
+                      B.Tech (Hons.) Computer Science &amp; Technology
+                      <br />
+                      Expected 2027 · CGPA 7.8/10
                     </p>
                   </div>
                   <div>
@@ -69,10 +71,13 @@ export function ProfileCard() {
                 <div className="mt-8 pt-6 border-t border-ink/10">
                   <p className="label text-text-muted mb-3">SUMMARY</p>
                   <p className="text-text-secondary leading-relaxed">
-                    Started with Harvard&apos;s CS50, then spent years exploring
-                    operating systems, network protocols, distributed systems,
-                    and now diving deep into WebAssembly, Local LLMs, and API
-                    design. I learn through building.
+                    I build TypeScript &amp; Node.js applications, APIs,
+                    relational-database-heavy systems, and real-time features.
+                    Practical experience with WebSockets, WebRTC, REST APIs, and
+                    deployment through CI/CD, containers, Linux servers, and
+                    distributed serverless services. I design modular software
+                    focused on robustness and resource utilization, inspired by
+                    the Unix philosophy.
                   </p>
                 </div>
               </div>

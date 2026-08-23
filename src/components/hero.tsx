@@ -75,7 +75,7 @@ export function Hero() {
           <div className="border-t border-ink/20 pt-4">
             <p className="label text-text-muted mb-2">ROLE</p>
             <p className="text-lg md:text-xl font-medium leading-snug">
-              Backend Developer · DevOps Engineer · Systems Architect
+              Backend Software Engineer · TypeScript · Node.js · SQL
             </p>
           </div>
           <div className="border-t border-ink/20 pt-4">

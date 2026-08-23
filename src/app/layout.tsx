@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { Anton, Geist, Geist_Mono, Playfair_Display, Space_Grotesk } from "next/font/google";
+import {
+  Anton,
+  Geist,
+  Geist_Mono,
+  Playfair_Display,
+  Space_Grotesk,
+} from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,14 +37,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Samarth Nagar — Backend · Systems · DevOps",
+  title: "Samarth Nagar — Backend Software Engineer",
   description:
-    "Backend-focused developer obsessed with systems, infrastructure, performance, and browser-native tech. Based in Indore, India.",
+    "Backend-focused engineer building TypeScript & Node.js applications, APIs, relational-database-heavy systems, and real-time features with WebSockets and WebRTC. Based in Indore, India.",
   authors: [{ name: "Samarth Nagar" }],
   openGraph: {
-    title: "Samarth Nagar — Backend · Systems · DevOps",
+    title: "Samarth Nagar — Backend Software Engineer",
     description:
-      "Backend-focused developer obsessed with systems, infrastructure, performance, and browser-native tech.",
+      "Backend-focused engineer building TypeScript & Node.js applications, APIs, and real-time systems.",
     type: "website",
   },
 };
