@@ -17,8 +17,6 @@ export default function Home() {
       <Projects />
       <TechStack />
       <Research />
-      <RelaySection />
-      <DesignWorkshopSection />
       <Footer />
     </main>
   );
