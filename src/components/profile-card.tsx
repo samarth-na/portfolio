@@ -1,3 +1,5 @@
+import { Reveal } from "./reveal";
+
 export function ProfileCard() {
   return (
     <section
@@ -5,7 +7,7 @@ export function ProfileCard() {
       className="relative bg-cream px-6 py-20 md:px-12 md:py-32"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 animate-reveal-up">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 lg:items-center">
           {/* Left: label + large display */}
           <div className="lg:col-span-6 overflow-hidden">
             <p className="label text-text-muted mb-6">01 :: ABOUT RECORD</p>
@@ -83,7 +85,7 @@ export function ProfileCard() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -64,6 +64,8 @@ const projects = [
   },
 ];
 
+import { Reveal } from "./reveal";
+
 export function Projects() {
   return (
     <section
@@ -71,7 +73,7 @@ export function Projects() {
       className="relative bg-paper px-6 py-20 md:px-12 md:py-32"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
           <div className="min-w-0">
             <p className="label text-text-muted mb-4">03 :: DEPLOYED SYSTEMS</p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-ink">
@@ -82,9 +84,9 @@ export function Projects() {
             Selected builds where I explored browser-native tech, local AI
             orchestration, and performance-first web systems.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map((project) => (
             <a
               key={project.id}
@@ -121,7 +123,7 @@ export function Projects() {
               </div>
             </a>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

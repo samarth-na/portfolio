@@ -1,3 +1,5 @@
+import { Reveal } from "./reveal";
+
 const experiences = [
   {
     id: "EXP-01",
@@ -20,7 +22,7 @@ export function Experience() {
       className="relative bg-ink text-cream px-6 py-20 md:px-12 md:py-32 stripes"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-5 overflow-hidden">
             <p className="label text-steel mb-6">02 :: FIELD REPORT</p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">
@@ -51,7 +53,7 @@ export function Experience() {
                     </h3>
                     <p className="text-cream/60 mt-1">@ {exp.org}</p>
                   </div>
-                  <div className="flex flex-wrap gap-2 md:justify-end">
+                  <div className="flex flex-wrap gap-2">
                     {exp.tags.map((tag) => (
                       <span
                         key={tag}
@@ -76,7 +78,7 @@ export function Experience() {
               </article>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

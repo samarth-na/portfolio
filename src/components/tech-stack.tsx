@@ -1,3 +1,5 @@
+import { Reveal } from "./reveal";
+
 const categories = [
   {
     name: "Languages",
@@ -124,7 +126,7 @@ export function TechStack() {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-5 overflow-hidden">
             <p className="label text-ink/60 mb-6">04 :: TOOLCHAIN</p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">
@@ -156,7 +158,7 @@ export function TechStack() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

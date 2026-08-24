@@ -1,3 +1,5 @@
+import { Reveal } from "./reveal";
+
 const links = [
   { label: "GitHub", url: "https://github.com/samarth-na" },
   { label: "X / Twitter", url: "https://x.com/samarth7na" },
@@ -8,7 +10,7 @@ const links = [
 export function Footer() {
   return (
     <footer className="relative bg-ink text-cream px-6 py-20 md:px-12 md:py-32">
-      <div className="max-w-7xl mx-auto">
+      <Reveal className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-8 overflow-hidden">
             <p className="label text-steel mb-6">06 :: TRANSMISSION</p>
@@ -61,7 +63,7 @@ export function Footer() {
           </span>
           <span>DOC ID: SN-RESUME-0626</span>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }
