@@ -1,19 +1,7 @@
+import { content } from "@/data/content";
 import { Reveal } from "./reveal";
 
-const experiences = [
-  {
-    id: "EXP-01",
-    role: "Backend Engineering Intern",
-    org: "BrandCollabs",
-    period: "Jan 2026 – Mar 2026",
-    tags: ["TypeScript", "Supabase", "API Security", "Codegen"],
-    points: [
-      "Eliminated server-side asset inference and storage by generating assets on-demand on the client — cut associated inference and storage usage by 100%",
-      "Built an internal static code-generation pipeline for the asset-generation workflow; audited internal APIs and fixed security issues across 118 endpoints",
-      "Configured Supabase services for offline deployments and designed an offline-online data synchronization engine for event operations",
-    ],
-  },
-];
+const { experience: experienceData } = content;
 
 export function Experience() {
   return (
@@ -24,18 +12,19 @@ export function Experience() {
       <div className="max-w-7xl mx-auto">
         <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-5 overflow-hidden">
-            <p className="label text-steel mb-6">02 :: FIELD REPORT</p>
+            <p className="label text-steel mb-6">
+              {experienceData.sectionLabel}
+            </p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">
-              Experience
+              {experienceData.title}
             </h2>
             <p className="mt-6 text-cream/70 leading-relaxed max-w-sm">
-              Deployment logs from live systems I helped ship, secure, or
-              automate.
+              {experienceData.intro}
             </p>
           </div>
 
           <div className="lg:col-span-7 flex flex-col gap-6">
-            {experiences.map((exp) => (
+            {experienceData.items.map((exp) => (
               <article
                 key={exp.id}
                 className="group border-t border-cream/20 pt-6 pb-2 hover:bg-cream/5 transition-colors duration-500"

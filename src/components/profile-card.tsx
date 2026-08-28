@@ -1,4 +1,7 @@
+import { content } from "@/data/content";
 import { Reveal } from "./reveal";
+
+const { profile } = content;
 
 export function ProfileCard() {
   return (
@@ -10,13 +13,12 @@ export function ProfileCard() {
         <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 lg:items-center">
           {/* Left: label + large display */}
           <div className="lg:col-span-6 overflow-hidden">
-            <p className="label text-text-muted mb-6">01 :: ABOUT RECORD</p>
+            <p className="label text-text-muted mb-6">{profile.sectionLabel}</p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-ink">
-              COLLECTED
+              {profile.title}
             </h2>
             <p className="mt-6 text-lg md:text-xl text-text-secondary leading-relaxed max-w-md">
-              Backend-focused developer obsessed with systems, infrastructure,
-              performance, and browser-native tech.
+              {profile.text}
             </p>
           </div>
 
@@ -39,33 +41,35 @@ export function ProfileCard() {
                   <div>
                     <p className="label text-text-muted mb-2">SUBJECT NAME</p>
                     <p className="font-mono text-xl md:text-2xl text-ink">
-                      Samarth (Sam) Nagar
+                      {profile.subjectName}
                     </p>
                   </div>
                   <div>
                     <p className="label text-text-muted mb-2">DOCUMENT ID</p>
                     <div className="inline-block bg-slate/40 px-4 py-2 font-mono text-lg">
-                      SN-ABT-001
+                      {profile.documentId}
                     </div>
                   </div>
                   <div>
                     <p className="label text-text-muted mb-2">EDUCATION</p>
                     <p className="font-mono text-sm md:text-base leading-relaxed">
-                      SAGE University Indore
-                      <br />
-                      Institute of Advanced Computing
-                      <br />
-                      B.Tech (Hons.) Computer Science &amp; Technology
-                      <br />
-                      Expected 2027 · CGPA 7.8/10
+                      {profile.education.map((line, i) => (
+                        <span key={line}>
+                          {line}
+                          {i < profile.education.length - 1 && <br />}
+                        </span>
+                      ))}
                     </p>
                   </div>
                   <div>
                     <p className="label text-text-muted mb-2">LOCATION</p>
                     <p className="font-mono text-sm md:text-base leading-relaxed">
-                      Indore, India
-                      <br />
-                      UTC+05:30
+                      {profile.location.map((line, i) => (
+                        <span key={line}>
+                          {line}
+                          {i < profile.location.length - 1 && <br />}
+                        </span>
+                      ))}
                     </p>
                   </div>
                 </div>
@@ -73,13 +77,7 @@ export function ProfileCard() {
                 <div className="mt-8 pt-6 border-t border-ink/10">
                   <p className="label text-text-muted mb-3">SUMMARY</p>
                   <p className="text-text-secondary leading-relaxed">
-                    I build TypeScript &amp; Node.js applications, APIs,
-                    relational-database-heavy systems, and real-time features.
-                    Practical experience with WebSockets, WebRTC, REST APIs, and
-                    deployment through CI/CD, containers, Linux servers, and
-                    distributed serverless services. I design modular software
-                    focused on robustness and resource utilization, inspired by
-                    the Unix philosophy.
+                    {profile.summary}
                   </p>
                 </div>
               </div>

@@ -1,63 +1,7 @@
+import { content } from "@/data/content";
 import { Reveal } from "./reveal";
 
-const categories = [
-  {
-    name: "Languages",
-    items: ["JavaScript", "TypeScript", "Python", "Bash", "PHP", "Lua"],
-  },
-  {
-    name: "Backend & APIs",
-    items: [
-      "Node.js",
-      "Express",
-      "REST APIs",
-      "WebSockets",
-      "WebRTC",
-      "HTTP Streaming",
-      "Authentication",
-      "RBAC",
-    ],
-  },
-  {
-    name: "Data & Storage",
-    items: [
-      "PostgreSQL",
-      "MySQL",
-      "SQLite",
-      "libSQL",
-      "MongoDB",
-      "Elasticsearch",
-    ],
-  },
-  {
-    name: "Cloud & Infra",
-    items: [
-      "Docker",
-      "Kubernetes",
-      "CI/CD",
-      "Linux",
-      "SSH",
-      "VPS",
-      "AWS",
-      "Azure",
-    ],
-  },
-  {
-    name: "Edge & Platforms",
-    items: [
-      "Cloudflare Workers",
-      "Durable Objects",
-      "D1",
-      "Vercel",
-      "UploadThing",
-      "Better Auth",
-    ],
-  },
-  {
-    name: "Frameworks & Workflow",
-    items: ["Next.js", "React", "Nitro", "Neovim", "tmux", "fish"],
-  },
-];
+const { stack } = content;
 
 export function TechStack() {
   return (
@@ -128,18 +72,17 @@ export function TechStack() {
       <div className="relative max-w-7xl mx-auto">
         <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-5 overflow-hidden">
-            <p className="label text-ink/60 mb-6">04 :: TOOLCHAIN</p>
+            <p className="label text-ink/60 mb-6">{stack.sectionLabel}</p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9]">
-              Stack
+              {stack.title}
             </h2>
             <p className="mt-6 text-ink/70 leading-relaxed max-w-sm">
-              Technologies I use to design, deploy, and operate systems from the
-              terminal to the edge.
+              {stack.intro}
             </p>
           </div>
 
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {categories.map((cat) => (
+            {stack.categories.map((cat) => (
               <div
                 key={cat.name}
                 className="border border-ink/20 p-5 hover:bg-ink hover:text-cream transition-colors duration-500"

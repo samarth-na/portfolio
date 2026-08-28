@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { content } from "@/data/content";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,15 +20,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Samarth Nagar — Backend Software Engineer",
-  description:
-    "Backend-focused engineer building TypeScript & Node.js applications, APIs, relational-database-heavy systems, and real-time features with WebSockets and WebRTC. Based in Indore, India.",
-  authors: [{ name: "Samarth Nagar" }],
+  title: content.meta.title,
+  description: content.meta.description,
+  authors: [{ name: content.meta.author }],
   openGraph: {
-    title: "Samarth Nagar — Backend Software Engineer",
-    description:
-      "Backend-focused engineer building TypeScript & Node.js applications, APIs, and real-time systems.",
-    type: "website",
+    title: content.meta.openGraph.title,
+    description: content.meta.openGraph.description,
+    type: content.meta.openGraph.type as "website",
   },
 };
 

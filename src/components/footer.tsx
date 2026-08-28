@@ -1,11 +1,7 @@
+import { content } from "@/data/content";
 import { Reveal } from "./reveal";
 
-const links = [
-  { label: "GitHub", url: "https://github.com/samarth-na" },
-  { label: "X / Twitter", url: "https://x.com/samarth7na" },
-  { label: "LinkedIn", url: "https://www.linkedin.com/in/na-samarth/" },
-  { label: "Portfolio", url: "https://samarth-na.vercel.app" },
-];
+const { footer, site } = content;
 
 export function Footer() {
   return (
@@ -13,13 +9,12 @@ export function Footer() {
       <Reveal className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-8 overflow-hidden">
-            <p className="label text-steel mb-6">06 :: TRANSMISSION</p>
+            <p className="label text-steel mb-6">{footer.sectionLabel}</p>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.9] mb-8">
-              Let&apos;s build systems.
+              {footer.title}
             </h2>
             <p className="text-cream/70 text-lg md:text-xl leading-relaxed max-w-2xl">
-              Open to internships, freelance systems work, and collaborations on
-              backend infrastructure, DevOps, and browser-native products.
+              {footer.intro}
             </p>
           </div>
 
@@ -28,17 +23,17 @@ export function Footer() {
               <div>
                 <p className="label text-steel mb-2">EMAIL</p>
                 <a
-                  href="mailto:samarth07nagar@gmail.com"
+                  href={`mailto:${footer.email}`}
                   className="font-mono text-xl md:text-2xl link-strike hover:text-accent transition-colors"
                 >
-                  samarth07nagar@gmail.com
+                  {footer.email}
                 </a>
               </div>
 
               <div>
                 <p className="label text-steel mb-3">CHANNELS</p>
                 <div className="flex flex-wrap gap-4">
-                  {links.map((link) => (
+                  {footer.links.map((link) => (
                     <a
                       key={link.label}
                       href={link.url}
@@ -56,12 +51,12 @@ export function Footer() {
         </div>
 
         <div className="mt-20 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4 text-cream/50 text-sm font-mono">
-          <span>© 2026 SAMARTH NAGAR</span>
+          <span>{footer.copyright}</span>
           <span className="flex items-center gap-2">
-            BACKED BY GOD AND FOSS
+            {footer.footerTag}
             <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-ring" />
           </span>
-          <span>DOC ID: SN-RESUME-0626</span>
+          <span>DOC ID: {site.docId}</span>
         </div>
       </Reveal>
     </footer>
