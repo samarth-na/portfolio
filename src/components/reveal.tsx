@@ -32,11 +32,19 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0, rootMargin: "0px 0px -6% 0px" },
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Fallback for mobile / edge cases where observer never fires.
+    // Ensures sections don't stay permanently hidden (black screen).
+    const fallback = window.setTimeout(() => setHidden(false), 900);
+
+    return () => {
+      window.clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, []);
 
   return (

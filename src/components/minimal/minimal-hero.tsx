@@ -1,26 +1,23 @@
 import { content } from "@/data/content";
-import { GithubIcon, MailIcon } from "./icons";
+import { GithubIcon, LinkedInIcon, MailIcon, XIcon } from "./icons";
 
 const { site, footer } = content;
 
 const githubUrl = footer.links.find((link) => link.label === "GitHub")?.url;
+const xUrl = footer.links.find((link) => link.label === "X / Twitter")?.url;
+const linkedInUrl = footer.links.find((link) => link.label === "LinkedIn")?.url;
 
 export function MinimalHero() {
   return (
     <section className="m-hero">
       <div className="m-hero-inner">
-        <h1 className="m-name m-fade">
-          <span className="m-star" aria-hidden="true">
-            ✳
-          </span>
-          {site.name}
-        </h1>
+        <h1 className="m-name m-fade font-mono">{site.name}</h1>
         <p className="m-tagline m-fade m-fade-1">
           Backend Engineer · TypeScript · SQL · Linux · DevOps
         </p>
         <p className="m-statement m-fade m-fade-1">
           I build TypeScript &amp; Node.js applications, APIs and real-time
-          systems — focused on reliability, performance and clean data models.
+          systems, focused on reliability, performance and clean data models.
         </p>
 
         <div className="m-hero-ctas m-fade m-fade-2">
@@ -37,6 +34,27 @@ export function MinimalHero() {
             >
               <GithubIcon />
               GitHub
+            </a>
+          )}
+          {linkedInUrl && (
+            <a
+              className="m-cta"
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon />
+              LinkedIn
+            </a>
+          )}
+          {xUrl && (
+            <a
+              className="m-cta"
+              href={xUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <XIcon />X
             </a>
           )}
         </div>

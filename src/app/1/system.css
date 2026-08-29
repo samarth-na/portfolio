@@ -1,8 +1,0 @@
-/* /1 — plain system-UI stack, overriding the landing default in minimal.css.
-   Renders as San Francisco on macOS/iOS, Segoe UI on Windows, Roboto on
-   Android, Helvetica Neue/Arial elsewhere. No webfont is loaded. */
-
-.type-1 {
-  --font-geist-sans:
-    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}

@@ -1196,12 +1196,23 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   background: var(--m-border-strong);
 }
 
-/* ---------- Stack ---------- */
+/* ---------- Stack — 1x6 vertical list (mirrors projects) ---------- */
+
+#stack.m-section {
+  padding-top: 88px;
+}
 
 .m-stack-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+}
+
+.m-stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
 .m-stack-card {
@@ -1223,7 +1234,25 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
+}
+
+/* Larger, brand-bordered tags — scoped to stack; color only on hover */
+.m-stack-tags .m-tag {
+  font-size: 0.75rem;
+  padding: 5px 11px;
+  border-color: var(--m-border-strong);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.m-stack-tags .m-tag:hover {
+  border-color: var(--tag-color);
+}
+
+.m-stack-card:hover .m-tag {
+  border-color: var(--tag-color);
 }
 
 /* ---------- Research ---------- */
