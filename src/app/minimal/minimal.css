@@ -143,8 +143,6 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: 40px clamp(48px, 7vw, 112px);
   align-items: start;
-  align-content: space-between;
-  min-height: calc(100vh - 180px);
 }
 
 .m-name {
@@ -298,7 +296,8 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 /* Hero bottom meta */
 .m-hero-meta {
   grid-column: 1 / -1;
-  padding-top: 26px;
+  margin-top: 40px;
+  padding-top: 22px;
   border-top: 1px solid var(--m-border);
   display: flex;
   flex-direction: column;
