@@ -3,6 +3,10 @@ import { Reveal } from "../reveal";
 
 const { stack } = content;
 
+function cleanLabel(label: string) {
+  return label.replace(/^\d+\s*::\s*/, "").trim();
+}
+
 export function MinimalStack() {
   return (
     <section id="stack" className="m-section">
@@ -10,7 +14,7 @@ export function MinimalStack() {
         <Reveal>
           <div className="m-section-head">
             <div>
-              <p className="m-label">{stack.sectionLabel}</p>
+              <p className="m-label">{cleanLabel(stack.sectionLabel)}</p>
               <h2 className="m-section-title">{stack.title}</h2>
             </div>
             <p className="m-section-intro">{stack.intro}</p>

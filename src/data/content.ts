@@ -30,6 +30,7 @@ export interface ProjectItem {
   desc: string;
   tags: string[];
   link: string;
+  image?: string;
 }
 
 export interface StackCategory {

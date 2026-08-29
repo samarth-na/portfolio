@@ -3,6 +3,10 @@ import { Reveal } from "../reveal";
 
 const { profile } = content;
 
+function cleanLabel(label: string) {
+  return label.replace(/^\d+\s*::\s*/, "").trim();
+}
+
 export function MinimalAbout() {
   return (
     <section id="profile" className="m-section">
@@ -10,7 +14,7 @@ export function MinimalAbout() {
         <Reveal>
           <div className="m-section-head">
             <div>
-              <p className="m-label">{profile.sectionLabel}</p>
+              <p className="m-label">{cleanLabel(profile.sectionLabel)}</p>
               <h2 className="m-section-title">{profile.title}</h2>
             </div>
           </div>

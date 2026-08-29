@@ -3,6 +3,10 @@ import { Reveal } from "../reveal";
 
 const { research } = content;
 
+function cleanLabel(label: string) {
+  return label.replace(/^\d+\s*::\s*/, "").trim();
+}
+
 export function MinimalResearch() {
   return (
     <section id="research" className="m-section">
@@ -10,7 +14,7 @@ export function MinimalResearch() {
         <Reveal>
           <div className="m-section-head">
             <div>
-              <p className="m-label">{research.sectionLabel}</p>
+              <p className="m-label">{cleanLabel(research.sectionLabel)}</p>
               <h2 className="m-section-title">{research.title}</h2>
             </div>
             <p className="m-section-intro">{research.intro}</p>
@@ -42,12 +46,12 @@ export function MinimalResearch() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="m-arrow-link"
+                  title={link.url}
                 >
                   <span className="m-arrow" aria-hidden="true">
                     →
                   </span>
                   {link.label}
-                  <span className="m-arrow-link-url">{link.url}</span>
                 </a>
               ))}
             </div>

@@ -16,31 +16,22 @@ const ACCENTS = [
   "#38bdf8",
 ];
 
-const PREVIEWS = [
-  {
-    side: ["62%", "86%", "50%"],
-    pill: "46%",
-    bar: "54%",
-    bar2: "72%",
-    square: "bottom",
-  },
-  {
-    side: ["50%", "70%", "62%"],
-    pill: "60%",
-    bar: "40%",
-    bar2: "64%",
-    square: "top",
-  },
-  {
-    side: ["78%", "54%", "68%"],
-    pill: "40%",
-    bar: "66%",
-    bar2: "44%",
-    square: "bottom",
-  },
-] as const;
+const GLYPHS: Record<string, string> = {
+  "PRJ-07": "◈",
+  "PRJ-06": "◐",
+  "PRJ-05": "⬢",
+  "PRJ-04": "⬣",
+  "PRJ-03": "◆",
+  "PRJ-02": "⬔",
+  "PRJ-01": "▭",
+  "PRJ-00": "≡",
+};
 
 const year = site.portfolioDocId.match(/\d{4}/)?.[0] ?? "2026";
+
+function cleanLabel(label: string) {
+  return label.replace(/^\d+\s*::\s*/, "").trim();
+}
 
 export function MinimalProjects() {
   return (
@@ -50,7 +41,7 @@ export function MinimalProjects() {
           <div className="m-projects-grid">
             <div className="m-projects-left">
               <div>
-                <p className="m-label">{projects.sectionLabel}</p>
+                <p className="m-label">{cleanLabel(projects.sectionLabel)}</p>
                 <h2 className="m-section-title">{projects.title}</h2>
                 <p className="m-section-intro m-projects-intro">
                   {projects.intro}
@@ -67,9 +58,9 @@ export function MinimalProjects() {
             <div className="m-work">
               <div className="m-work-list">
                 {projects.items.map((project, index) => {
-                  const preview = PREVIEWS[index % PREVIEWS.length];
                   const accent = ACCENTS[index % ACCENTS.length];
                   const style = { "--dot": accent } as CSSProperties;
+                  const glyph = GLYPHS[project.id] ?? "·";
 
                   return (
                     <a
@@ -77,56 +68,37 @@ export function MinimalProjects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="m-card"
+                      className="m-shot"
                       style={style}
+                      aria-label={`${project.title} — ${project.desc}`}
+                      title={project.title}
                     >
-                      <div className="m-card-head">
-                        <span className="m-card-dots" aria-hidden="true">
-                          <i />
-                          <i />
-                          <i />
-                        </span>
-                        <span>{project.id}</span>
-                        <span>{year}</span>
-                        <span className="m-card-open">
-                          Open
-                          <ArrowUpRightIcon />
-                        </span>
-                      </div>
-
-                      <h3 className="m-card-title">{project.title}</h3>
-                      <p className="m-card-desc">{project.desc}</p>
-
-                      <div className="m-card-tags">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="m-tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="m-preview" aria-hidden="true">
-                        <div className="m-pv-side">
-                          <i style={{ width: preview.side[0] }} />
-                          <i style={{ width: preview.side[1] }} />
-                          <i style={{ width: preview.side[2] }} />
+                      {project.image ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={project.image}
+                          alt={`${project.title} screenshot`}
+                          loading="lazy"
+                          decoding="async"
+                          className="m-shot-img"
+                        />
+                      ) : (
+                        <div className="m-shot-placeholder" aria-hidden="true">
+                          <span className="m-glyph m-glyph-lg">{glyph}</span>
+                          <span className="m-shot-id">{project.id}</span>
+                          <span className="m-shot-title">{project.title}</span>
+                          <span className="m-shot-hint">Screenshot coming</span>
                         </div>
-                        <div className="m-pv-main">
-                          <span
-                            className="m-pv-pill"
-                            style={{ width: preview.pill }}
-                          />
-                          <span
-                            className="m-pv-bar"
-                            style={{ width: preview.bar }}
-                          />
-                          <span
-                            className="m-pv-bar"
-                            style={{ width: preview.bar2 }}
-                          />
-                        </div>
-                        <span className={`m-pv-square ${preview.square}`} />
-                      </div>
+                      )}
+                      <span className="m-shot-overlay" aria-hidden="true">
+                        <span className="m-shot-overlay-id">{project.id}</span>
+                        <span className="m-shot-overlay-title">
+                          {project.title}
+                        </span>
+                        <span className="m-shot-overlay-open">
+                          Open <ArrowUpRightIcon />
+                        </span>
+                      </span>
                     </a>
                   );
                 })}
