@@ -18,11 +18,16 @@
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.035em;
+  align-items: center;
+  gap: 10px;
 }
 
 .minimal.minimal-v2 .m-name .m-star {
-  font-size: 11px;
-  transform: translateY(-2px);
+  font-size: 16px;
+  line-height: 1;
+  color: var(--m-text-2);
+  transform: none;
+  flex-shrink: 0;
 }
 
 .minimal.minimal-v2 .m-tagline {
