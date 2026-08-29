@@ -1,0 +1,144 @@
+/* Shared type-hierarchy refinement layer for the font variants (/1–/5).
+   Derived from the committed /1 v2 experiments: stepped scale, lighter
+   display, tightened meta tracking. Landing (/) does NOT import this file,
+   so it stays the untouched control. */
+
+.minimal.minimal-type {
+  --t-display: clamp(30px, 4vw, 38px);
+  --t-h2: clamp(18px, 2.2vw, 21px);
+  --t-h3: 15.5px;
+  --t-lead: clamp(15.5px, 1.8vw, 17.5px);
+  --t-body: 14.5px;
+  --t-label: 10.5px;
+}
+
+/* Hero name: set in the variant's sans face — the landing page keeps its
+   mono name; these routes exist to compare sans display faces. */
+.minimal.minimal-type .m-name {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--t-display);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.minimal.minimal-type .m-tagline {
+  margin-top: 6px;
+  letter-spacing: 0.08em;
+  color: var(--m-text-3);
+}
+
+.minimal.minimal-type .m-statement {
+  margin-top: 10px;
+  font-size: var(--t-lead);
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: #d6d6d6; /* lift lead one step for contrast on dark */
+  max-width: 52ch;
+}
+
+/* ---------- Section heads: 15px -> real H2 ---------- */
+.minimal.minimal-type .m-section-title {
+  font-size: var(--t-h2);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.minimal.minimal-type .m-section-intro {
+  font-size: 14.5px;
+}
+
+/* ---------- Experience: H3 distinct from H2 ---------- */
+.minimal.minimal-type .m-exp-role {
+  font-size: var(--t-h3);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.minimal.minimal-type .m-exp-org {
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+/* Body copy: one size, lifted one step on dark */
+.minimal.minimal-type .m-exp-point,
+.minimal.minimal-type .m-card-desc,
+.minimal.minimal-type .m-research-body,
+.minimal.minimal-type .m-research-point,
+.minimal.minimal-type .m-summary {
+  font-size: var(--t-body);
+  line-height: 1.65;
+  color: #c9c9c9;
+}
+
+.minimal.minimal-type .m-research-title {
+  /* must stay smaller than section H2, larger than body */
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.minimal.minimal-type .m-card-title {
+  font-size: var(--t-h3);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.minimal.minimal-type .m-footer-title {
+  /* subordinate to the hero display, ~H2 size */
+  font-size: clamp(19px, 2.2vw, 22px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Meta / labels: tighten tracking ---------- */
+.minimal.minimal-type .m-label {
+  font-size: var(--t-label);
+  letter-spacing: 0.08em; /* was 0.10–0.11em */
+}
+
+.minimal.minimal-type .m-exp-meta {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+}
+
+.minimal.minimal-type .m-tag {
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+.minimal.minimal-type .m-chip {
+  font-size: 11px;
+}
+
+/* Field values: mono at 13px was cramped — sans for values,
+   mono stays for labels/ids */
+.minimal.minimal-type .m-field-value {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  font-weight: 450;
+}
+
+.minimal.minimal-type .m-field-lines span {
+  line-height: 1.6;
+}
+
+.minimal.minimal-type .m-research-status,
+.minimal.minimal-type .m-shot-id,
+.minimal.minimal-type .m-shot-hint {
+  letter-spacing: 0.08em;
+}
+
+/* Keep the display scale from collapsing on small screens */
+@media (max-width: 700px) {
+  .minimal.minimal-type .m-name {
+    font-size: clamp(26px, 7vw, 30px);
+  }
+}

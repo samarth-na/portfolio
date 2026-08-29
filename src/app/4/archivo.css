@@ -1,0 +1,17 @@
+/* /4 — Archivo. The wdth axis (62.5–125%) is the point here: a strongly
+   condensed display against a normal-width body. */
+
+.type-4 {
+  --font-geist-sans: var(--font-v), ui-sans-serif, system-ui, sans-serif;
+}
+
+.type-4 .m-name {
+  font-stretch: 87%;
+  font-weight: 500;
+}
+
+.type-4 .m-section-title,
+.type-4 .m-footer-title {
+  font-stretch: 92%;
+  font-weight: 550;
+}

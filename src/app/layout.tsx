@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fragment_Mono, Onest } from "next/font/google";
+import { Geist_Mono, Onest } from "next/font/google";
 import { content } from "@/data/content";
 import "./globals.css";
 
@@ -12,8 +12,9 @@ const onest = Onest({
   adjustFontFallback: true,
 });
 
-const fragmentMono = Fragment_Mono({
-  weight: "400",
+/* Geist Mono is variable (100–900) — real medium/semibold labels instead of
+   Fragment Mono's faux-bold (Fragment Mono only ships weight 400). */
+const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
@@ -41,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${onest.variable} ${fragmentMono.variable} h-full antialiased`}
+      className={`${onest.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

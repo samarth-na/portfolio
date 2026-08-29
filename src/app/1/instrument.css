@@ -1,0 +1,19 @@
+/* /1 — Instrument Sans. Width tuning on top of the shared hierarchy layer:
+   display slightly condensed (92%) for the SF Compact feel, body at 100%. */
+
+.type-1 {
+  --font-geist-sans: var(--font-v), ui-sans-serif, system-ui, sans-serif;
+}
+
+.type-1 .m-name {
+  font-stretch: 92%;
+}
+
+.type-1 .m-section-title,
+.type-1 .m-footer-title {
+  font-stretch: 94%;
+}
+
+.type-1 .m-statement {
+  font-stretch: 97%;
+}

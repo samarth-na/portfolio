@@ -1,33 +1,32 @@
 import type { Metadata } from "next";
-import { MinimalAbout } from "@/components/minimal/minimal-about";
-import { MinimalExperience } from "@/components/minimal/minimal-experience";
-import { MinimalFooter } from "@/components/minimal/minimal-footer";
-import { MinimalHero } from "@/components/minimal/minimal-hero";
-import { MinimalProjects } from "@/components/minimal/minimal-projects";
-import { MinimalResearch } from "@/components/minimal/minimal-research";
-import { MinimalStack } from "@/components/minimal/minimal-stack";
+import { Instrument_Sans } from "next/font/google";
+import { MinimalSite } from "@/components/minimal/minimal-site";
 import "../minimal.css";
-import "./v2.css";
+import "../type-base.css";
+import "./instrument.css";
+
+/* Instrument Sans — closest legal match to SF Compact: a compact grotesque
+   with a real width axis (wdth 75–100), so display can be set condensed
+   while body stays at normal width. */
+const instrumentSans = Instrument_Sans({
+  variable: "--font-v",
+  subsets: ["latin"],
+  axes: ["wdth"],
+  display: "swap",
+  preload: false,
+});
 
 export const metadata: Metadata = {
-  title: "Samarth Nagar — Type Hierarchy v2 (/1)",
+  title: "Samarth Nagar — Type /1 · Instrument Sans",
   description:
-    "Experimental font hierarchy — larger display + stepped H2/H3 scale. Landing (/) unchanged.",
+    "Typography variant: Instrument Sans, semi-condensed display. Landing (/) unchanged.",
   robots: { index: false, follow: false },
 };
 
 export default function PageOne() {
   return (
-    <div className="minimal minimal-v2">
-      <main id="main" className="m-page" tabIndex={-1}>
-        <MinimalHero />
-        <MinimalAbout />
-        <MinimalExperience />
-        <MinimalProjects />
-        <MinimalStack />
-        <MinimalResearch />
-        <MinimalFooter />
-      </main>
+    <div className={`minimal minimal-type type-1 ${instrumentSans.variable}`}>
+      <MinimalSite />
     </div>
   );
 }

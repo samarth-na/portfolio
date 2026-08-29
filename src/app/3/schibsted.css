@@ -1,0 +1,16 @@
+/* /3 — Schibsted Grotesk. This face carries more personality than a neutral
+   grotesque, so the display goes heavier (600) instead of condensed. */
+
+.type-3 {
+  --font-geist-sans: var(--font-v), ui-sans-serif, system-ui, sans-serif;
+}
+
+.type-3 .m-name {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.type-3 .m-section-title,
+.type-3 .m-footer-title {
+  font-weight: 600;
+}

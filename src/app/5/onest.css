@@ -1,0 +1,6 @@
+/* /5 — Onest baseline. The face comes from the root layout; only a slight
+   display-weight trim on top of the shared layer, since Onest runs wide. */
+
+.type-5 .m-name {
+  font-weight: 550;
+}
