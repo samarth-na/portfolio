@@ -3,25 +3,11 @@ import { Reveal } from "../reveal";
 
 const { experience: experienceData } = content;
 
-function cleanLabel(label: string) {
-  return label.replace(/^\d+\s*::\s*/, "").trim();
-}
-
 export function MinimalExperience() {
   return (
     <section id="experience" className="m-section">
       <div className="m-container">
         <Reveal>
-          <div className="m-section-head">
-            <div>
-              <p className="m-label">
-                {cleanLabel(experienceData.sectionLabel)}
-              </p>
-              <h2 className="m-section-title">{experienceData.title}</h2>
-            </div>
-            <p className="m-section-intro">{experienceData.intro}</p>
-          </div>
-
           <div className="m-exp-list">
             {experienceData.items.map((exp) => (
               <article key={exp.id} className="m-exp">

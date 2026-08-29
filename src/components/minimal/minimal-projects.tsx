@@ -3,7 +3,7 @@ import { content } from "@/data/content";
 import { Reveal } from "../reveal";
 import { ArrowUpRightIcon } from "./icons";
 
-const { site, projects } = content;
+const { projects } = content;
 
 const ACCENTS = [
   "#4ade80",
@@ -27,12 +27,6 @@ const GLYPHS: Record<string, string> = {
   "PRJ-00": "≡",
 };
 
-const year = site.portfolioDocId.match(/\d{4}/)?.[0] ?? "2026";
-
-function cleanLabel(label: string) {
-  return label.replace(/^\d+\s*::\s*/, "").trim();
-}
-
 export function MinimalProjects() {
   return (
     <section id="projects" className="m-section">
@@ -40,19 +34,7 @@ export function MinimalProjects() {
         <Reveal>
           <div className="m-projects-grid">
             <div className="m-projects-left">
-              <div>
-                <p className="m-label">{cleanLabel(projects.sectionLabel)}</p>
-                <h2 className="m-section-title">{projects.title}</h2>
-                <p className="m-section-intro m-projects-intro">
-                  {projects.intro}
-                </p>
-              </div>
-              <div className="m-projects-meta">
-                <span className="m-label">SELECTED WORK — {year}</span>
-                <span className="m-label">
-                  {projects.items.length} PROJECTS
-                </span>
-              </div>
+              <h2 className="m-section-title">{projects.title}</h2>
             </div>
 
             <div className="m-work">

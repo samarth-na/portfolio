@@ -22,8 +22,7 @@ export function MinimalFooter() {
       <div className="m-container">
         <Reveal>
           <div className="m-footer-inner">
-            <h2 className="m-footer-title m-serif">{footer.title}</h2>
-            <p className="m-footer-intro">{footer.intro}</p>
+            <h2 className="m-footer-title">{footer.title}</h2>
 
             <a className="m-email-row" href={`mailto:${footer.email}`}>
               <span className="m-mono">{footer.email}</span>

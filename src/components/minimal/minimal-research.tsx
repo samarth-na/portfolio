@@ -3,30 +3,21 @@ import { Reveal } from "../reveal";
 
 const { research } = content;
 
-function cleanLabel(label: string) {
-  return label.replace(/^\d+\s*::\s*/, "").trim();
-}
-
 export function MinimalResearch() {
   return (
     <section id="research" className="m-section">
       <div className="m-container">
         <Reveal>
-          <div className="m-section-head">
-            <div>
-              <p className="m-label">{cleanLabel(research.sectionLabel)}</p>
-              <h2 className="m-section-title">{research.title}</h2>
-            </div>
-            <p className="m-section-intro">{research.intro}</p>
-          </div>
-
+          <h2 className="m-section-title" style={{ marginBottom: "24px" }}>
+            {research.title}
+          </h2>
           <div className="m-research">
             <span className="m-research-status">
               <span className="m-dot" />
               {research.status}
             </span>
 
-            <h3 className="m-research-title m-serif">{research.caseTitle}</h3>
+            <h3 className="m-research-title">{research.caseTitle}</h3>
             <p className="m-research-body">{research.body}</p>
 
             <ul className="m-research-points">
