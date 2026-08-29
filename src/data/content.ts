@@ -68,7 +68,7 @@ export interface Content {
     sectionLabel: string;
     title: string;
     text: string;
-    subjectName: string;
+    name: string;
     documentId: string;
     education: string[];
     location: string[];

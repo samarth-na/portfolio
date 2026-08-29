@@ -1,37 +1,25 @@
 import { content } from "@/data/content";
 import { GithubIcon, MailIcon } from "./icons";
 
-const { site, profile, stack, footer, projects } = content;
-
-// Thesis is the first sentence of the summary — the strongest claim.
-// biome-ignore lint/style/useTemplate: concatenation preserves fallback chain
-const thesis = profile.summary.split(".")[0]?.trim() + "." || profile.text;
+const { site, footer } = content;
 
 const githubUrl = footer.links.find((link) => link.label === "GitHub")?.url;
 
 export function MinimalHero() {
   return (
-    <section className="m-hero" aria-labelledby="hero-thesis">
+    <section className="m-hero">
       <div className="m-hero-inner">
-        <p className="m-eyebrow m-fade">
+        <h1 className="m-name m-fade">
           <span className="m-star" aria-hidden="true">
             ✳
-          </span>{" "}
-          {site.name} — Backend Systems Operator · Indore, India
-        </p>
-
-        <h1 id="hero-thesis" className="m-statement m-serif m-fade m-fade-1">
-          {thesis}
+          </span>
+          {site.name}
         </h1>
-
-        <p className="m-log m-mono m-fade m-fade-2" aria-hidden="true">
-          <span className="m-log-prompt">sam@edge:~$</span> deploy --region
-          indore · {stack.categories.length} systems · {projects.items.length}{" "}
-          deploys → live
-          <span className="m-caret" aria-hidden="true" />
+        <p className="m-tagline m-fade m-fade-1">
+          Backend Engineer · TypeScript · SQL · Linux · DevOps
         </p>
 
-        <div className="m-hero-ctas m-fade m-fade-3">
+        <div className="m-hero-ctas m-fade m-fade-2">
           <a className="m-cta m-cta-primary" href={`mailto:${footer.email}`}>
             <MailIcon />
             Email
