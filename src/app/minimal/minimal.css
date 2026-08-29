@@ -1,6 +1,21 @@
-/* Minimal black theme for the /minimal route.
-   Self-contained: imported only by /minimal, so the dossier theme in
-   globals.css is untouched. */
+/* Minimal — 1:1 copy of https://www.aarv.me/ */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@300..800&display=swap");
+
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://www.aarv.me/fonts/TWKLausanne-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://www.aarv.me/fonts/TWKLausanne-500.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 .minimal {
   --m-bg: #0a0a0a;
@@ -18,15 +33,19 @@
   --m-accent-soft: rgba(255, 59, 31, 0.1);
   --m-green: #4ade80;
 
-  background: var(--m-bg);
+  background: #0a0a0a;
   color: var(--m-text);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family:
+    "TWK Lausanne", var(--font-geist-sans), ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 /* Keep the scrollbar dark while the minimal page is mounted.
@@ -83,16 +102,19 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   font-family: var(--font-source-serif), Georgia, serif;
 }
 
-.m-mono {
-  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+.m-mono,
+.mono {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Courier New", monospace;
 }
 
 .m-label {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-family: "Google Sans Code", ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--m-text-3);
+  color: #ffffff80;
 }
 
 /* Page frame — reference has 1040 + 48 gutters */
@@ -474,30 +496,40 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   color: var(--m-text-3);
 }
 
-/* ---------- Selected work — 1:1 reference ---------- */
+/* ---------- Selected work — 1:1 copy of aarv.me ---------- */
+/* ref: main { gap:80, py:144, flex row centered } + aside 260 + carousel 600 */
 
 .m-projects-grid {
-  display: grid;
-  grid-template-columns: 340px 1fr;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   gap: 80px;
-  align-items: start;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .m-projects-left {
+  width: 260px;
+  height: fit-content;
   position: sticky;
-  top: 96px;
+  top: 144px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  min-height: calc(100vh - 96px - 80px);
+  gap: 16px;
+  flex: none;
+}
+
+.m-projects-left > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .m-section-intro.m-projects-intro {
-  margin-top: 8px;
-  max-width: 32ch;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.6;
-  color: var(--m-text-2);
+  color: #ffffff;
+  max-width: 32ch;
   text-align: left;
 }
 
@@ -506,6 +538,8 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-work {
+  width: 600px;
+  flex: none;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -515,18 +549,24 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
 }
 
-/* Image-only shots — sharp edges, no overlap */
+/* Carousel item — exactly like aarv.me .carousel-item */
 .m-shot {
   display: block;
   position: relative;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
-  border: 1px solid #1e1e1e;
-  background: #111111;
-  height: 420px;
-  box-shadow: none;
+  background: #ffffff0d;
+  outline: 1px solid #ffffff0d;
+  outline-offset: -1px;
+  aspect-ratio: 1.42857;
+  height: auto;
+  width: 100%;
+  flex: none;
+  image-rendering: pixelated;
+  user-select: none;
   transition:
     transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.3s ease,
@@ -1473,11 +1513,11 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive — match aarv.me breakpoints 1064 / 700 ---------- */
 
-@media (max-width: 900px) {
+@media (max-width: 1064px) {
   .m-page {
-    padding: 48px 24px 48px;
+    padding: 64px 24px 48px;
   }
 
   .m-hero {
@@ -1499,13 +1539,19 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   }
 
   .m-projects-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     gap: 32px;
   }
 
   .m-projects-left {
     position: static;
-    min-height: 0;
+    width: 540px;
+    height: fit-content;
+  }
+
+  .m-work {
+    width: 600px;
   }
 
   .m-about-grid {
@@ -1521,21 +1567,21 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   }
 
   .m-work-list {
-    gap: 24px;
-  }
-
-  .m-shot {
-    height: 360px;
-  }
-
-  .m-shot + .m-shot {
-    margin-top: 0;
+    gap: 32px;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 700px) {
   .m-page {
     padding: 32px 20px 40px;
+  }
+
+  .m-projects-left {
+    width: 77.14vw;
+  }
+
+  .m-work {
+    width: 85.71vw;
   }
 
   .m-nav-links {
@@ -1559,8 +1605,8 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
     display: none;
   }
 
-  .m-shot {
-    height: 280px;
+  .m-work-list {
+    gap: 16px;
   }
 }
 
