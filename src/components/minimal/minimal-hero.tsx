@@ -18,6 +18,10 @@ export function MinimalHero() {
         <p className="m-tagline m-fade m-fade-1">
           Backend Engineer · TypeScript · SQL · Linux · DevOps
         </p>
+        <p className="m-statement m-fade m-fade-1">
+          I build TypeScript &amp; Node.js applications, APIs and real-time
+          systems — focused on reliability, performance and clean data models.
+        </p>
 
         <div className="m-hero-ctas m-fade m-fade-2">
           <a className="m-cta m-cta-primary" href={`mailto:${footer.email}`}>

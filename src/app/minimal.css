@@ -81,9 +81,9 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   left: 16px;
 }
 
-/* Typography primitives */
+/* Typography primitives — sans only: Geist Sans for UI, Geist Mono for meta */
 .m-serif {
-  font-family: var(--font-source-serif), Georgia, serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 .m-mono,
@@ -95,10 +95,12 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-label {
   font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
-  font-size: 11px;
-  letter-spacing: 0.02em;
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #ffffff80;
+  color: var(--m-text-3);
 }
 
 /* Page frame — reference has 1040 + 48 gutters */
@@ -184,8 +186,8 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-hero-inner {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 560px;
+  gap: 18px;
+  max-width: 640px;
   align-items: flex-start;
 }
 
@@ -193,9 +195,10 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--m-text);
 }
 
@@ -207,12 +210,14 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-tagline {
-  margin-top: 2px;
+  margin-top: 4px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--m-text-3);
+  color: var(--m-text-2);
 }
 
 .m-eyebrow {
@@ -233,14 +238,14 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-statement {
-  margin-top: 12px;
+  margin-top: 8px;
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 1.6;
   font-weight: 400;
-  letter-spacing: -0.015em;
-  color: #ffffff;
-  max-width: 32ch;
+  letter-spacing: -0.01em;
+  color: var(--m-text-2);
+  max-width: 48ch;
   text-wrap: pretty;
 }
 
@@ -510,9 +515,9 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-section-intro.m-projects-intro {
-  font-size: 13px;
-  line-height: 1.6;
-  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--m-text-2);
   max-width: 32ch;
   text-align: left;
 }
@@ -777,17 +782,18 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-card-title {
-  margin-top: 16px;
-  font-size: 1.06rem;
+  margin-top: 14px;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1.35;
   letter-spacing: -0.01em;
   color: var(--m-text);
 }
 
 .m-card-desc {
   margin-top: 8px;
-  font-size: 0.88rem;
-  line-height: 1.62;
+  font-size: 0.875rem;
+  line-height: 1.65;
   color: var(--m-text-2);
 }
 
@@ -968,10 +974,10 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   top: 16px;
 }
 
-/* ---------- Sections — clean, minimal, no dividers ---------- */
+/* ---------- Sections — clear ladder: eyebrow > title > intro > body ---------- */
 
 .m-section {
-  padding: 48px 0 0;
+  padding: 56px 0 0;
   border-top: none;
   scroll-margin-top: 32px;
 }
@@ -979,30 +985,41 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-section-head {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
 .m-section-head .m-label {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--m-text-3);
 }
 
 .m-section-title {
   margin-top: 0;
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
   letter-spacing: -0.015em;
-  color: #ffffff;
+  color: var(--m-text);
+  text-wrap: balance;
 }
 
 .m-section-intro {
   display: block;
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: 13px;
-  line-height: 20px;
-  color: #ffffff;
-  max-width: 32ch;
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 400;
+  color: var(--m-text-2);
+  max-width: 48ch;
   text-align: left;
 }
 
@@ -1016,7 +1033,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-about-lede {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: var(--m-text-2);
 }
@@ -1044,8 +1061,8 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-field-value {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.83rem;
-  line-height: 1.7;
+  font-size: 0.8125rem;
+  line-height: 1.65;
   color: var(--m-text);
   word-break: break-word;
 }
@@ -1081,8 +1098,8 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-summary {
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.875rem;
+  line-height: 1.65;
   color: var(--m-text-2);
 }
 
@@ -1114,8 +1131,9 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   align-items: center;
   gap: 12px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--m-text-3);
 }
@@ -1135,30 +1153,32 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-exp-role {
-  margin-top: 16px;
-  font-size: 1.18rem;
+  margin-top: 12px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
   color: var(--m-text);
 }
 
 .m-exp-org {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: var(--m-text-2);
+  margin-top: 6px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--m-text-3);
 }
 
 .m-exp-points {
-  margin-top: 16px;
+  margin-top: 14px;
   display: grid;
   gap: 8px;
 }
 
 .m-exp-point {
   display: flex;
-  gap: 16px;
-  font-size: 0.9rem;
-  line-height: 1.62;
+  gap: 14px;
+  font-size: 0.875rem;
+  line-height: 1.65;
   color: var(--m-text-2);
 }
 
@@ -1221,17 +1241,18 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-research-title {
-  margin-top: 16px;
-  font-size: 1.4rem;
+  margin-top: 12px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
   color: var(--m-text);
 }
 
 .m-research-body {
-  margin-top: 12px;
-  max-width: 62ch;
-  font-size: 0.92rem;
+  margin-top: 10px;
+  max-width: 60ch;
+  font-size: 0.875rem;
   line-height: 1.7;
   color: var(--m-text-2);
 }
@@ -1244,9 +1265,9 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-research-point {
   display: flex;
-  gap: 16px;
-  font-size: 0.9rem;
-  line-height: 1.62;
+  gap: 14px;
+  font-size: 0.875rem;
+  line-height: 1.65;
   color: var(--m-text-2);
 }
 
@@ -1300,19 +1321,19 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-footer-title {
-  margin-top: 16px;
-  font-size: clamp(2rem, 5vw, 3rem);
+  margin-top: 12px;
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   color: var(--m-text);
 }
 
 .m-footer-intro {
-  margin-top: 16px;
-  max-width: 56ch;
-  font-size: 0.95rem;
-  line-height: 1.7;
+  margin-top: 12px;
+  max-width: 52ch;
+  font-size: 0.875rem;
+  line-height: 1.65;
   color: var(--m-text-2);
 }
 

@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Playfair_Display,
-  Source_Serif_4,
-} from "next/font/google";
+import { Fragment_Mono, Onest } from "next/font/google";
 import { content } from "@/data/content";
 import "./globals.css";
 
-const geistSans = Geist({
+const onest = Onest({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
@@ -17,35 +12,13 @@ const geistSans = Geist({
   adjustFontFallback: true,
 });
 
-const geistMono = Geist_Mono({
+const fragmentMono = Fragment_Mono({
+  weight: "400",
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
   preload: false,
   fallback: ["ui-monospace", "monospace"],
-  adjustFontFallback: true,
-});
-
-// Only 2 weights — previous 3 (with italic) pulled extra font files.
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  style: ["normal"],
-  display: "swap",
-  preload: false,
-  fallback: ["Georgia", "serif"],
-  adjustFontFallback: true,
-});
-
-// Only 2 weights needed for display headings — previous 6 weights = 3x font payload.
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-  preload: false,
-  fallback: ["Georgia", "serif"],
   adjustFontFallback: true,
 });
 
@@ -68,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${sourceSerif.variable} h-full antialiased`}
+      className={`${onest.variable} ${fragmentMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
