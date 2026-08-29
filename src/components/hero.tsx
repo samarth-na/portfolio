@@ -61,13 +61,6 @@ export function Hero() {
                 {hero.origin.value}
               </p>
             </div>
-            <div className="border-t border-ink/20 pt-4">
-              <p className="label text-text-muted mb-2">STATUS</p>
-              <p className="text-lg md:text-xl font-medium leading-snug flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-ring" />
-                {site.status}
-              </p>
-            </div>
           </div>
         </div>
 

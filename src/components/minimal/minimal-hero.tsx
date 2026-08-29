@@ -1,15 +1,7 @@
 import { content } from "@/data/content";
-import {
-  ArrowUpRightIcon,
-  GithubIcon,
-  LinkedInIcon,
-  MailIcon,
-  XIcon,
-} from "./icons";
+import { GithubIcon, LinkedInIcon, MailIcon, XIcon } from "./icons";
 
-const { site, hero, profile, projects, stack, footer } = content;
-
-const currentBuild = projects.items[0];
+const { site, hero, profile, stack, footer } = content;
 
 const socialLinks = {
   github: footer.links.find((link) => link.label === "GitHub"),
@@ -28,7 +20,7 @@ export function MinimalHero() {
   return (
     <section className="m-hero">
       <aside className="m-hero-inner">
-        <div>
+        <div className="m-hero-main">
           <h1 className="m-name m-fade">
             <span className="m-star" aria-hidden="true">
               ✳
@@ -38,20 +30,10 @@ export function MinimalHero() {
           <p className="m-tagline m-fade m-fade-1">{hero.role.value}</p>
 
           <p className="m-statement m-serif m-fade m-fade-2">{profile.text}</p>
+        </div>
 
-          <p className="m-building m-fade m-fade-3">
-            Currently building
-            <a
-              href={currentBuild.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {currentBuild.title}
-              <ArrowUpRightIcon />
-            </a>
-          </p>
-
-          <ul className="m-pills m-fade m-fade-4">
+        <div className="m-hero-side">
+          <ul className="m-pills m-fade m-fade-3">
             {socialLinks.github && (
               <li>
                 <a
@@ -108,11 +90,6 @@ export function MinimalHero() {
             </span>
             <span className="m-diff-add">+ /minimal</span>
           </div>
-
-          <p className="m-status m-fade m-fade-6">
-            <span className="m-dot" />
-            {site.status}
-          </p>
         </div>
 
         <div className="m-hero-meta m-fade m-fade-6">
@@ -120,7 +97,6 @@ export function MinimalHero() {
             {stack.categories.length} SYSTEMS · TYPESCRIPT · EDGE · REAL-TIME
           </span>
           <span>VERSION 04 - {buildTime} IST</span>
-          <span>{footer.footerTag}</span>
         </div>
       </aside>
 

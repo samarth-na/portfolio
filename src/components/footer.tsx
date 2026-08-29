@@ -53,7 +53,6 @@ export function Footer() {
         <div className="mt-20 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-4 text-cream/50 text-sm font-mono">
           <span>{footer.copyright}</span>
           <span className="flex items-center gap-2">
-            {footer.footerTag}
             <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-ring" />
           </span>
           <span>DOC ID: {site.docId}</span>

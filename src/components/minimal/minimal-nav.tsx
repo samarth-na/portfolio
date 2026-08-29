@@ -13,11 +13,15 @@ export function MinimalNav() {
           {site.name}
         </a>
         <nav className="m-nav-links" aria-label="Section navigation">
-          {site.nav.map((link) => (
-            <a key={link.href} href={link.href}>
-              {link.label}
-            </a>
-          ))}
+          {/* The shared nav in content.json has no research link, but only
+              /minimal renders a research section, so append it here. */}
+          {[...site.nav, { label: "RESEARCH", href: "#research" }].map(
+            (link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ),
+          )}
         </nav>
       </div>
     </header>

@@ -14,7 +14,6 @@
     "docId": "SN-RESUME-0626",
     "portfolioDocId": "SN-2026",
     "classification": "PUBLIC",
-    "status": "Available for opportunities",
     "ticker": [
       "PORTFOLIO DOC :: ID: SN-2026",
       "BACKEND ENGINEER",
@@ -232,8 +231,8 @@
   },
   "footer": {
     "sectionLabel": "06 :: TRANSMISSION",
-    "title": "Let's build systems.",
-    "intro": "Open to internships, freelance systems work, and collaborations on backend infrastructure, DevOps, and browser-native products.",
+    "title": "Reach me.",
+    "intro": "The fastest way to reach me is email. I also keep GitHub, X, and LinkedIn up to date.",
     "email": "samarth07nagar@gmail.com",
     "links": [
       { "label": "GitHub", "url": "https://github.com/samarth-na" },
@@ -241,7 +240,6 @@
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/na-samarth/" },
       { "label": "Portfolio", "url": "https://samarth-na.vercel.app" }
     ],
-    "copyright": "© 2026 SAMARTH NAGAR",
-    "footerTag": "BACKED BY GOD AND FOSS"
+    "copyright": "© 2026 SAMARTH NAGAR"
   }
 }

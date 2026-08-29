@@ -77,7 +77,6 @@ export function MinimalFooter() {
 
             <div className="m-footer-bottom">
               <span>{footer.copyright}</span>
-              <span>{footer.footerTag}</span>
               <span>DOC ID: {site.docId}</span>
             </div>
           </div>
