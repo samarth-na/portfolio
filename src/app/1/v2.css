@@ -1,0 +1,152 @@
+/* /1 — font-hierarchy experiment. Loaded after minimal.css.
+   Overrides only — landing (/) stays on minimal.css alone. */
+
+.minimal-v2 {
+  /* Type scale: display > h2 > h3 > body > meta > label */
+  --v-display: clamp(30px, 4.2vw, 38px);
+  --v-h2: clamp(20px, 2.4vw, 23px);
+  --v-h3: 16.5px;
+  --v-lead: clamp(15px, 1.7vw, 17px);
+  --v-body: 14px;
+  --v-meta: 11px;
+  --v-label: 10px;
+}
+
+/* ---------- Hero: make H1 actually dominate ---------- */
+.minimal.minimal-v2 .m-name {
+  font-size: var(--v-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.minimal.minimal-v2 .m-name .m-star {
+  font-size: 11px;
+  transform: translateY(-2px);
+}
+
+.minimal.minimal-v2 .m-tagline {
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em; /* was 0.09em */
+  color: var(--m-text-3);
+}
+
+.minimal.minimal-v2 .m-statement {
+  margin-top: 10px;
+  font-size: var(--v-lead);
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: #d6d6d6; /* was #b8b8b8 — lift lead for contrast */
+  max-width: 52ch;
+}
+
+/* ---------- Section heads: 15px -> real H2 ---------- */
+.minimal.minimal-v2 .m-section-title {
+  font-size: var(--v-h2);
+  font-weight: 680;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.minimal.minimal-v2 .m-section-intro {
+  font-size: 14.5px;
+}
+
+/* ---------- Experience: H3 distinct from H2 ---------- */
+.minimal.minimal-v2 .m-exp-role {
+  font-size: var(--v-h3);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.minimal.minimal-v2 .m-exp-org {
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+.minimal.minimal-v2 .m-exp-point,
+.minimal.minimal-v2 .m-card-desc,
+.minimal.minimal-v2 .m-research-body,
+.minimal.minimal-v2 .m-research-point,
+.minimal.minimal-v2 .m-summary {
+  font-size: var(--v-body);
+  line-height: 1.65;
+}
+
+.minimal.minimal-v2 .m-research-title {
+  /* must stay smaller than section H2 (23px), larger than body (14px) */
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.minimal.minimal-v2 .m-card-title {
+  font-size: var(--v-h3);
+  line-height: 1.35;
+}
+
+.minimal.minimal-v2 .m-footer-title {
+  /* keep footer subordinate to hero display, ~ H2 size */
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Meta / labels: tighten tracking, fix faux-bold ---------- */
+.minimal.minimal-v2 .m-label {
+  font-size: var(--v-label);
+  letter-spacing: 0.08em; /* was 0.10-0.11em */
+  font-weight: 500;
+}
+
+.minimal.minimal-v2 .m-exp-meta {
+  font-size: 10.5px;
+  letter-spacing: 0.08em; /* was 0.08em already, keep */
+}
+
+.minimal.minimal-v2 .m-tag {
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+.minimal.minimal-v2 .m-chip {
+  font-size: 11px;
+}
+
+/* Field values: mono at 13px was cramped — use sans for body values,
+   keep mono only for labels/ids */
+.minimal.minimal-v2 .m-field-value {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  font-weight: 450;
+}
+
+.minimal.minimal-v2 .m-field-lines span {
+  line-height: 1.6;
+}
+
+/* About card labels stay mono, values are now sans — already handled */
+.minimal.minimal-v2 .m-research-status,
+.minimal.minimal-v2 .m-shot-id,
+.minimal.minimal-v2 .m-shot-hint {
+  letter-spacing: 0.08em;
+}
+
+/* Subtle weight lift for body copy contrast on dark */
+.minimal.minimal-v2 .m-exp-point,
+.minimal.minimal-v2 .m-research-body {
+  color: #c9c9c9; /* lift from #b8b8b8 by one step */
+}
+
+/* Keep responsive scale from collapsing */
+@media (max-width: 700px) {
+  .minimal.minimal-v2 .m-name {
+    font-size: clamp(26px, 7vw, 32px);
+  }
+}
