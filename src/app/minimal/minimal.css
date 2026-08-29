@@ -99,7 +99,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-page {
   max-width: 1040px;
   margin-inline: auto;
-  padding: 96px 48px 80px;
+  padding: 64px 48px 80px;
 }
 
 /* Shared container — now inside .m-page, so no extra outer gutters */
@@ -172,7 +172,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-hero {
   max-width: none;
   margin-inline: 0;
-  padding: 0 0 64px;
+  padding: 0 0 32px;
 }
 
 .m-hero-inner {
@@ -514,19 +514,19 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-work-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 32px;
 }
 
-/* Image-only shots — 1:1 with reference: 436px tall, 12px radius, #1A1A1A border */
+/* Image-only shots — sharp edges, no overlap */
 .m-shot {
   display: block;
   position: relative;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid #1a1a1a;
+  border: 1px solid #1e1e1e;
   background: #111111;
-  height: 436px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65);
+  height: 420px;
+  box-shadow: none;
   transition:
     transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.3s ease,
@@ -666,14 +666,14 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   height: 11px;
 }
 
-/* Desktop overlap like reference: ~64px tuck */
-@media (min-width: 901px) {
-  .m-shot + .m-shot {
-    margin-top: -64px;
-  }
+/* No overlap — clean stacked list like decluttered layout */
+.m-shot + .m-shot {
+  margin-top: 0;
+}
 
+@media (min-width: 901px) {
   .m-shot:hover {
-    z-index: 2;
+    z-index: 1;
     border-color: #232323;
   }
 }
