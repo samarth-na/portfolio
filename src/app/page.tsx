@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MinimalSite } from "@/components/minimal/minimal-site";
 import "./minimal.css";
+import "./type-base.css";
 
 export const metadata = {
   title: "Samarth Nagar — Backend Software Engineer",

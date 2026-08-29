@@ -19,6 +19,12 @@
   --m-accent-soft: rgba(255, 59, 31, 0.1);
   --m-green: #4ade80;
 
+  /* Default sans = platform system stack (SF Pro / Segoe UI / Roboto).
+     Zero webfont download; rendering matches the OS. */
+  --font-geist-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
   background: #0a0a0a;
   color: var(--m-text);
   font-family:
