@@ -1,6 +1,6 @@
 # Samarth Nagar — Portfolio
 
-A personal portfolio and resume site for a backend/systems/DevOps developer. Built as a static-exported Next.js app with a warm, mechanical, opinionated design voice.
+A personal portfolio and resume site for a backend/systems/DevOps developer. Built with Next.js on Cloudflare Workers via OpenNext.
 
 ## Stack
 
@@ -23,13 +23,28 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## Build
 
-This project is configured for static export:
-
 ```bash
-bun run build
+bun run build        # builds for Cloudflare Workers (.open-next/)
+bun run build:next   # raw Next.js build only (.next/)
 ```
 
-The output is written to `dist/` (not `.next/`).
+The production build uses `@opennextjs/cloudflare` to produce a Workers-compatible bundle in `.open-next/`.
+
+## Deploy (Cloudflare Workers)
+
+Local deploy via Wrangler/OpenNext:
+
+```bash
+bun run deploy   # build + deploy via opennextjs-cloudflare
+bun run preview  # build + local preview in workerd
+```
+
+Workers Builds (Git-connected) — set in Cloudflare dashboard → Workers → Settings → Build:
+
+- **Build command**: `npx opennextjs-cloudflare build` (or `bun run build`)
+- **Deploy command**: `npx opennextjs-cloudflare deploy`
+
+> Previous `output: "export"` + `dist/` static export was removed in favor of Workers SSR (see `next.config.ts`). The `dist/` output is no longer used; Workers assets live in `.open-next/assets`.
 
 ## Lint and format
 
