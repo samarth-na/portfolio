@@ -44,8 +44,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overscroll-behavior: none;
-  overflow-x: hidden;
 }
 
 /* Keep the scrollbar dark while the minimal page is mounted.
@@ -224,7 +222,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-tagline {
   margin-top: 2px;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-family: "Google Sans Code", ui-monospace, monospace;
   font-size: 10.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -235,11 +233,11 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
+  font-family: "Google Sans Code", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--m-text-3);
+  color: #ffffff80;
 }
 
 .m-eyebrow .m-star {
@@ -250,12 +248,13 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-statement {
   margin-top: 12px;
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-family:
+    "TWK Lausanne", var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
   font-weight: 400;
-  line-height: 1.65;
-  letter-spacing: -0.01em;
-  color: var(--m-text-2);
+  letter-spacing: -0.015em;
+  color: #ffffff;
   max-width: 32ch;
   text-wrap: pretty;
 }
@@ -334,7 +333,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 /* Live log line — signature element */
 .m-log {
   margin-top: 4px;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-family: "Google Sans Code", ui-monospace, monospace;
   font-size: 0.74rem;
   letter-spacing: 0.02em;
   color: var(--m-text-2);
@@ -984,7 +983,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   top: 16px;
 }
 
-/* ---------- Sections — no dividers, tighter rhythm like reference ---------- */
+/* ---------- Sections — clean, minimal, no dividers ---------- */
 
 .m-section {
   padding: 48px 0 0;
@@ -993,19 +992,33 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.m-section-head .m-label {
   display: none;
 }
 
 .m-section-title {
   margin-top: 0;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--m-text);
+  font-family: "TWK Lausanne", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #ffffff;
 }
 
 .m-section-intro {
-  display: none;
+  display: block;
+  font-family: "TWK Lausanne", sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #ffffff;
+  max-width: 32ch;
+  text-align: left;
 }
 
 /* ---------- About ---------- */
@@ -1608,6 +1621,30 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   .m-work-list {
     gap: 16px;
   }
+}
+
+/* Force mono to Google Sans Code like aarv.me — overrides Geist */
+.minimal .m-label,
+.minimal .m-mono,
+.minimal .mono,
+.minimal .m-tag,
+.minimal .m-chip,
+.minimal .m-field-value,
+.minimal .m-exp-meta,
+.minimal .m-card-head,
+.minimal .m-fingerprint,
+.minimal .m-research-status,
+.minimal .m-arrow-link-url,
+.minimal .m-footer-meta,
+.minimal .m-footer-bottom,
+.minimal .m-mark,
+.minimal .m-hero-meta span,
+.minimal .m-shot-id,
+.minimal .m-shot-hint,
+.minimal .m-shot-overlay-id,
+.minimal .m-shot-overlay-open {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, monospace !important;
 }
 
 /* Respect reduced motion: skip decorative animation */
