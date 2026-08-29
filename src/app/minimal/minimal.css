@@ -171,7 +171,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-statement {
-  margin-top: 30px;
+  margin-top: 32px;
   font-family: var(--font-source-serif), Georgia, serif;
   font-size: clamp(1.3rem, 2vw, 1.6rem);
   font-weight: 600;
@@ -213,7 +213,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-pills {
-  margin-top: 28px;
+  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -253,7 +253,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 /* Diff block (Diffshub-style code replacement) */
 .m-diff {
-  margin-top: 30px;
+  margin-top: 32px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.78rem;
   line-height: 2;
@@ -277,7 +277,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-status {
-  margin-top: 28px;
+  margin-top: 32px;
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -296,12 +296,12 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 /* Hero bottom meta */
 .m-hero-meta {
   grid-column: 1 / -1;
-  margin-top: 40px;
-  padding-top: 22px;
+  margin-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--m-border);
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 8px;
 }
 
 .m-hero-meta span {
@@ -314,18 +314,42 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 /* ---------- Selected work ---------- */
 
-.m-work {
-  max-width: 720px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+/* Two-column scroll layout: header rail sticks while cards scroll */
+.m-projects-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(44px, 6vw, 88px);
+  align-items: start;
 }
 
-.m-work-label {
+.m-projects-left {
+  position: sticky;
+  top: 112px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Two class selectors: .m-section-intro appears later in this file and
+   would otherwise win the text-align cascade. */
+.m-section-intro.m-projects-intro {
+  margin-top: 16px;
+  max-width: 34ch;
+  text-align: left;
+}
+
+.m-projects-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--m-border);
+}
+
+.m-work {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .m-work-list {
@@ -339,7 +363,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   background: var(--m-bg-elev);
   border: 1px solid var(--m-border);
   border-radius: 8px;
-  padding: 18px 20px 20px;
+  padding: 20px;
   transition:
     border-color 0.3s ease,
     background 0.3s ease;
@@ -421,7 +445,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-card-tags {
-  margin-top: 14px;
+  margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -441,11 +465,11 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 /* Card preview wireframe */
 .m-preview {
   position: relative;
-  margin-top: 18px;
+  margin-top: 16px;
   height: 96px;
-  padding: 14px;
+  padding: 16px;
   display: flex;
-  gap: 14px;
+  gap: 16px;
   border: 1px solid var(--m-border);
   border-radius: 6px;
   background: var(--m-bg-deep);
@@ -457,7 +481,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
 }
 
 .m-pv-side i {
@@ -473,7 +497,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 9px;
+  gap: 8px;
 }
 
 .m-pv-pill {
@@ -512,7 +536,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 /* ---------- Sections ---------- */
 
 .m-section {
-  padding: 72px 0 8px;
+  padding: 72px 0 48px;
   border-top: 1px solid var(--m-border);
   scroll-margin-top: 88px;
 }
@@ -526,7 +550,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-section-title {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -546,7 +570,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-about-grid {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: clamp(36px, 5vw, 72px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: start;
 }
 
@@ -559,7 +583,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-about-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px 28px;
+  gap: 24px;
   border: 1px solid var(--m-border);
   border-radius: 8px;
   background: var(--m-bg-elev);
@@ -614,7 +638,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-exp {
-  padding: 30px 0;
+  padding: 32px 0;
   border-top: 1px solid var(--m-border);
 }
 
@@ -633,7 +657,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-exp-meta {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.68rem;
   letter-spacing: 0.1em;
@@ -656,7 +680,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-exp-role {
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: 1.18rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -664,7 +688,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-exp-org {
-  margin-top: 4px;
+  margin-top: 8px;
   font-size: 0.9rem;
   color: var(--m-text-2);
 }
@@ -672,12 +696,12 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-exp-points {
   margin-top: 16px;
   display: grid;
-  gap: 9px;
+  gap: 8px;
 }
 
 .m-exp-point {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   font-size: 0.9rem;
   line-height: 1.62;
   color: var(--m-text-2);
@@ -685,7 +709,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-marker {
   flex-shrink: 0;
-  margin-top: 9px;
+  margin-top: 8px;
   width: 4px;
   height: 4px;
   background: var(--m-border-strong);
@@ -696,14 +720,14 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-stack-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 .m-stack-card {
   border: 1px solid var(--m-border);
   border-radius: 8px;
   background: var(--m-bg-elev);
-  padding: 18px 20px 20px;
+  padding: 20px;
   transition:
     border-color 0.3s ease,
     background 0.3s ease;
@@ -715,7 +739,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-stack-tags {
-  margin-top: 14px;
+  margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -727,13 +751,13 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   border: 1px solid var(--m-border);
   border-radius: 8px;
   background: var(--m-bg-elev);
-  padding: 26px 26px 24px;
+  padding: 24px;
 }
 
 .m-research-status {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
@@ -742,7 +766,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-research-title {
-  margin-top: 18px;
+  margin-top: 16px;
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -750,7 +774,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-research-body {
-  margin-top: 10px;
+  margin-top: 12px;
   max-width: 62ch;
   font-size: 0.92rem;
   line-height: 1.7;
@@ -758,14 +782,14 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-research-points {
-  margin-top: 20px;
+  margin-top: 24px;
   display: grid;
-  gap: 9px;
+  gap: 8px;
 }
 
 .m-research-point {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   font-size: 0.9rem;
   line-height: 1.62;
   color: var(--m-text-2);
@@ -773,7 +797,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-research-links {
   margin-top: 24px;
-  padding-top: 20px;
+  padding-top: 24px;
   border-top: 1px solid var(--m-border);
   display: flex;
   flex-direction: column;
@@ -812,12 +836,12 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 /* ---------- Footer ---------- */
 
 .m-footer {
-  margin-top: 88px;
+  margin-top: 0;
   border-top: 1px solid var(--m-border);
 }
 
 .m-footer-inner {
-  padding: 80px 24px 44px;
+  padding: 64px 24px 48px;
 }
 
 .m-footer-title {
@@ -830,7 +854,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-footer-intro {
-  margin-top: 18px;
+  margin-top: 16px;
   max-width: 56ch;
   font-size: 0.95rem;
   line-height: 1.7;
@@ -838,20 +862,20 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-email-label {
-  margin-top: 40px;
+  margin-top: 32px;
   display: block;
 }
 
 .m-email-row {
-  margin-top: 10px;
+  margin-top: 12px;
   max-width: 560px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   border: 1px solid var(--m-border-strong);
   border-radius: 8px;
   background: var(--m-bg-elev);
-  padding: 14px 18px;
+  padding: 16px;
   transition:
     border-color 0.25s ease,
     background 0.25s ease;
@@ -883,23 +907,23 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-footer-middle {
-  margin-top: 44px;
+  margin-top: 32px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
+  gap: 32px;
 }
 
 .m-channel-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .m-socials {
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
 }
 
 .m-social {
@@ -928,7 +952,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-footer-meta {
-  margin-top: 44px;
+  margin-top: 32px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
@@ -937,14 +961,14 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 }
 
 .m-footer-bottom {
-  margin-top: 28px;
-  padding-top: 22px;
+  margin-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--m-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px 24px;
+  gap: 12px 24px;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
@@ -1057,6 +1081,15 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
   .m-section-intro {
     text-align: left;
+  }
+
+  .m-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .m-projects-left {
+    position: static;
+    min-height: 0;
   }
 
   .m-about-grid {

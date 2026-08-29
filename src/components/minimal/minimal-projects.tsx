@@ -47,85 +47,90 @@ export function MinimalProjects() {
     <section id="projects" className="m-section">
       <div className="m-container">
         <Reveal>
-          <div className="m-section-head">
-            <div>
-              <p className="m-label">{projects.sectionLabel}</p>
-              <h2 className="m-section-title">{projects.title}</h2>
+          <div className="m-projects-grid">
+            <div className="m-projects-left">
+              <div>
+                <p className="m-label">{projects.sectionLabel}</p>
+                <h2 className="m-section-title">{projects.title}</h2>
+                <p className="m-section-intro m-projects-intro">
+                  {projects.intro}
+                </p>
+              </div>
+              <div className="m-projects-meta">
+                <span className="m-label">SELECTED WORK — {year}</span>
+                <span className="m-label">
+                  {projects.items.length} PROJECTS
+                </span>
+              </div>
             </div>
-            <p className="m-section-intro">{projects.intro}</p>
-          </div>
 
-          <div className="m-work">
-            <div className="m-work-label">
-              <span className="m-label">SELECTED WORK — {year}</span>
-              <span className="m-label">{projects.items.length} PROJECTS</span>
-            </div>
+            <div className="m-work">
+              <div className="m-work-list">
+                {projects.items.map((project, index) => {
+                  const preview = PREVIEWS[index % PREVIEWS.length];
+                  const accent = ACCENTS[index % ACCENTS.length];
+                  const style = { "--dot": accent } as CSSProperties;
 
-            <div className="m-work-list">
-              {projects.items.map((project, index) => {
-                const preview = PREVIEWS[index % PREVIEWS.length];
-                const accent = ACCENTS[index % ACCENTS.length];
-                const style = { "--dot": accent } as CSSProperties;
-
-                return (
-                  <a
-                    key={project.id}
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="m-card"
-                    style={style}
-                  >
-                    <div className="m-card-head">
-                      <span className="m-card-dots" aria-hidden="true">
-                        <i />
-                        <i />
-                        <i />
-                      </span>
-                      <span>{project.id}</span>
-                      <span>{year}</span>
-                      <span className="m-card-open">
-                        Open
-                        <ArrowUpRightIcon />
-                      </span>
-                    </div>
-
-                    <h3 className="m-card-title">{project.title}</h3>
-                    <p className="m-card-desc">{project.desc}</p>
-
-                    <div className="m-card-tags">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="m-tag">
-                          {tag}
+                  return (
+                    <a
+                      key={project.id}
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="m-card"
+                      style={style}
+                    >
+                      <div className="m-card-head">
+                        <span className="m-card-dots" aria-hidden="true">
+                          <i />
+                          <i />
+                          <i />
                         </span>
-                      ))}
-                    </div>
+                        <span>{project.id}</span>
+                        <span>{year}</span>
+                        <span className="m-card-open">
+                          Open
+                          <ArrowUpRightIcon />
+                        </span>
+                      </div>
 
-                    <div className="m-preview" aria-hidden="true">
-                      <div className="m-pv-side">
-                        <i style={{ width: preview.side[0] }} />
-                        <i style={{ width: preview.side[1] }} />
-                        <i style={{ width: preview.side[2] }} />
+                      <h3 className="m-card-title">{project.title}</h3>
+                      <p className="m-card-desc">{project.desc}</p>
+
+                      <div className="m-card-tags">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="m-tag">
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                      <div className="m-pv-main">
-                        <span
-                          className="m-pv-pill"
-                          style={{ width: preview.pill }}
-                        />
-                        <span
-                          className="m-pv-bar"
-                          style={{ width: preview.bar }}
-                        />
-                        <span
-                          className="m-pv-bar"
-                          style={{ width: preview.bar2 }}
-                        />
+
+                      <div className="m-preview" aria-hidden="true">
+                        <div className="m-pv-side">
+                          <i style={{ width: preview.side[0] }} />
+                          <i style={{ width: preview.side[1] }} />
+                          <i style={{ width: preview.side[2] }} />
+                        </div>
+                        <div className="m-pv-main">
+                          <span
+                            className="m-pv-pill"
+                            style={{ width: preview.pill }}
+                          />
+                          <span
+                            className="m-pv-bar"
+                            style={{ width: preview.bar }}
+                          />
+                          <span
+                            className="m-pv-bar"
+                            style={{ width: preview.bar2 }}
+                          />
+                        </div>
+                        <span className={`m-pv-square ${preview.square}`} />
                       </div>
-                      <span className={`m-pv-square ${preview.square}`} />
-                    </div>
-                  </a>
-                );
-              })}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </Reveal>
