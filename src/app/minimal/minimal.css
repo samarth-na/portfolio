@@ -1,21 +1,7 @@
-/* Minimal — 1:1 copy of https://www.aarv.me/ */
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@300..800&display=swap");
-
-@font-face {
-  font-family: "TWK Lausanne";
-  src: url("https://www.aarv.me/fonts/TWKLausanne-400.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TWK Lausanne";
-  src: url("https://www.aarv.me/fonts/TWKLausanne-500.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+/* Minimal — based on https://www.aarv.me/ — external fonts removed for perf.
+   Previous version @imported Google Sans Code (render-blocking) and hotlinked
+   TWK Lausanne from aarv.me (DNS+TLS+no cache, ~200 KB). Both replaced with
+   local next/font variables (Geist Mono/Sans) + system fallback — 0 extra requests. */
 
 .minimal {
   --m-bg: #0a0a0a;
@@ -36,8 +22,8 @@
   background: #0a0a0a;
   color: var(--m-text);
   font-family:
-    "TWK Lausanne", var(--font-geist-sans), ui-sans-serif, system-ui,
-    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   min-height: 100vh;
@@ -103,12 +89,12 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .m-mono,
 .mono {
   font-family:
-    "Google Sans Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Courier New", monospace;
 }
 
 .m-label {
-  font-family: "Google Sans Code", ui-monospace, SFMono-Regular, monospace;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
   font-size: 11px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -222,7 +208,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-tagline {
   margin-top: 2px;
-  font-family: "Google Sans Code", ui-monospace, monospace;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 10.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -233,7 +219,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Google Sans Code", ui-monospace, monospace;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 11px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -248,8 +234,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-statement {
   margin-top: 12px;
-  font-family:
-    "TWK Lausanne", var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 13px;
   line-height: 20px;
   font-weight: 400;
@@ -333,7 +318,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 /* Live log line — signature element */
 .m-log {
   margin-top: 4px;
-  font-family: "Google Sans Code", ui-monospace, monospace;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.74rem;
   letter-spacing: 0.02em;
   color: var(--m-text-2);
@@ -1004,7 +989,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-section-title {
   margin-top: 0;
-  font-family: "TWK Lausanne", sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -1013,7 +998,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 
 .m-section-intro {
   display: block;
-  font-family: "TWK Lausanne", sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 13px;
   line-height: 20px;
   color: #ffffff;
@@ -1623,7 +1608,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* Force mono to Google Sans Code like aarv.me — overrides Geist */
+/* Use local Geist Mono instead of remote Google Sans Code — overrides for perf */
 .minimal .m-label,
 .minimal .m-mono,
 .minimal .mono,
@@ -1644,7 +1629,7 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
 .minimal .m-shot-overlay-id,
 .minimal .m-shot-overlay-open {
   font-family:
-    "Google Sans Code", ui-monospace, SFMono-Regular, monospace !important;
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace !important;
 }
 
 /* Respect reduced motion: skip decorative animation */
