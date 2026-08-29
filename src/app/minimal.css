@@ -1103,19 +1103,19 @@ html:has(.minimal)::-webkit-scrollbar-thumb:hover {
   color: var(--m-text-2);
 }
 
-/* ---------- Experience ---------- */
+/* ---------- Experience — no dividers (hero → experience is seamless) ---------- */
 
 .m-exp-list {
-  border-bottom: 1px solid var(--m-border);
+  border-bottom: none;
 }
 
 .m-exp {
-  padding: 32px 0;
-  border-top: 1px solid var(--m-border);
+  padding: 28px 0;
+  border-top: none;
 }
 
 .m-exp-list .m-exp:first-child {
-  border-top: 1px solid var(--m-border);
+  border-top: none;
 }
 
 .m-exp-top {
