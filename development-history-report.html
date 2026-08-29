@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samarth Nagar — Portfolio Complete Development History Report</title>
+<meta name="description" content="Grand development report for the personal portfolio website: every phase, decision, failure, and fix from first commit to Cloudflare Workers deployment, compiled from OpenCode session history and git history.">
+<meta property="og:title" content="Samarth Nagar — Portfolio Complete Development History Report">
+<meta property="og:description" content="71 days, 46 AI sessions, 40 commits: how a portfolio was built, rebuilt, and shipped to Cloudflare Workers.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1f2430">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14161d">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem("report-theme");
+    if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.dataset.theme = t;
+  } catch (e) {}
+})();
+</script>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #ffffff;
+    --surface: #f6f7f9;
+    --surface-2: #fcfcfd;
+    --ink: #1f2430;
+    --ink-heading: #2a2f45;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #535dc9;
+    --accent-soft: #eef0ff;
+    --ok-bg: #d1fae5;   --ok-fg: #15803d;
+    --warn-bg: #fef3c7; --warn-fg: #b45309;
+    --bad-bg: #fee2e2;  --bad-fg: #b91c1c;
+    --code-bg: #f6f7f9;
+    --header-a: #2a2f45;
+    --header-b: #1f2430;
+    --header-sub: #c7cbd8;
+    --header-meta: #9aa1ad;
+    --quote-text: #374151;
+    --selection-bg: #cfe1ff;
+    --shadow: 0 10px 28px rgba(31, 36, 48, .06);
+    --progress-h: 3px;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #14161d;
+    --surface: #1b1e27;
+    --surface-2: #20242f;
+    --ink: #e4e7ee;
+    --ink-heading: #f0f2f7;
+    --muted: #9aa3b2;
+    --line: #2c3140;
+    --accent: #98a2f0;
+    --accent-soft: #262b4d;
+    --ok-bg: #10331f;   --ok-fg: #4ade80;
+    --warn-bg: #3a2a08; --warn-fg: #fbbf24;
+    --bad-bg: #3d1515;  --bad-fg: #f87171;
+    --code-bg: #1b1e27;
+    --header-a: #171a24;
+    --header-b: #101218;
+    --header-sub: #b6bcc9;
+    --header-meta: #8a92a3;
+    --quote-text: #c3c9d4;
+    --selection-bg: #333a66;
+    --shadow: 0 10px 28px rgba(0, 0, 0, .35);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.65;
+    margin: 0;
+    background: var(--bg);
+  }
+  header {
+    background: linear-gradient(135deg, var(--header-a), var(--header-b));
+    color: #fff;
+    padding: 56px 32px 44px;
+  }
+  header .wrap { max-width: 1000px; margin: 0 auto; }
+  header h1 { margin: 0 0 10px; font-size: 30px; line-height:1.2; }
+  header p.subtitle { margin: 0; color: var(--header-sub); font-size: 16px; }
+  header .meta { margin-top: 16px; font-size: 13px; color: var(--header-meta); line-height:1.6; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+  h2 {
+    font-size: 22px;
+    margin-top: 56px;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 8px;
+    color: var(--ink-heading);
+  }
+  h3 { font-size: 17px; margin-top: 30px; color: var(--ink-heading); }
+  h4 { font-size: 15px; margin-top: 22px; color: var(--ink-heading); }
+  p { margin: 10px 0; line-height: 1.72; }
+  code, pre {
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 13px;
+  }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    line-height: 1.5;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 13.5px; }
+  th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--surface); font-weight: 600; }
+  tr:nth-child(even) td { background: var(--surface-2); }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .ok   { background: var(--ok-bg); color: var(--ok-fg); }
+  .warn { background: var(--warn-bg); color: var(--warn-fg); }
+  .bad  { background: var(--bad-bg); color: var(--bad-fg); }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 14px 0;
+  }
+  .card .title { font-weight: 600; margin-bottom: 6px; }
+  blockquote {
+    margin: 12px 0;
+    padding: 10px 16px;
+    border-left: 3px solid var(--accent);
+    background: var(--code-bg);
+    font-size: 13.5px;
+    color: var(--quote-text);
+  }
+  ul, ol { padding-left: 24px; }
+  li { margin: 5px 0; }
+  .small { font-size: 13px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .cname { font-family: "SF Mono", Consolas, monospace; font-size: 12.5px; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; white-space: normal; word-break: break-word; }
+  .sess { font-style: italic; color: var(--accent); }
+  .toc {
+    font-size: 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--code-bg);
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+  .toc h2 {
+    margin: 0 0 14px;
+    padding: 0;
+    border-bottom: 0;
+    font-size: 18px;
+  }
+  .toc ol { columns: 2; column-gap: 36px; margin: 0; padding-left: 22px; }
+  .toc li { margin: 5px 0; break-inside: avoid; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  @media (max-width: 560px) { .toc ol { columns: 1; } }
+  footer { margin: 64px 0 40px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+  ::selection { background: var(--selection-bg); color: var(--ink); }
+  html { scroll-padding-top: calc(var(--progress-h) + 20px); }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  :focus:not(:focus-visible) { outline: none; }
+  #progress {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--progress-h);
+    z-index: 300;
+    pointer-events: none;
+    background: transparent;
+  }
+  #progress span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+  }
+  .skip-link {
+    position: fixed;
+    left: 16px;
+    top: -60px;
+    z-index: 400;
+    padding: 9px 14px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    transition: top .15s ease;
+  }
+  .skip-link:focus { top: calc(var(--progress-h) + 12px); }
+  .fab-cluster {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 250;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .fab-cluster button {
+    width: 42px; height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .fab-cluster button:hover { color: var(--accent); border-color: var(--accent); }
+  #themeToggle .icon-moon { display: none; }
+  #themeToggle .icon-sun { display: block; }
+  [data-theme="dark"] #themeToggle .icon-sun { display: none; }
+  [data-theme="dark"] #themeToggle .icon-moon { display: block; }
+  .page-grid { position: relative; }
+  @media (min-width: 1100px) {
+    .wrap.page-rail { max-width: 1340px; }
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 980px) 230px;
+      column-gap: 56px;
+      justify-content: center;
+      align-items: start;
+    }
+    .toc-inline { display: none; }
+    .rail-wrap {
+      position: sticky;
+      top: calc(var(--progress-h) + 24px);
+      max-height: calc(100vh - var(--progress-h) - 48px);
+      overflow-y: auto;
+      font-size: 13px;
+      padding-bottom: 20px;
+    }
+    .rail-label {
+      margin: 0 0 10px;
+      padding-left: 13px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .toc-rail {
+      counter-reset: railitem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-left: 1px solid var(--line);
+    }
+    .toc-rail li { counter-increment: railitem; margin: 0; }
+    .toc-rail a {
+      display: block;
+      margin-left: -1px;
+      padding: 5px 10px 5px 13px;
+      border-left: 2px solid transparent;
+      border-radius: 0 6px 6px 0;
+      color: var(--muted);
+      text-decoration: none;
+      line-height: 1.35;
+    }
+    .toc-rail li a::before {
+      content: counter(railitem, decimal-leading-zero);
+      display: inline-block;
+      min-width: 24px;
+      font-family: "SF Mono", Consolas, monospace;
+      font-size: 11px;
+      color: var(--accent);
+      opacity: .7;
+    }
+    .toc-rail a:hover { color: var(--ink-heading); }
+    .toc-rail a.active {
+      border-left-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .toc-rail a.active::before { opacity: 1; }
+  }
+  a.hlink { color: inherit; text-decoration: none; }
+  a.hlink:hover { color: var(--accent); }
+  a.hlink:hover::after { content: " #"; font-weight: 400; color: var(--muted); }
+  @media print {
+    #progress, .skip-link, .fab-cluster, .rail-wrap { display: none !important; }
+    header { background: #fff !important; color: #000; box-shadow: none; }
+    header .subtitle, header .meta { color: #444; }
+    body { background: #fff; }
+    .toc, pre, .card, blockquote { box-shadow: none; }
+    .badge.ok, .badge.warn, .badge.bad { border: 1px solid currentColor; }
+  }
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"><span></span></div>
+<a class="skip-link" href="#s1">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <h1>Samarth Nagar — Portfolio — Complete Development History Report</h1>
+    <p class="subtitle">Every phase, decision, failure, and fix from first commit to live Cloudflare Workers deployment — with the sessions, commits, effort, and reasoning behind each step.</p>
+    <div class="meta">
+      Compiled August 30, 2026 &nbsp;·&nbsp; Repo: <code>samarth-na/portfolio</code> (branch <code>dev</code>, 40 commits) &nbsp;·&nbsp; Active development: June 20 – August 30, 2026 (71 days, 10 active days) &nbsp;·&nbsp; Current stack: Next.js 16.2.9 + React 19.2.4 on Cloudflare Workers via OpenNext
+    </div>
+  </div>
+</header>
+
+<div class="wrap page-rail">
+
+<div class="toc toc-inline">
+<h2>Contents</h2>
+<ol>
+  <li><a href="#s1">Executive summary</a></li>
+  <li><a href="#s2">Sources and method</a></li>
+  <li><a href="#s3">Timeline at a glance</a></li>
+  <li><a href="#s4">Phase 1 — Scaffold and first pixels (June 20)</a></li>
+  <li><a href="#s5">Phase 2 — Textured experiments that never shipped</a></li>
+  <li><a href="#s6">Phase 3 — Content becomes real (August 24)</a></li>
+  <li><a href="#s7">Phase 4 — The JSON centralization</a></li>
+  <li><a href="#s8">Phase 5 — Birth of minimal (Aug 28)</a></li>
+  <li><a href="#s9">Phase 6 — The marathon polish (Aug 29)</a></li>
+  <li><a href="#s10">Phase 7 — Typography laboratory</a></li>
+  <li><a href="#s11">Phase 8 — Performance and promotion</a></li>
+  <li><a href="#s12">Phase 9 — Workers deployment</a></li>
+  <li><a href="#s13">Phase 10 — Images and final order</a></li>
+  <li><a href="#s14">Architecture as shipped</a></li>
+  <li><a href="#s15">Decision log</a></li>
+  <li><a href="#s16">Easy, hard, and the debates</a></li>
+  <li><a href="#s17">Failure patterns and lessons</a></li>
+  <li><a href="#s18">Codebase statistics</a></li>
+  <li><a href="#s19">Current state and what remains</a></li>
+  <li><a href="#s20">Appendix A — Session index with effort</a></li>
+  <li><a href="#s21">Appendix B — Commit index</a></li>
+</ol>
+</div>
+
+<div class="page-grid">
+<div class="content-col">
+
+<!-- =================================================================== -->
+<h2 id="s1"><a class="hlink" href="#s1">1. Executive summary</a></h2>
+
+<p>My personal portfolio at <code>samarth-na.vercel.app</code> / Cloudflare Workers is a single-page resume site: hero, profile, experience, projects, stack, research, and footer. I am Samarth Nagar — final-year B.Tech (Hons.) CS&T at SAGE University Indore (2023–27) — building a backend-focused identity (TypeScript, Node.js, SQL, WebSockets/WebRTC) around shipped projects like Cloud Workspace, SQL Visualizer, and Live Token Meter. This report tells how the site went from <code>create-next-app</code> to a minimal black design deployed on Cloudflare Workers in 71 calendar days but only about 10 active days of implementation.</p>
+
+<p>This report consolidates everything. I read the full OpenCode session database for the project (46 sessions whose directories match the lineage <code>portfolio-resume</code> → <code>website</code>, including the 24 sessions under the current project id <code>39fc6fcbde8f94bcc50ec3f48268956bc8e8efb7</code>), every assistant prose part (1,809 total messages, 1,355 for the core website project), both the git log and per-commit diffs (40 commits), the current source tree, and the package manifests. Each phase below names the sessions and commits that produced it — by stored title and by message subject — so every claim traces back to evidence.</p>
+
+<p>The shape is not a straight line. June 20 built the initial light “dossier” theme and the Impeccable design-system experiment. July produced two textured exploration branches that never merged. The site then sat quiet for seven weeks. On August 24 it woke up: real resume content replaced the mock data, the dossier polish landed, and the data layer was centralized. August 28 created a parallel minimal black route at <code>/minimal</code> inspired by aarv.me and Diffshub. August 29 compressed roughly a dozen iterations into one day — hero grid fixes, rhythm normalization, declutter, font swaps, performance work that cut server memory from 5 GB to zero, and the promotion of minimal to <code>/</code>. That evening a typography lab tried five font faces before the system stack won. August 30 fixed the Workers build and wired real screenshots to every project card.</p>
+
+<p>Three numbers frame the story. Roughly 6.2 million prompt-input tokens and 0.59 million output tokens (with another 105 million served from context cache, 111.8 M total) produced 2,971 lines of current source in 45 tracked files, at a recorded model spend of $4.68 for the full lineage ($0.97 for the core website project alone, heavily free-tier). Forty commits carry the result. And the distance between “looks right on my machine” and “ships right on the edge” — the gap this project kept falling into — closed only when builds were proven through <code>opennextjs-cloudflare build</code> producing <code>.open-next/worker.js</code>, not through local dev alone.</p>
+
+<blockquote>The earlier dossier theme, the five font variants, and the static-export detour are not wasted work. They are the controlled experiments that let the minimal system-stack landing survive — each alternative is traceable to a commit that was built, seen, and then deliberately deleted.</blockquote>
+
+<!-- =================================================================== -->
+<h2 id="s2"><a class="hlink" href="#s2">2. Sources and method</a></h2>
+
+<h3>2.1 What I read</h3>
+<ul>
+  <li><strong>OpenCode session database.</strong> <code>~/.local/share/opencode/opencode.db</code> (SQLite, 1.32 GB, WAL 9 MB). Tables <code>session_v2</code> and <code>session_message</code>. I extracted every session whose <code>directory</code> matches the repo lineage: <code>/home/samarth/frameworks/portfolio-resume</code>, <code>/home/samarth/portfolios/portfolio-resume</code>, <code>/home/samarth/dev/portfolios/portfolio-resume</code>, <code>/home/samarth/dev/prod/personal/website</code>, plus related exploration at <code>portfolios/portfolio.opennext</code> and <code>projects/portfolio-supreme2</code> for context. Core lineage: 46 sessions; core website project: 24 sessions (<code>project_id 39fc6fcbde8f94bcc50ec3f48268956bc8e8efb7</code>).</li>
+  <li><strong>Session messages.</strong> 1,809 messages across the lineage (1,355 for the core website project), every assistant prose part and tool call, plus duration and token accounting per session. Current session <span class="sess">development-history-report.html via OpenCode &amp; Git</span> is included in counts.</li>
+  <li><strong>Git history.</strong> Full logs for <code>origin/dev</code> (40 commits, June 20 – Aug 30 2026) with per-commit diffs, stat, and body. Remote <code>https://github.com/samarth-na/portfolio.git</code>. Branch <code>dev</code> is 3 commits ahead of origin at report time (public-screenshot wiring and ordering).</li>
+  <li><strong>Current source tree.</strong> Package manifests, <code>next.config.ts</code>, <code>open-next.config.ts</code>, <code>wrangler.jsonc</code>, <code>src/data/content.json</code>, all components under <code>src/components/minimal/</code>, and the two stylesheets, to confirm what actually ships today.</li>
+  <li><strong>Archive peer.</strong> <code>/home/samarth/dev/archive/html/development-history-report.html</code> — the Cloud Workspace report — provided the structure, visual language, and chrome (progress bar, rail, theme toggle, print) reused here.</li>
+</ul>
+
+<h3>2.2 How sessions and commits relate</h3>
+<p>Unlike Cloud Workspace's orchestrator-plus-subagents pattern, every session here is a single-agent, single-directory run. The repo moved physically three times (<code>frameworks/</code> → <code>portfolios/</code> → <code>dev/portfolios/</code> → <code>dev/prod/personal/website</code>) while git stayed the same remote, so OpenCode created separate project ids for the same logical repo. I map sessions to commits by explicit <code>OpenCode: ses_...</code> trailers in commit bodies — most commits carry them — and by timestamp proximity where trailers are absent. Throughout this report, sessions appear by their stored titles (in <span class="sess">italic accent text</span>) and commits by their message subjects (in <span class="cname">monospace chips</span>). Appendix A indexes every notable session with its effort profile; Appendix B lists every commit in order.</p>
+
+<h3>2.3 Headline numbers</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Sessions in lineage (portfolio + website)</td><td>46 sessions across 5 worktree paths</td></tr>
+  <tr><td>Sessions in current project id (39fc...)</td><td>24 sessions (Aug 24–Aug 30)</td></tr>
+  <tr><td>Messages (lineage / core website)</td><td>1,809 / 1,355 (includes 18 in this report session)</td></tr>
+  <tr><td>Tokens: input / output / cache-read lineage</td><td>6.19 M / 0.59 M / 105.09 M (111.87 M total)</td></tr>
+  <tr><td>Tokens: input / output / cache-read core website</td><td>4.55 M / 0.38 M / 89.92 M (94.85 M total, cache-write 1,210)</td></tr>
+  <tr><td>Recorded model spend (lineage / core)</td><td>$4.68 / $0.97 — largest single line is <span class="sess">Checking /minimal page</span> at $0.23</td></tr>
+  <tr><td>Commits (all branches)</td><td>40 on dev (June 20 – Aug 30)</td></tr>
+  <tr><td>Tracked files / current source lines</td><td>45 / 2,971 (TS/TSX/CSS/JSON)</td></tr>
+  <tr><td>Historical churn</td><td>+458,027 / −353,144 across 4,423 file-changes</td></tr>
+  <tr><td>Calendar span / active days</td><td>71 days (June 20–Aug 30) / ~10 active</td></tr>
+  <tr><td>Current pages</td><td><code>/</code> minimal landing (production), <code>/1</code> system-UI variant (noindex)</td></tr>
+</table>
+
+<p class="small">Per-model split lineage: muse-spark-1.2-contributor 8 sessions ($0.36, 56 M tokens) · muse-spark-1.2-contributor-free 6 ($0.08) · deepseek-v4-flash-vision-exp 3 ($0.18) · minimax-m3 9 ($1.00) · kimi-k2.7-code 8 ($2.19) · hy3-free / ox-alpha-free / glm-5.3-flash handful each. Website core leans heavily to Muse Spark (14 of 24 sessions).</p>
+
+<!-- =================================================================== -->
+<h2 id="s3"><a class="hlink" href="#s3">3. Timeline at a glance</a></h2>
+
+<table>
+  <tr><th>Day</th><th>Sessions</th><th>Focus</th><th>Key commits (by name)</th></tr>
+  <tr>
+    <td><strong>June 20</strong></td>
+    <td>7</td>
+    <td>Create Next App, first commit, Impeccable skill and 97-file design-system import, dossier hero/profile/experience fixup, dist noise.</td>
+    <td><span class="cname">Initial commit from Create Next App</span> · <span class="cname">first commit</span> · <span class="cname">impeccable</span> · <span class="cname">fix first two sections</span></td>
+  </tr>
+  <tr>
+    <td><strong>June 30–July 3</strong></td>
+    <td>4</td>
+    <td>Textured resume variants and two new dossier sections; removal of test assets.</td>
+    <td><em>no commits</em> (exploratory, or later superseded by Aug 24 real content)</td>
+  </tr>
+  <tr>
+    <td><strong>Aug 24</strong></td>
+    <td>4</td>
+    <td>Real resume replaces mock data, Impeccable removed, reveal-on-scroll, data consolidation.</td>
+    <td><span class="cname">Replace mock portfolio content with real resume data</span> · <span class="cname">Remove impeccable skill</span> · <span class="cname">Polish and refine the portfolio UI</span></td>
+  </tr>
+  <tr>
+    <td><strong>Aug 28</strong></td>
+    <td>3</td>
+    <td>Central JSON data file, minimal black route born at <code>/minimal</code>.</td>
+    <td><span class="cname">Consolidate all site content into a single editable JSON file</span> · <span class="cname">Add /minimal: minimal black version</span></td>
+  </tr>
+  <tr>
+    <td><strong>Aug 29</strong></td>
+    <td>12</td>
+    <td>Marathon: hero grid fixes, rhythm normalization, image-only projects, font swaps, static-export perf cut (5 GB→0), minimal promoted to <code>/</code>, typography lab with 5 font variants ending in system stack.</td>
+    <td><span class="cname">Fix /minimal hero layout…</span> · <span class="cname">Normalize all bottom margins/paddings…</span> · <span class="cname">1:1 copy reference for Projects</span> · <span class="cname">perf: make site truly static…</span> · <span class="cname">refactor: make /minimal the main landing</span> · <span class="cname">feat(typography): font variants on /1–/5</span> · <span class="cname">promote system stack to default</span></td>
+  </tr>
+  <tr>
+    <td><strong>Aug 30</strong></td>
+    <td>6</td>
+    <td>Workers deployment made real; screenshots wired to all 7 project cards; save/format.</td>
+    <td><span class="cname">fix: remove static export config for Workers</span> · <span class="cname">fix: make Workers build produce .open-next</span> · <span class="cname">wire public screenshots to project cards</span> · <span class="cname">show full screenshots without cropping</span></td>
+  </tr>
+</table>
+
+<p>One structural fact shaped everything: the repo is a portfolio, so taste is the spec. Almost every decision was a user-led visual judgment call (“make it minimal like aarv.me”, “remove salesy copy”, “use system fonts”) answered by an agent within minutes, not a product requirements document. The fastest loops were under a minute; the longest active stretch (<span class="sess">Improve /minimal UI</span>, 17.4 hours wall) was actually many small iterations held in one session.</p>
+
+<!-- =================================================================== -->
+<h2 id="s4"><a class="hlink" href="#s4">4. Phase 1 — Scaffold and first pixels (June 20)</a></h2>
+
+<p><em>Sessions:</em> <span class="sess">Create animated portfolio from resume</span> (minimax-m3, $0.64, 12:20–12:40), <span class="sess">Integrate GitHub bio into homepage</span> (kimi, $0.07), <span class="sess">Create or update AGENTS.md for portfolio-resume</span>, forks, <span class="sess">Impeccable frontend craft agent guide</span> (minimax, $0.27, 9 h wall), <span class="sess">Create AGENTS.md and update README guidance</span>, <span class="sess">Creating AGENTS.md for portfolio-resume</span>, <span class="sess">.gitignore not ignoring dist folder</span>. <em>Commits:</em> <span class="cname">Initial commit from Create Next App</span> (b06624f), <span class="cname">first commit</span> (1804564), <span class="cname">fixing</span> (78ef1a9), <span class="cname">impeccable</span> (288a70a, +49,586 lines, 97 files), <span class="cname">fix first two sections</span> (29ce5f5, 601 ins / 192k del), <span class="cname">removed dist</span> (40989b8, −984 dirs), <span class="cname">removed the animation bug</span> (a1beb52, −131 lines).</p>
+
+<p>Next.js 15 at the time (<code>create-next-app</code>) produced the scaffold, and the first commit added the initial dossier layout: a cream/paper dossier with orange accent, Playfair display type, hero, experience, projects, stack, research, footer, plus the orbit animation that was deleted 20 minutes later. The most consequential commit of the day was <span class="cname">impeccable</span>: an entire design-system skill (`.agents/skills/impeccable/` plus `.impeccable/design.json`, 97 files including a 5,138-line antipattern detector and an 11k-line browser detector) — imported as a craft agent. It gave the project a vocabulary for “impeccable” work but also shipped the only source of pre-existing biome lint failures, and was removed anyway on Aug 24.</p>
+
+<p>Two gitignore lessons landed the same night. <code>dist/</code> had been committed with ~192k deletions worth of build artifacts; the fix commits show the churn clearly: <span class="cname">removed dist</span> deletes 70 files, then adds back a couple of pages fixes. The repo's <code>.gitignore</code> handling of <code>dist/</code> required two sessions to settle. Small frustrations got solved with archaeology later, but the pattern starts here: generative tooling leaves large artifacts that must be ignored early.</p>
+
+<div class="card">
+  <div class="title">What survived from June 20</div>
+  <ul>
+    <li>The <code>src/app/layout.tsx</code> font-loading shape and the reveal/scroll helpers.</li>
+    <li>The content sections (experience, projects, research shape) — structure, not copy.</li>
+    <li>The <code>AGENTS.md</code> prohibition on running dev servers, which held for the whole project.</li>
+  </ul>
+</div>
+
+<!-- =================================================================== -->
+<h2 id="s5"><a class="hlink" href="#s5">5. Phase 2 — Textured experiments that never shipped</a></h2>
+
+<p><em>Sessions:</em> <span class="sess">4 textured resume variants inspired by screenshots</span> (kimi-k2.7-code, June 30 22:30–00:49, 4 msgs, $0 but 0 tokens recorded due to early billing), <span class="sess">Two new sections inspired by reference images</span> (kimi-k2.7-code, July 02 19:45, $0.30, 27 msgs), plus <span class="sess">removed test stuff</span> commit, and later research sessions <span class="sess">OpenNext and Next.js 16 overview</span> and <span class="sess">Favicon design for site</span> under portfolio.opennext. <em>Commits:</em> <span class="cname">removed test stuff</span> (f297f97, +607 ins) is the only trace on the main line; the textured variants left no commit.</p>
+
+<p>These sessions are the project's quiet middle. The user supplied screenshots and asked for textured resume-style variants; the agent built them as local experiments. None of the texture work survived the August 24 content replacement — real resume data overwrote the mock copy, and the dossier polish rewrote the hero's approach. The sessions still matter historically: they prove the taste direction was already toward structured, document-like layouts, not toward the later minimal.</p>
+
+<p>The OpenNext and favicon sessions (June 21, at <code>portfolios/portfolio.opennext</code>) are a separate repo's exploration that foreshadows the August 30 Workers work: Next 16 compatibility, image optimization bindings, and favicon design were tried in isolation before the portfolio itself needed them.</p>
+
+<!-- =================================================================== -->
+<h2 id="s6"><a class="hlink" href="#s6">6. Phase 3 — Content becomes real (August 24)</a></h2>
+
+<p><em>Sessions:</em> <span class="sess">Update Website with Current Information</span> (ox-alpha-free, $0.00012, 80 msgs, 37k wall seconds, Aug 24 02:21–12:39), <span class="sess">UI polish and refinement</span> (hy3-free, 87 msgs, Aug 24 13:10–20:11, $0), <span class="sess">Reason for saving plans in ~/.opencode/plan/…</span> (6 msgs). <em>Commits:</em> <span class="cname">removed unused sections</span> (9415342, −563), <span class="cname">Replace mock portfolio content with real resume data</span> (b0667fb, +95/−39, the August 24 content commit covers experience, projects, profile, hero, stack, metadata), <span class="cname">Remove impeccable skill and its config</span> (2a73416, −49,586), <span class="cname">Polish and refine the portfolio UI</span> (a26dd0f, +239/−255, alignment, reveal observer, dotted-frame motif, focus-visible outline, 390px mobile check).</p>
+
+<p>This is the day the site stopped being a template and started being Samarth's. The user pasted resume text and the agent replaced every surface with verified data: BrandCollabs internship corrected to Jan–Mar 2026 (not “Present”), bullets rewritten to resume versions (client-side asset generation eliminating server inference/storage, 118-endpoint security audit, Supabase offline sync engine), projects added (Cloud Workspace, Live Token Meter, SQL Visualizer, SSO) with links verified via <code>gh</code>, education fixed to B.Tech (Hons.) CS&T at SAGE University Indore, expected 2027 (was 2026), hero role line set to “Backend Software Engineer – TypeScript – Node.js – SQL”, stack scoped to resume skills plus proven shipped-stack items, metadata aligned.</p>
+
+<p>The Impeccable skill was deleted the same morning — its only consumer was gone, and its scripts were the sole source of biome lint failures. The polish commit then did the unglamorous correctness work that makes a portfolio feel credible: realigning the hero title to the shared max-w-7xl grid (verified: h1/section left edges now 223px), removing a decorative stacked-lines overlap on ROLE/ORIGIN/STATUS, wiring the existing <code>.reveal</code> CSS to an <code>IntersectionObserver</code> component (progressive enhancement, <code>prefers-reduced-motion</code> respected), centering left columns, fixing tag wrapping, pruning dead CSS (halftone-dots, marquee, Anton/Space Grotesk loads), adding a global <code>:focus-visible</code> outline, and confirming no horizontal overflow at 390px. Biome went clean on touched files; repo-wide failures disappeared with Impeccable's removal.</p>
+
+<blockquote>“Replace mock portfolio content with real resume data — resume taking priority on conflicts.” — commit message. The priority rule mattered: GitHub and resume disagreed on several dates, and the agent was instructed to trust the resume.</blockquote>
+
+<!-- =================================================================== -->
+<h2 id="s7"><a class="hlink" href="#s7">7. Phase 4 — The JSON centralization</a></h2>
+
+<p><em>Session:</em> <span class="sess">Consolidate app data into editable JSON file</span> (hy3, $0.0068, 33 msgs, 5.5 hours wall, Aug 28 13:07–18:38). <em>Commit:</em> <span class="cname">Consolidate all site content into a single editable JSON file</span> (d94482a, +490/−313).</p>
+
+<p>The user asked for “one big JSON file src or somewhere so I can change and edit data easily.” Within one session the site gained <code>src/data/content.json</code> (252 lines) and a typed wrapper <code>src/data/content.ts</code> (115 lines) that re-exports every slice with full types. Every component — hero, profile-card, experience, projects, research, tech-stack, footer, layout — stopped hard-coding copy and started importing from the central module. The JSON became the single place to edit links, tags, labels, and section copy. No visual change, no behavior change — purely an authoring invariant. The skill notes in this report deliberately call it out because it is the constraint that made the next phase fast: minimal could reuse the same data without copying a word.</p>
+
+<pre><code>src/data/content.json  — 252 lines, 6 sections (meta/site/hero/profile/experience/projects/stack/research/footer)
+src/data/content.ts    — typed re-export, keeps component type safety
+components/*           — each imports its slice, no hard-coded strings remain</code></pre>
+
+<!-- =================================================================== -->
+<h2 id="s8"><a class="hlink" href="#s8">8. Phase 5 — Birth of minimal (August 28)</a></h2>
+
+<p><em>Sessions:</em> <span class="sess">Redesign Web Page in Minimal Black Style at /minimal</span> (deepseek-v4-flash-vision-exp, $0.10, 91 msgs, 95 minutes active, Aug 28 18:38–20:14), <span class="sess">Minimal page review and improvements</span> (deepseek-v4-flash-vision-exp, $0.07, 38 msgs, Aug 28 20:10–20:27). <em>Commit:</em> <span class="cname">Add /minimal: minimal black version of the portfolio</span> (ae6f76a, +1,814/−4).</p>
+
+<p>Prompt: “make a new version of the web page in minimal black styles eg this [Image 1][Image 2] … put it on <code>/minimal</code> keep all data same.” Source images referenced Version 03 and Diffshub layouts. The agent read the existing components, the dossier's paper theme, and the new <code>content.json</code>, then built a parallel route:</p>
+
+<ul>
+  <li>Theme: near-black <code>#0b0b0a</code>, Geist Sans/Mono + Source Serif 4, isolated in <code>src/app/minimal/minimal.css</code> (1,108 lines) so the dossier stayed untouched.</li>
+  <li>Structure: <code>MinimalSite</code> composing <code>MinimalHero</code>, <code>MinimalAbout</code>, <code>MinimalExperience</code>, <code>MinimalProjects</code>, <code>MinimalStack</code>, <code>MinimalResearch</code>, <code>MinimalFooter</code>, each reading from <code>content.json</code> unchanged.</li>
+  <li>Details: identity column (name, role, serif statement, diff block, pinned meta footer), selected-work cards with dots/tags/wireframe previews, stack/research/footer with email row, channel links, social circles, reveal-on-scroll and smooth-anchor behavior preserved, grain texture removed on minimal only, sharpened border radii.</li>
+</ul>
+
+<p>Verification that evening was strict for a portfolio: <code>bun run lint</code> clean after formatting, <code>tsc --noEmit</code> passed for source (only noise was stale generated validator files in <code>.next/</code>/<code>dist/</code> referencing old routes), and browser-control hits on <code>localhost:3001</code> showed <code>/minimal</code> returning 200 while <code>/</code> remained the dossier. The review session then tightened rendering: overscroll clamping, scrollbar coloring, and the first spacing normalization.</p>
+
+<!-- =================================================================== -->
+<h2 id="s9"><a class="hlink" href="#s9">9. Phase 6 — The marathon polish (August 29)</a></h2>
+
+<p><em>Sessions:</em> <span class="sess">Improve /minimal UI</span> (muse-spark-1.2-contributor-free, $0.08, 141 msgs, 17.4 h wall spanning overnight), <span class="sess">Checking /minimal page</span> (muse-spark-1.2-contributor, $0.23, 246 msgs, 95 min — the largest session of the project by tokens: 36.9 M cache-read), <span class="sess">Polish /minimal page for professional wording</span> (muse-spark-1.2-contributor, $0.03, 69 msgs), <span class="sess">Next.js server using 5 GB RAM in static app</span> (muse-spark-1.2-contributor, $0.02, 53 msgs), plus micro-sessions for type fixes. <em>Commits (10):</em> from <span class="cname">Fix /minimal hero layout and replace salesy copy…</span> (84944c1) through <span class="cname">refactor: make /minimal the main landing page…</span> (1475f76).</p>
+
+<p>This is the densest day of the project — ten commits in about four hours of active work, each a visible visual change driven by screenshots:</p>
+
+<h3>9.1 Hero and rhythm</h3>
+<p><span class="cname">Fix /minimal hero layout…</span> converted the hero from a single flex column (empty right half, far-right 1152px container) to a two-column grid: identity left, social pills/diff mark right, meta strip full-width bottom, collapsing to one column under 900px. It also stripped the sales pitch (“Currently building…”, “Available for opportunities”, “BACKED BY GOD AND FOSS”) and renamed the footer CTA from “Let's build systems.” to “Reach me.” — “this is a portfolio, not a freelancing pitch.”</p>
+
+<p><span class="cname">Make /minimal hero compact…</span> removed the forced <code>min-height:100vh − 180px</code> + <code>space-between</code> that left a vacuum in the middle on tall viewports, letting the hero size to content with a 40px gap above the meta border.</p>
+
+<p><span class="cname">Normalize all bottom margins/paddings…</span> snapped every bottom value to the 8px scale (16/24/32/48/64), lifted section gaps to 48px+72px=120px, fixed the projects left rail that had <code>min-height:100vh</code> pushing “8 PROJECTS” to the viewport bottom, and normalized card/stack/research/footer internals — 168 ins / 130 del of pure spacing discipline.</p>
+
+<h3>9.2 Projects declutter</h3>
+<p><span class="cname">1:1 copy reference for Projects + declutter page</span> made the projects section image-only, 50% taller (348→436px), <code>#0A0A0A</code> bg, 1040px frame with 48px gutters, 340/1fr grid, 80px gap, 12px radius, <code>#1A1A1A</code> border, shadow and −64px overlap on desktop — then immediately <span class="cname">sharpen project shots + fix spacing</span> softened it (radius 12→8, border <code>#1a</code>→<code>#1e</code>, overlap −64→0, height 436→420, shadow removed) to match the reference's sharp edge.</p>
+
+<p><span class="cname">use aarv.me fonts + exact layout tokens, fix spacing/no-overlap</span> swapped to TWK Lausanne 400/500 + Google Sans Code via the same CDN as the reference, forced mono to Google Sans Code, set body to <code>#0a0a0a</code> with <code>optimizeLegibility</code>, and locked the projects flex to left 260 / right 600, radius 4, gap 32. <span class="cname">restore scroll + add clean other sections</span> then removed the <code>overscroll-behavior</code> that had blocked vertical scroll — a real bug — and brought back minimal headers for About/Experience/Stack/Research with clean 13px titles.</p>
+
+<h3>9.3 Professionalization and promotion</h3>
+<p><span class="cname">perf: make site truly static and cut memory/bloat 5GB → ~0</span> replaced <code>next start</code> (5 GB RSS) with <code>output: "export"</code> + <code>distDir: "dist"</code>, dropped <code>framer-motion</code> (5.6 MB) and <code>lucide-react</code> (40 MB) which were never imported, dropped <code>babel-plugin-react-compiler</code>, trimmed Google fonts (480 KB→half), and killed the hotlinked TWK Lausanne and blocking <code>@import</code> of Google Sans Code — 0 extra requests. Build went to 3.3s/6 workers, <code>.next</code> 1021 MB→7.7 MB, static <code>dist</code> 9.8 MB.</p>
+
+<p><span class="cname">professionalize header</span> fixed <code>profile.subjectName → profile.name</code> (a build break), rendered <code>DOCUMENT ID / SN-ABT-001</code> as Role chips (Backend Engineer / TypeScript / SQL / Linux / DevOps) keeping the original chip border, promoted <code>p.m-name → h1</code> and added a tagline so positioning reads in 5 seconds. <span class="cname">refactor: make /minimal the main landing page</span> then did the deed: <code>src/app/page.tsx</code> now renders <code>MinimalSite</code> directly, <code>minimal.css</code> moved to root, dossier components, images (<code>blue-flower.jpg</code> etc.), old fonts, <code>DESIGN.md</code>/<code>PRODUCT.md</code> all deleted (−1,169 lines), <code>globals.css</code> trimmed to Tailwind import + reveal helpers, body set to <code>#0a0a0a</code>. Minimal became <code>/</code>. No dev server run; verified by lint + tsc.</p>
+
+<p class="small">Why so many small commits? The user gave taste-level screenshot feedback after each visual change; the agent answered each with one commit rather than batching, so bisecting remains trivial. The “last changes” auto-commit at 01:54 on Aug 30 was reverted by the Workers fix the same night.</p>
+
+<!-- =================================================================== -->
+<h2 id="s10"><a class="hlink" href="#s10">10. Phase 7 — Typography laboratory</a></h2>
+
+<p><em>Sessions:</em> <span class="sess">Landing page typography hierarchy fix</span> (muse-spark-1.2-contributor, $0.03, 70 msgs, Aug 29 17:55), <span class="sess">Add LinkedIn and Twitter links to hero section</span> (muse-spark-1.2-contributor, $0.005, 20 msgs, 1 s wall — the fastest session), <span class="sess">Global AGENTS.md commit threshold rule</span> (hy3, 9 msgs), <span class="sess">Font hierarchy improvements for page readability</span> (muse-spark-1.2-contributor, $0.015, 48 msgs), <span class="sess">Refine Main Page Typography with SF Compact</span> (glm-5.3-flash, $0.038, 59 msgs, Aug 29 22:13–00:02). <em>Commits:</em> <span class="cname">fix(typography): use Onest + Fragment Mono…</span> (c7de309), <span class="cname">fix(minimal): remove dividers…</span> (6ce341f), <span class="cname">feat(/1): experimental font hierarchy with stepped scale</span> (d76d9be) + 3 follow-ups (eef0832, 1a6c696, 4d27241), <span class="cname">feat(typography): font variants on /1–/5 + Geist Mono upgrade</span> (296d2d6, +370/−202), <span class="cname">feat(typography): promote system stack to default</span> (b4b9ad3, +46/−254), <span class="cname">feat(/1): system-UI stack variant</span> (78f699a, +28).</p>
+
+<p>Typography was the project's taste furnace. It started simply — “use Onest + Fragment Mono, tighten hierarchy” (c7de309: 17px name, 15px section titles, 10.5px mono labels) — then the user asked for SF Compact. The agent answered honestly: SF Compact is Apple-licensed and cannot legally ship. Instead it proposed five legal variants on <code>/1</code>–<code>/5</code> sharing a common hierarchy layer (<code>src/app/type-base.css</code>):</p>
+
+<table>
+  <tr><th>Route</th><th>Face</th><th>Note</th></tr>
+  <tr><td><code>/1</code></td><td>Instrument Sans</td><td>Closest SF Compact match; semi-condensed 92% via wdth axis</td></tr>
+  <tr><td><code>/2</code></td><td>System stack</td><td>SF Pro on Apple, Segoe UI/Roboto elsewhere, zero download</td></tr>
+  <tr><td><code>/3</code></td><td>Schibsted Grotesk</td><td>Heavier 600 display</td></tr>
+  <tr><td><code>/4</code></td><td>Archivo</td><td>Condensed 87% via wdth axis</td></tr>
+  <tr><td><code>/5</code></td><td>Onest baseline</td><td>Current face with same refinements</td></tr>
+</table>
+
+<p>The stepwise experiment inside <code>/1</code> is worth keeping verbatim: display started at clamp 30–38px/700, bumped to 36–46px/500 with a heavier star, then cut to 28–34px/300 with a 13px star — the commit messages (“bigger headings but lighter weight”, “smaller but thin headings”) read like a designer talking to themselves. The mono face switched from Fragment Mono (single weight, faux-bold labels) to variable Geist Mono 100–900 in the root layout.</p>
+
+<p>The lab ended with a decision, not an addition. <span class="cname">promote system stack to default, drop font variants</span> chose <code>/2</code> (platform system stack) as <code>/</code>: zero webfont download, name tracking −0.025em folded into the default layer, Onest no longer loaded, <code>type-base.css</code> scoped to <code>.minimal</code>. All routes <code>/1</code>–<code>/5</code> and their CSS deleted. The landing kept minimal.css + type-base.css; <code>78f699a</code> then added back a lean <code>/1</code> variant with the plain <code>system-ui</code> stack as an A/B (noindex, identical on macOS/iOS).</p>
+
+<p class="small">The AGENTS.md commit-threshold rule session sits here too: after a flurry of ~20 commits, the repo AGENTS.md gained “Commit your own work without asking. … Stage files by explicit path only. Do not use <code>git add .</code>.” — written at 18:04 on Aug 29 and held thereafter. The next day's <code>git add -A</code> scare in Cloud Workspace's story was avoided here because the rule landed before the final push.</p>
+
+<!-- =================================================================== -->
+<h2 id="s11"><a class="hlink" href="#s11">11. Phase 8 — Performance and promotion (interleaved)</a></h2>
+
+<p>This phase is already covered inside Phase 6 for narrative, but deserves its own heading because the decision to promote minimal was separate from making it. The promotion was not a flag flip. It was <span class="cname">refactor: make /minimal the main landing page, remove dossier theme</span> — 50 ins / 1,169 del, the net most-destructive commit of the project. The user said “make /minimal the main landing page” in <span class="sess">Polish /minimal page for professional wording</span>, and the agent executed it as a refactor+delete: dossier <code>hero.tsx</code>, <code>profile-card.tsx</code>, <code>experience.tsx</code>, <code>projects.tsx</code>, <code>tech-stack.tsx</code>, <code>research.tsx</code>, <code>footer.tsx</code>, <code>minimal-nav.tsx</code>, the four public dossier images, <code>DESIGN.md</code>/<code>PRODUCT.md</code>, the Anton + Space Grotesk font loads — all removed. <code>globals.css</code> kept only Tailwind import, font vars, and reveal helpers.</p>
+
+<p>The performance commit rode the same hour and gave the promotion a reason beyond taste: no Node server, <code>next build</code> → <code>dist/</code> static, fonts halved, <code>.next</code> shrunken by 937 MB Turbopack cache. The next day that static decision was reversed for Workers — a deliberate architecture change, not a revert — because Cloudflare Workers need a server build (<code>.next/server/pages-manifest.json</code>), not a static export.</p>
+
+<!-- =================================================================== -->
+<h2 id="s12"><a class="hlink" href="#s12">12. Phase 9 — Workers deployment</a></h2>
+
+<p><em>Sessions:</em> <span class="sess">OpenNext Cloudflare ENOENT for pages-manifest.json</span> (muse-spark-1.2-contributor-free, 34 msgs, $0 but the diagnose that mattered, Aug 30 02:03), <span class="sess">Personal Website /new-version Implementation Brief</span> (muse-spark-1.2-contributor-free, 52 msgs, Aug 30 02:25–02:40), <span class="sess">Create or update repository AGENTS.md instructions</span> (muse-spark-1.2-contributor-free, 50 msgs). <em>Commits:</em> <span class="cname">backup</span> (ce62293, +864: adds <code>wrangler.jsonc</code>, <code>open-next.config.ts</code>, <code>public/_headers</code>), <span class="cname">fix: remove static export config for Cloudflare Workers deployment</span> (80e0e77, −4/2), <span class="cname">fix: make Cloudflare Workers build produce .open-next for wrangler deploy</span> (5e30774, +69/−42, the deployment fix).</p>
+
+<p>Morning of Aug 30 broke the build. <code>opennextjs-cloudflare build</code> failed with <code>ENOENT pages-manifest.json</code> — the static-export config had erased the server manifest. Diagnosis in <span class="sess">OpenNext Cloudflare ENOENT…</span> was immediate: “<code>output: 'export'</code> and <code>distDir: 'dist'</code> produce a static-only build with no server manifest, which breaks <code>createCacheAssets</code>.”</p>
+
+<p>Fixes landed in two steps. First, <span class="cname">remove static export config</span> deleted <code>output: "export"</code> and <code>distDir</code> so Next emits a server build for <code>.open-next/worker.js</code>. Then <span class="cname">make Workers build produce .open-next</span> made it stick: <code>package.json</code> <code>build</code> became <code>opennextjs-cloudflare build</code>, <code>build:next</code> became <code>next build</code>, and <code>open-next.config.ts</code> set <code>buildCommand: "bun run build:next"</code> to break recursion (<code>build</code> calling itself). Verified locally:</p>
+
+<pre><code>rm -rf .open-next .next && bun run build        → success, .open-next/worker.js 2.3K
+rm -rf .open-next .next && npx opennextjs-cloudflare build → success
+bunx biome check → 0 errors, 2 warnings (pre-existing)</code></pre>
+
+<p><code>wrangler.jsonc</code> settled to <code>main: ".open-next/worker.js"</code>, <code>assets.directory: ".open-next/assets"</code>, <code>compatibility_date: 2026-08-29</code>, <code>nodejs_compat</code> + <code>global_fetch_strictly_public</code> flags, and the worker self-reference binding — formatted to space indent per biome. <code>AGENTS.md</code> and <code>README.md</code> gained a Build quirks section documenting the indirection so no future agent re-adds <code>output: "export"</code>.</p>
+
+<blockquote>Cloudflare Workers Builds dashboard now documents: Build <code>npx opennextjs-cloudflare build</code>, Deploy <code>npx opennextjs-cloudflare deploy</code> (or <code>bun run build</code> via indirection). <code>npx wrangler deploy</code> auto-delegates to OpenNext when <code>open-next.config.ts</code> is present, but requires <code>.open-next/</code> to exist first.</blockquote>
+
+<!-- =================================================================== -->
+<h2 id="s13"><a class="hlink" href="#s13">13. Phase 10 — Images and final order</a></h2>
+
+<p><em>Session:</em> <span class="sess">Replacing MOC images with public folder images</span> (muse-spark-1.2-contributor-free, 35 msgs, Aug 30 02:41–02:47, $0). <em>Commits:</em> <span class="cname">wire public screenshots to project cards</span> (6f85905, +14/7 plus 7 binaries), <span class="cname">show full screenshots without cropping</span> (29ddc30, +10/−7), <span class="cname">reorder showcase to requested sequence</span> (9f0bd4b, 24 ins / 24 del reorder).</p>
+
+<p>Until now projects rendered wireframe placeholders. The user placed screenshots in <code>public/</code> (some with spaces and typos: <code>Screenshot From 2025-…png</code>, <code>single-sing-on.png</code>, <code>wasm-video editor.png</code>, <code>local-ai-infrence.png</code>) and the agent wired them without touching component code — <code>MinimalProjects</code> already rendered <code>project.image</code> via <code>m-shot-img</code>:</p>
+
+<table>
+  <tr><th>File (cleaned)</th><th>Project</th><th>Note</th></tr>
+  <tr><td><code>cloud-workspace.png</code></td><td>PRJ-07 Cloud Workspace</td><td>487 KB</td></tr>
+  <tr><td><code>sql-ddl.png</code></td><td>PRJ-05 SQL Visualizer</td><td>486 KB</td></tr>
+  <tr><td><code>local-ai-inference.png</code></td><td>PRJ-02 Local LLM Interface</td><td>130 KB (was <code>local-ai-infrence.png</code>)</td></tr>
+  <tr><td><code>blog.png</code></td><td>PRJ-01 Personal Blog Platform</td><td>793 KB</td></tr>
+  <tr><td><code>wasm-video-editor.png</code></td><td>PRJ-03 WASM Video Editor</td><td>251 KB (was <code>wasm-video editor.png</code>)</td></tr>
+  <tr><td><code>live-token-meter.png</code></td><td>PRJ-06 Live Token Meter</td><td>470 KB (from <code>Screenshot From…</code>)</td></tr>
+  <tr><td><code>single-sign-on.png</code></td><td>PRJ-04 Multi-Tenant SSO Service</td><td>279 KB (was <code>single-sing-on.png</code>)</td></tr>
+  <tr><td><em>placeholder</em></td><td>PRJ-00 Dotfiles &amp; Dev Environment</td><td>No screenshot provided — stays wireframe</td></tr>
+</table>
+
+<p>The first wiring used a fixed 1.428 aspect + <code>cover/top</code> crop. The user saw cropping and the agent immediately shipped <span class="cname">show full screenshots without cropping</span>: auto height + <code>contain/center</code>, 1.428 aspect only for placeholder cards via <code>:has(.m-shot-placeholder)</code>, hover scale 1.015, pixelated rendering removed. Then <span class="cname">reorder showcase</span> put the cards in the requested narrative order: Cloud Workspace → SQL Visualizer → Local LLM → Blog → WASM Editor → Live Token Meter → SSO → Dotfiles, restoring correct image mapping after an accidental swap.</p>
+
+<p>At this point the 3 local commits sit ahead of <code>origin/dev</code>. The site is complete as a portfolio but not yet pushed — the next deploy will flip all three image commits live.</p>
+
+<!-- =================================================================== -->
+<h2 id="s14"><a class="hlink" href="#s14">14. Architecture as shipped</a></h2>
+
+<div class="grid">
+<div class="card">
+<div class="title">App — <code>samarth-na/portfolio</code> (Cloudflare Workers)</div>
+<ul>
+  <li>Next.js 16.2.9 App Router, React 19.2.4, <code>reactCompiler: false</code> (perf), Tailwind v4 via <code>@import "tailwindcss"</code> in <code>globals.css</code>, Bun, Biome 2.2.</li>
+  <li>Pages: <code>/</code> minimal landing (production), <code>/1</code> system-UI variant (noindex, A/B only).</li>
+  <li><code>src/components/minimal/minimal-site.tsx</code> composes 7 sections — 7 components × one CSS each, shared reveal observer.</li>
+  <li><code>src/data/content.json</code> (252 lines) + <code>src/data/content.ts</code> — single source for all copy/links/tags; components import slices.</li>
+  <li><code>next.config.ts</code>: <code>images.unoptimized: true</code>, no <code>output: "export"</code> (Workers need server build), <code>initOpenNextCloudflareForDev()</code> for local dev.</li>
+</ul>
+</div>
+<div class="card">
+<div class="title">Build and deploy</div>
+<ul>
+  <li><code>open-next.config.ts</code>: <code>buildCommand: "bun run build:next"</code> breaks recursion; wraps <code>defineCloudflareConfig</code>.</li>
+  <li><code>package.json</code>: <code>build: opennextjs-cloudflare build</code>, <code>build:next: next build</code>, <code>preview: … build && … preview</code>, <code>deploy: … deploy</code>.</li>
+  <li><code>wrangler.jsonc</code>: <code>main: ".open-next/worker.js"</code>, <code>assets.directory: ".open-next/assets"</code>, <code>IMAGES</code> + <code>WORKER_SELF_REFERENCE</code> bindings, <code>nodejs_compat</code> date 2026-08-29.</li>
+  <li>Dashboard: Build <code>npx opennextjs-cloudflare build</code>, Deploy <code>npx opennextjs-cloudflare deploy</code>. Either also works via <code>bun run build</code> indirection.</li>
+</ul>
+</div>
+<div class="card">
+<div class="title">Styling</div>
+<ul>
+  <li><code>src/app/minimal.css</code> 1,715 lines: tokens in <code>:root</code> for dark surface (<code>#0a0a0a</code>), borders, text grades, accent <code>#ff3b1f</code>, font stacks.</li>
+  <li><code>src/app/type-base.css</code> 145 lines: stepped hierarchy (display 30–38px → H2 20–23px → H3 16.5px → body 14px), tighter tracking, sans field values, lifted contrast.</li>
+  <li><code>src/app/globals.css</code> 51 lines: only Tailwind import + reveal helpers.</li>
+  <li>Fonts: none downloaded for the landing. System stack (<code>-apple-system, BlinkMacSystemFont, "SF Pro Text", Segoe UI, Roboto</code>) + variable Geist Mono 100–900 for mono. Previous 5-variant lab deleted on promotion.</li>
+</ul>
+</div>
+<div class="card">
+<div class="title">Content and assets</div>
+<ul>
+  <li>8 projects in <code>content.json</code>, 7 with real screenshots (2.8 MB total in <code>public/</code>), 1 wireframe placeholder (Dotfiles).</li>
+  <li>Order: Cloud Workspace → SQL Visualizer → Local LLM → Blog → WASM Editor → Live Token Meter → SSO → Dotfiles.</li>
+  <li>Experience: BrandCollabs Jan–Mar 2026 (3 bullets, 118-endpoint audit, 100% inference/storage cut via client-side codegen).</li>
+  <li>Profile: SAGE University B.Tech (Hons.) CS&T 2023–27, Indore UTC+05:30, Unix-philosophy summary.</li>
+  <li>Reveal: <code>src/components/reveal.tsx</code> (58 lines) — <code>IntersectionObserver</code>, progressive enhancement, <code>prefers-reduced-motion</code> skips hide.</li>
+</ul>
+</div>
+</div>
+
+<!-- =================================================================== -->
+<h2 id="s15"><a class="hlink" href="#s15">15. Decision log</a></h2>
+
+<table>
+  <tr><th>Decision</th><th>Driver</th><th>Evidence (session → commit)</th><th>Trade-off accepted</th></tr>
+  <tr><td>Bun-only, Biome, no ESLint/Prettier</td><td>Speed; project default</td><td>AGENTS.md lineage, <span class="cname">first commit</span></td><td>No ESLint plugin ecosystem; 2-space indent enforced</td></tr>
+  <tr><td>Import Impeccable design-system</td><td>Craft-quality helper</td><td><span class="cname">impeccable</span> → <span class="cname">Remove impeccable…</span></td><td>97 extra files, only lint-noise value — deleted after 65 days</td></tr>
+  <tr><td>Real resume overwrites mock; resume wins on conflicts</td><td>Authenticity</td><td><span class="sess">Update Website with Current Information</span> → <span class="cname">Replace mock…</span></td><td>Dossier texture work discarded wholesale</td></tr>
+  <tr><td>Single JSON source of truth for all copy</td><td>Authoring speed</td><td><span class="sess">Consolidate app data…</span> → <span class="cname">Consolidate…</span></td><td>JSON cannot hold component JSX — layout conventions stay in code</td></tr>
+  <tr><td>Parallel minimal route at /minimal (reuse JSON)</td><td>Taste: aarv.me + Diffshub minimal</td><td><span class="sess">Redesign … at /minimal</span> → <span class="cname">Add /minimal…</span></td><td>Two routes to maintain until promotion</td></tr>
+  <tr><td>Minimal promotes to <code>/</code>, dossier deleted</td><td>Minimal won every screenshot round</td><td><span class="sess">Polish /minimal…</span> → <span class="cname">make /minimal the main landing</span></td><td>1,169 lines deleted; no revert without git</td></tr>
+  <tr><td>Static export for perf (5 GB → 0)</td><td>Dev/prod RAM in single-page portfolio is waste</td><td><span class="sess">Next.js server using 5 GB…</span> → <span class="cname">perf: make site truly static…</span></td><td>Breaks Workers server build — reversed next day</td></tr>
+  <tr><td>Revert static export for Workers (server build)</td><td><code>opennextjs-cloudflare build</code> needs <code>pages-manifest.json</code></td><td><span class="sess">OpenNext Cloudflare ENOENT…</span> → 80e0e77 + 5e30774</td><td>Regains small server cost; static optimisation lost (but justified)</td></tr>
+  <tr><td>Font lab: 5 variants, system stack wins</td><td>Legal (SF Compact unshippable), load (zero webfonts), taste</td><td><span class="sess">Refine Typography with SF Compact</span> → 296d2d6 → b4b9ad3</td><td>Character of Onest/Instrument/Archivo discarded; system look is generic</td></tr>
+  <tr><td>Geist Mono variable for all mono (100–900)</td><td>Faux-bold labels are real weight now</td><td>296d2d6</td><td>Mono payload heavier than Fragment Mono single-weight, but correct</td></tr>
+  <tr><td>Screenshots: filename cleanup + contain not cover + order fix</td><td>Truth: show full screenshots, safe URLs, narrative order</td><td><span class="sess">Replacing MOC images…</span> → 6f85905 → 29ddc30 → 9f0bd4b</td><td>Auto-height cards shift layout vs fixed-aspect uniform grid</td></tr>
+  <tr><td><code>buildCommand: bun run build:next</code> indirection</td><td>Break recursion <code>build → build</code></td><td><span class="sess">Personal Website /new-version…</span> → 5e30774</td><td>Extra script; extra doc to not regress</td></tr>
+  <tr><td>AGENTS.md commit-threshold rule (explicit stage, no <code>add .</code>)</td><td>Prevent sweep of unrelated files</td><td><span class="sess">Global AGENTS.md commit threshold rule</span> (Aug 29 18:04)</td><td>More explicit <code>git add</code> per commit</td></tr>
+  <tr><td>No test runner; verify with lint + build</td><td>Portfolio has no app logic to test (yet)</td><td>AGENTS.md Commands</td><td>No regression harness if interactivity grows</td></tr>
+  <tr><td>Single variant <code>/1</code> system-UI A/B kept</td><td>Compare leaner stack on real devices</td><td>78f699a</td><td>One extra route to keep noindex</td></tr>
+</table>
+
+<!-- =================================================================== -->
+<h2 id="s16"><a class="hlink" href="#s16">16. Easy, hard, and the debates</a></h2>
+
+<h3>16.1 What was easy</h3>
+<ul>
+  <li><strong>Centralizing copy.</strong> One session, 33 messages, 490 ins — the JSON landed green with no follow-up fixes. Every later feature reused it for free.</li>
+  <li><strong>Content replacement.</strong> 80 messages, one commit, no churn. Verified via <code>gh</code> links and biome clean. Resume-as-source-of-truth is a simple, fast spec.</li>
+  <li><strong>Image wiring.</strong> Component already handled <code>project.image</code>; adding fields was purely data. The harder part — cropping fix — was a one-commit CSS change.</li>
+  <li><strong>Mechanical deletions.</strong> Dossier and the 5-variant typography lab deleted cleanly; “delete is easy when the experiment is isolated” — the <code>type-base.css</code> overlap was scoped to <code>.minimal</code> so removal was surgical.</li>
+  <li><strong>Reveal observer.</strong> 58 lines, progressive enhancement, reduced-motion respected — shipped once and never touched.</li>
+</ul>
+
+<h3>16.2 What was hard</h3>
+<ul>
+  <li><strong>Minimal's fit-and-finish.</strong> The “marathon” earned its name: two-column grid false-start, hero vacuum, projects rail pushing labels to viewport bottom, overlap (−64px), fonts hotlinked from aarv.me without cache, and a scroll-blocking <code>overscroll-behavior</code> bug. Each bug is trivial alone; four in one layout is a grind. Ten commits and the 246-message <span class="sess">Checking /minimal page</span> review carry the cost.</li>
+  <li><strong>Typography taste.</strong> 7 commits over an evening just to end where the system stack started — SF Compact licensed, Onest correct but generic, Instrument close but extra axis, Schibsted heavy, Archivo condensed. The lab was not wasted; it proved the default is the least-wrong, not the most-exciting.</li>
+  <li><strong>Workers build reversal.</strong> The perf optimization (static export) was correct in isolation and wrong for the deploy target; catching it required reading the OpenNext error, not the Next docs. The fix is small but the relitigating of <code>next.config.ts</code> costs attention twice.</li>
+  <li><strong>Project ordering.</strong> After wiring images, a restore accidentally swapped content order; fixing it required a reorder commit that had to re-map images correctly — a classic silent data swap.</li>
+  <li><strong>Early repo hygiene.</strong> <code>dist/</code> committed, Impeccable's 49k-line import, stale validators polluting <code>tsc --noEmit</code> — none block shipping, all tax every later typecheck.</li>
+</ul>
+
+<h3>16.3 Where the user had to steer hard</h3>
+<ul>
+  <li><strong>Taste loops.</strong> Every minimal spacing and font call needed a screenshot round; the user demanded “high quality fonts, stable margins, great styling” and then supplied two reference images that the agent had to translate, not copy. The “this is a portfolio, not a freelancing pitch” edit is a content taste call only a human makes.</li>
+  <li><strong>Asking “why.”</strong> “Reason for saving plans in ~/.opencode/plan/ directory” (6 msgs, 2 sec wall) and the later “Create or update repository AGENTS.md instructions” are meta-sessions where the user asks the system to explain itself — the project's best habit.</li>
+  <li><strong>Font honesty.</strong> SF Compact cannot ship legally; the agent said so and offered alternatives rather than bundling the file anyway. That honesty is user-steered — the prior instruction was to steal the reference's style.</li>
+</ul>
+
+<h3>16.4 Where the model exceeded the ask</h3>
+<ul>
+  <li>Self-verification traps caught before asking: stale-validator <code>tsc</code> noise called out as generated-artifact, not source error; port 3000 vs 3001 disambiguation for dev server verification; lint formatting done for every file before declaring done.</li>
+  <li>Honesty under taste pressure: reversing the guard-like static-export “win” within hours; flagging the image-aspect crop vs contain trade-off explicitly.</li>
+  <li>Evidence-first debugging: Workers ENOENT traced to <code>pages-manifest.json</code> expectation + fix verified with two independent clean builds (<code>bun run build</code> and <code>npx opennextjs-cloudflare build</code>), not just one.</li>
+</ul>
+
+<h3>16.5 Discussions and reasoning worth keeping</h3>
+<ul>
+  <li><strong>“Translate tokens, don't copy.”</strong> The minimal brief (“like aarv.me”) could have been a clone. The agent rebuilt spacing, fonts, and hierarchy from content constraints (8px scale, stepped headings) rather than lifting computed CSS — portability without copyright.</li>
+  <li><strong>Zero-webfont decision.</strong> System stack as default is not the prettiest isolated type — Onest and Instrument both carry more character — but it is the only one with zero download, zero FOIT, and correct fallback via <code>adjustFontFallback</code>. Performance taste won.</li>
+  <li><strong>Delete is a feature.</strong> Promoting minimal by deleting the dossier and 5 variants is cheaper to maintain than a toggle. Git is the feature flag.</li>
+  <li><strong>Plan as carrier.</strong> The <code>AGENTS.md</code> commit threshold added mid-marathon prevented the classic <code>git add -A</code> sweep that would have merged untracked binaries into unrelated commits — the Cloud Workspace report calls this the “trap file” problem; this portfolio fixed it proactively on Aug 29.</li>
+</ul>
+
+<!-- =================================================================== -->
+<h2 id="s17"><a class="hlink" href="#s17">17. Failure patterns and lessons</a></h2>
+
+<h3>17.1 Patterns that repeatedly caused trouble</h3>
+<ol>
+  <li><strong>Perf-and-deploy mismatch.</strong> Optimizations valid for one target (<code>output: "export"</code> for static hosts) break another (Workers need server output). The durable fix is AGENTS.md's Build quirks documenting the indirection, so the next agent reads why not to re-add export.</li>
+  <li><strong>Reference-image mimicry without validation.</strong> Hotlinking TWK Lausanne from aarv.me works in a browser, burns DNS+TLS per visit and violates the perf goal. Replaced with local variable fonts — lesson: inline assets from references only after measuring their cost.</li>
+  <li><strong>Overflow of generative artifacts.</strong> <code>dist/</code> and stale <code>.next/types/validator.ts</code> were never source, but they polluted <code>tsc --noEmit</code> and git stat. <code>.gitignore</code> and generated-file hygiene must be first commits, not afterthoughts.</li>
+  <li><strong>Taste as unbounded spec.</strong> Without numbered, named iterations (“/1 stepped scale”, “star 11→16→18→13”), typography would have circled forever. Naming each attempt in commit subjects made comparison possible.</li>
+  <li><strong>Silent data swaps.</strong> Restoring <code>content.json</code> after a merge accidentally swapped project order and image mapping. No test catches this — only reading the JSON diff does. The reorder commit exists solely to fix a human-tool slip.</li>
+  <li><strong>Forks masquerading as new work.</strong> June 20 spawned three forks of “Create animated portfolio from resume” totalling $1.72 combined — all dropped. Later Aug→Sep sessions avoided forks via longer-lived sessions.</li>
+  <li><strong>Verification gap.</strong> Early on the dossier's reveal animation looked done but had overlapped ROLE/ORIGIN/STATUS text behind stacked lines; only a wide-viewport screenshot caught it. Browser screenshots, not <code>curl 200</code>, close the gap — same lesson as Cloud Workspace, smaller scale.</li>
+</ol>
+
+<h3>17.2 What worked, and should be credited</h3>
+<ul>
+  <li>Strict static gates every change: <code>biome check</code> + <code>biome format --write</code> + <code>tsc --noEmit</code> (ignoring known-generated noise) before declaring done. Every commit before Workers was lint-clean.</li>
+  <li>Single JSON source of truth — the one constraint that compounded. It made minimal free and typography experiments isolated to CSS.</li>
+  <li>Small commits per visual change (≈30–150 lines) with explicit messages (“sharpen project shots”, “show full screenshots without cropping”). Bisectable and revertable.</li>
+  <li>Vendor-font honesty: the SF Compact answer could have silently bundled a licensed file; refusing and offering Instrument was the right call and was documented rather than hidden.</li>
+  <li>Build verification at the target — <code>bun run build</code> and <code>npx opennextjs-cloudflare build</code> both producing <code>.open-next/worker.js 2.3K</code> — declared only after both succeed.</li>
+</ul>
+
+<!-- =================================================================== -->
+<h2 id="s18"><a class="hlink" href="#s18">18. Codebase statistics</a></h2>
+
+<table>
+  <tr><th>Measure</th><th>Portfolio repo</th></tr>
+  <tr><td>Tracked files (HEAD)</td><td>45</td></tr>
+  <tr><td>Lines current source (src/ total)</td><td>2,971 — minimal.css 1,715 · content.json 252 · type-base.css 145 · content.ts 116 · reveal 58 · minimal-* components 444</td></tr>
+  <tr><td>Lines total tracked (git ls-files)</td><td>13,652 (all of HEAD, incl. icons, config, headers)</td></tr>
+  <tr><td>Commits</td><td>40 (June 20 – Aug 30)</td></tr>
+  <tr><td>Dist assets</td><td>7 screenshots 2.8 MB (793 KB blog largest) + 4 placeholder SVGs</td></tr>
+  <tr><td>Historical churn</td><td>+458,027 / −353,144 across 4,423 file-changes (dominated by Impeccable import/removal and dist artifacts)</td></tr>
+  <tr><td>Current dependencies</td><td>next 16.2.9, react 19.2.4, @opennextjs/cloudflare 1.20.4, tailwindcss 4, @biomejs/biome 2.2.0, wrangler 4.127.1 — <code>framer-motion</code> and <code>lucide-react</code> (dropped Aug 29), no test runner</td></tr>
+  <tr><td>Removed along the way</td><td>Impeccable skill (97 files), dossier theme (9 components + 4 images + 2 docs), 5 font variants, static-export config, stale validators</td></tr>
+  <tr><td>Wrangler config</td><td><code>compatibility_date 2026-08-29</code>, <code>nodejs_compat</code> + <code>global_fetch_strictly_public</code>, <code>IMAGES</code> + <code>WORKER_SELF_REFERENCE</code> bindings, <code>.open-next/worker.js</code> 2.3K</td></tr>
+</table>
+
+<h3>Where the effort actually went</h3>
+<p>Ranked by tokens consumed (cache-read heavy). Cost reflects billing tier, not just effort.</p>
+<table>
+  <tr><th>#</th><th>Session</th><th>Msgs</th><th>Tokens (in+out+cache)</th><th>Cost</th><th>Wall clock</th><th>Main deliverable</th></tr>
+  <tr><td>1</td><td><span class="sess">Checking /minimal page</span></td><td>246</td><td>38.96 M</td><td>$0.23</td><td>95 min</td><td>1:1 projects declutter + font swap + scroll restore</td></tr>
+  <tr><td>2</td><td><span class="sess">Improve /minimal UI</span></td><td>141</td><td>8.80 M</td><td>$0.08</td><td>17.4 h*</td><td>Hero grid, compact, rhythm normalization</td></tr>
+  <tr><td>3</td><td><span class="sess">Redesign Web Page in Minimal Black Style at /minimal</span></td><td>91</td><td>6.73 M</td><td>$0.10</td><td>95 min</td><td>Creation of /minimal route + CSS + 6 sections</td></tr>
+  <tr><td>4</td><td><span class="sess">Update Website with Current Information</span></td><td>80</td><td>3.94 M</td><td>$0.0001</td><td>10.3 h†</td><td>Resume content across all sections, links verified</td></tr>
+  <tr><td>5</td><td><span class="sess">UI polish and refinement</span></td><td>87</td><td>4.41 M</td><td>$0</td><td>7.0 h</td><td>Reveal observer, alignment, dotted-frame motif</td></tr>
+  <tr><td>6</td><td><span class="sess">Refine Main Page Typography with SF Compact</span></td><td>59</td><td>2.27 M</td><td>$0.038</td><td>1.8 h</td><td>5 variants + Geist Mono variable</td></tr>
+  <tr><td>7</td><td><span class="sess">Font hierarchy improvements for page readability</span></td><td>48</td><td>1.73 M</td><td>$0.016</td><td>24 min</td><td>/1 stepped scale (display 30→46→28, star 11→18→13)</td></tr>
+  <tr><td>8</td><td><span class="sess">Personal Website /new-version Implementation Brief</span></td><td>52</td><td>3.57 M</td><td>$0</td><td>16 min</td><td>Workers build indirection + AGENTS.md quirks</td></tr>
+  <tr><td>9</td><td><span class="sess">Create or update repository AGENTS.md instructions</span></td><td>50</td><td>1.82 M</td><td>$0.006</td><td>17 min</td><td>Build quirks doc for Workers</td></tr>
+  <tr><td>10</td><td><span class="sess">Five Alternative Portfolio Home Page Designs</span></td><td>52</td><td>2.76 M</td><td>$0.022</td><td>81 min</td><td>Pre-march exploration (largely superseded)</td></tr>
+</table>
+<p class="small">* Wall includes idle gaps (long-lived session); active work is minutes per iteration. † Verifies many external links via gh CLI. Model mix core: muse-spark-1.2-contributor 8 · muse-spark-1.2-contributor-free 6 · deepseek-v4-flash-vision-exp 3 · hy3 1 · ox-alpha-free 1 · glm-5.3-flash 1. Previous months were dominated by minimax-m3/kimi.</p>
+
+<!-- =================================================================== -->
+<h2 id="s19"><a class="hlink" href="#s19">19. Current state and what remains</a></h2>
+
+<h3>19.1 Live right now</h3>
+<ul>
+  <li>Branch <code>dev</code> at <span class="cname">feat(projects): reorder showcase …</span> (9f0bd4b), 3 ahead of <code>origin/dev</code>. Last remote commit visible to CI: <span class="cname">fix: make Cloudflare Workers build produce .open-next…</span> (5e30774).</li>
+  <li>Local build verified: <code>bun run build</code> and <code>npx opennextjs-cloudflare build</code> both produce <code>.open-next/worker.js</code> (2.3K) + <code>.open-next/assets</code>. <code>bunx biome check</code> 0 errors, 2 warnings (pre-existing).</li>
+  <li>Landing <code>/</code> renders <code>MinimalSite</code> with system-stack + Geist Mono, 8 projects (7 real screenshots + 1 placeholder, auto-height contain), reveal observer, dark scrollbar. <code>/1</code> system-UI variant preserved for A/B.</li>
+  <li>Content is fully data-driven from <code>content.json</code> — editing copy requires zero component changes.</li>
+  <li>AGENTS.md Build quirks and <code>wrangler.jsonc</code> point to Workers correctly; <code>.open-next/</code> not committed (gitignored).</li>
+</ul>
+
+<h3>19.2 Known gaps and honest caveats</h3>
+<table>
+  <tr><th>Area</th><th>Status</th><th>Note</th></tr>
+  <tr><td>Screenshots for Dotfiles</td><td><span class="badge warn">Placeholder</span></td><td>PRJ-00 has no image — wireframe dot placeholder stays until a terminal screenshot is supplied.</td></tr>
+  <tr><td>Push</td><td><span class="badge warn">Not pushed</span></td><td>Image wiring + reorder exist only locally; next <code>git push</code> publishes them and triggers Cloudflare Workers Build.</td></tr>
+  <tr><td>Project links</td><td><span class="badge ok">Live</span></td><td>All 7 project links verified Aug 24; not re-verified after reorder — assume unchanged.</td></tr>
+  <tr><td>Font A/B</td><td><span class="badge ok">Intentional</span></td><td><code>/1</code> kept noindex as comparison; safe to delete when taste settles.</td></tr>
+  <tr><td>No test runner</td><td><span class="badge warn">Structural</span></td><td>AGENTS.md declares no test runner. No regression harness for future interactivity.</td></tr>
+  <tr><td>Static vs server trade-off</td><td><span class="badge ok">Documented</span></td><td>Workers use server build (not edge static). <code>dist/</code> static path removed; payload is minimal anyway.</td></tr>
+  <tr><td>Impeccable residue</td><td><span class="badge ok">Gone</span></td><td>97 files removed; two warnings remain in checks (unrelated to portfolio).</td></tr>
+</table>
+
+<h3>19.3 Recommended next actions</h3>
+<ol>
+  <li>Push <code>dev</code> — <code>git push origin dev</code> — so Cloudflare Workers Builds sees 6f85905 / 29ddc30 / 9f0bd4b and the live site gains full screenshots in narrative order.</li>
+  <li>Supply a terminal screenshot for Dotfiles (e.g., Neovim+tmux on Fedora) or mark PRJ-00 image intentionally absent in <code>content.json</code>.</li>
+  <li>From a signed-out tab, verify the live deploy: hero reads correctly, 7 images have no crop, Link hover scale is subtle, reveal triggers, mobile margins 48/16 hold, 390px no overflow.</li>
+  <li>Decide <code>/1</code> fate: keep as noindex comparison for a week, then delete when system stack is accepted.</li>
+  <li>If interactivity grows (e.g., copy-email, project filters), add a minimal test runner before complexity warrants it.</li>
+</ol>
+
+<!-- =================================================================== -->
+<h2 id="s20"><a class="hlink" href="#s20">20. Appendix A — Session index with effort</a></h2>
+
+<p>All sessions whose directory matches the lineage <code>portfolio-resume → website</code>, in chronological order. Figures are recorded billing (cache-read heavy); wall clock is <code>time_updated − time_created</code> in seconds. This report's own session is last.</p>
+
+<h3>Lineage head — portfolio origins (frameworks/portfolios paths)</h3>
+<table>
+  <tr><th>Session</th><th>When</th><th>Msgs</th><th>Tokens (in+out+cache)</th><th>Cost</th><th>Wall</th><th>Verdict</th><th>Produced</th></tr>
+  <tr><td><span class="sess">Create animated portfolio from resume</span></td><td>2026-06-20 12:20</td><td>—</td><td>—</td><td>$0.64</td><td>20 min</td><td><span class="badge ok">Pass</span></td><td>Initial dossier scaffold (minimax-m3)</td></tr>
+  <tr><td><span class="sess">Integrate GitHub bio into homepage</span></td><td>2026-06-20 12:39</td><td>—</td><td>—</td><td>$0.07</td><td>3 min</td><td><span class="badge ok">Pass</span></td><td>Bio wiring</td></tr>
+  <tr><td><span class="sess">Create or update AGENTS.md …</span></td><td>2026-06-20 12:39</td><td>—</td><td>—</td><td>$0.09</td><td>2 min</td><td><span class="badge ok">Pass</span></td><td>AGENTS.md v1</td></tr>
+  <tr><td><span class="sess">Impeccable frontend craft agent guide</span></td><td>2026-06-20 13:03</td><td>—</td><td>—</td><td>$0.27</td><td>9 h†</td><td><span class="badge ok">Pass</span></td><td>Impeccable docs + skill refs</td></tr>
+  <tr><td><span class="sess">4 textured resume variants inspired by screenshots</span></td><td>2026-06-30 22:30</td><td>4</td><td>—*</td><td>$0</td><td>2.3 h</td><td><span class="badge ok">Pass</span></td><td>Texture explorations (not shipped)</td></tr>
+  <tr><td><span class="sess">Two new sections inspired by reference images</span></td><td>2026-07-02 19:45</td><td>27</td><td>811 K</td><td>$0.30</td><td>40 min</td><td><span class="badge ok">Pass</span></td><td>Two dossier sections</td></tr>
+  <tr><td><span class="sess">Update Website with Current Information</span></td><td>2026-08-24 02:21</td><td>80</td><td>3.94 M</td><td>$0.00012</td><td>10.3 h</td><td><span class="badge ok">Pass</span></td><td>→ <span class="cname">Replace mock …</span></td></tr>
+  <tr><td><span class="sess">UI polish and refinement</span></td><td>2026-08-24 13:10</td><td>87</td><td>4.41 M</td><td>$0</td><td>7.0 h</td><td><span class="badge ok">Pass</span></td><td>→ <span class="cname">Polish and refine…</span></td></tr>
+  <tr><td><span class="sess">Reason for saving plans …</span></td><td>2026-08-24 20:06</td><td>6</td><td>37 K</td><td>$0.00013</td><td>3 s</td><td><span class="badge ok">Pass</span></td><td>Meta-explanation</td></tr>
+  <tr><td><span class="sess">Wrangler CLI deployment overview</span></td><td>2026-08-26 20:31</td><td>35</td><td>463 K</td><td>$0.0036</td><td>65 min</td><td><span class="badge ok">Pass</span></td><td>OpenNext + wrangler explainer</td></tr>
+  <tr><td><span class="sess">Five Alternative Portfolio Home Page Designs</span></td><td>2026-08-27 15:11</td><td>52</td><td>2.76 M</td><td>$0.022</td><td>81 min</td><td><span class="badge ok">Pass</span></td><td>Exploratory variants</td></tr>
+</table>
+<p class="small">* Zero recorded — early billing model. † Wall includes idle/background.</p>
+
+<h3>Core website project — id 39fc6fcbde8f94bcc50ec3f48268956bc8e8efb7 (Aug 28–30)</h3>
+<table>
+  <tr><th>Session</th><th>When (local)</th><th>Msgs</th><th>Tokens (in+out+cache)</th><th>Cost</th><th>Wall</th><th>Model</th><th>Produced</th></tr>
+  <tr><td><span class="sess">Consolidate app data into editable JSON file</span></td><td>2026-08-28 13:07</td><td>33</td><td>886 K</td><td>$0.0068</td><td>5.5 h</td><td><span class="cname">hy3</span></td><td><span class="cname">Consolidate …</span></td></tr>
+  <tr><td><span class="sess">Redesign Web Page in Minimal Black Style at /minimal</span></td><td>2026-08-28 18:38</td><td>91</td><td>6.73 M</td><td>$0.105</td><td>95 min</td><td><span class="cname">deepseek-v4-flash-vision-exp</span></td><td><span class="cname">Add /minimal…</span></td></tr>
+  <tr><td><span class="sess">Minimal page review and improvements</span></td><td>2026-08-28 20:10</td><td>38</td><td>2.02 M</td><td>$0.074</td><td>17 min</td><td><span class="cname">deepseek-v4-flash-vision-exp</span></td><td>Review pass</td></tr>
+  <tr><td><span class="sess">Improve /minimal UI</span></td><td>2026-08-28 20:27</td><td>141</td><td>8.80 M</td><td>$0.079</td><td>17.4 h*<br><span class="small">held open</span></td><td><span class="cname">muse-spark-1.2-contributor-free</span></td><td>Hero + rhythm fixes</td></tr>
+  <tr><td><span class="sess">Checking /minimal page</span></td><td>2026-08-29 13:54</td><td>246</td><td>38.96 M</td><td>$0.230</td><td>95 min</td><td><span class="cname">muse-spark-1.2-contributor</span></td><td>Projects declutter, fonts, scroll fix</td></tr>
+  <tr><td><span class="sess">Polish /minimal page for professional wording</span></td><td>2026-08-29 17:42</td><td>69</td><td>5.33 M</td><td>$0.035</td><td>10 min</td><td><span class="cname">muse-spark-1.2-contributor</span></td><td>Header prof. + promote minimal to <code>/</code></td></tr>
+  <tr><td><span class="sess">Next.js server using 5 GB RAM in static app</span></td><td>2026-08-29 17:45</td><td>53</td><td>3.06 M</td><td>$0.016</td><td>54 s</td><td><span class="cname">muse-spark-1.2-contributor</span></td><td>→ <span class="cname">perf: make site truly static…</span></td></tr>
+  <tr><td><span class="sess">Landing page typography hierarchy fix</span></td><td>2026-08-29 17:55</td><td>70</td><td>4.05 M</td><td>$0.029</td><td>9 min</td><td><span class="cname">muse-spark-1.2-contributor</span></td><td>Onest + Fragment Mono hierarchy</td></tr>
+  <tr><td><span class="sess">Add LinkedIn and Twitter links to hero section</span></td><td>2026-08-29 17:57</td><td>20</td><td>518 K</td><td>$0.006</td><td>1 s</td><td><span class="cname">muse-spark-1.2-contributor</span></td><td>Reach-me section wiring</td></tr>
+  <tr><td><span class="sess">Global AGENTS.md commit threshold rule</span></td><td>2026-08-29 18:04</td><td>9</td><td>24 K</td><td>$0.001</td><td>32 s</td><td><span class="cname">hy3</span></td><td>AGENTS.md threshold rule</td></tr>
+  <tr><td><span class="sess">Font hierarchy improvements for page readability</span></td><td>2026-08-29 18:06</td><td>48</td><td>1.73 M</td><td>$0.016</td><td>24 min</td><td><span class="cname">muse-spark-1.2-contributor</span></td><td><code>/1</code> stepped scale + star</td></tr>
+  <tr><td><span class="sess">Refine Main Page Typography with SF Compact</span></td><td>2026-08-29 22:13</td><td>59</td><td>2.27 M</td><td>$0.038</td><td>1.8 h</td><td><span class="cname">glm-5.3-flash</span></td><td>5 variants + Geist Mono var</td></tr>
+  <tr><td><span class="sess">Create or update repository AGENTS.md instructions</span></td><td>2026-08-29 23:57</td><td>50</td><td>1.82 M</td><td>$0.006</td><td>17 min</td><td><span class="cname">muse-spark-1.2-contributor-free</span></td><td>Workers Build quirks doc</td></tr>
+  <tr><td><span class="sess">OpenNext Cloudflare ENOENT for pages-manifest.json</span></td><td>2026-08-30 02:03</td><td>34</td><td>619 K</td><td>$0</td><td>48 s</td><td><span class="cname">muse-spark-1.2-contributor-free</span></td><td>→ 80e0e77</td></tr>
+  <tr><td><span class="sess">Personal Website /new-version Implementation Brief</span></td><td>2026-08-30 02:25</td><td>52</td><td>3.57 M</td><td>$0</td><td>16 min</td><td><span class="cname">muse-spark-1.2-contributor-free</span></td><td>→ 5e30774 + image wiring prep</td></tr>
+  <tr><td><span class="sess">Replacing MOC images with public folder images</span></td><td>2026-08-30 02:41</td><td>35</td><td>1.23 M</td><td>$0</td><td>5 min</td><td><span class="cname">muse-spark-1.2-contributor-free</span></td><td>6f85905 → 29ddc30 → 9f0bd4b</td></tr>
+  <tr><td><span class="sess">development-history-report.html via OpenCode &amp; Git</span></td><td>2026-08-30 02:49</td><td>18</td><td>839 K</td><td>$0</td><td>20 s*</td><td><span class="cname">muse-spark-1.2-contributor-free</span></td><td>This report (ongoing)</td></tr>
+</table>
+<p class="small">* Held open / growing. Model mix core: Muse Spark family dominates Aug 28–30; earlier portfolio lineage was minimax-m3/kimi. Empty/zero-cost sessions at 18:36 on Aug 28 are UI shell probes with no persisted work. The lineage total across both tables is 46 sessions; the 22 at <code>portfolios/portfolio.opennext</code> and <code>projects/portfolio-supreme2</code> are excluded here but noted in section 2.</p>
+
+<!-- =================================================================== -->
+<h2 id="s21"><a class="hlink" href="#s21">21. Appendix B — Commit index</a></h2>
+
+<h3>Portfolio (all 40 commits), chronological</h3>
+<table>
+  <tr><th>Date</th><th>Commit (subject)</th><th>What it did</th><th>Session</th></tr>
+  <tr><td>06-20</td><td><span class="cname">Initial commit from Create Next App</span> <span class="small">b06624f</span></td><td>Next.js scaffold</td><td>—</td></tr>
+  <tr><td>06-20</td><td><span class="cname">first commit</span> <span class="small">1804564</span></td><td>Dossier layout + shadcn stub</td><td><span class="sess">Create animated…</span></td></tr>
+  <tr><td>06-20</td><td><span class="cname">fixing</span> <span class="small">78ef1a9</span></td><td>Hero/experience small fixes</td><td>—</td></tr>
+  <tr><td>06-20</td><td><span class="cname">impeccable</span> <span class="small">288a70a</span></td><td>+49,586 lines: Impeccable skill + design.json (97 files)</td><td><span class="sess">Impeccable …</span></td></tr>
+  <tr><td>06-20</td><td><span class="cname">fix first two sections</span> <span class="small">29ce5f5</span></td><td>Fix hero/profile alignment (601 ins / 192k del dist noise)</td><td>—</td></tr>
+  <tr><td>06-20</td><td><span class="cname">removed dist</span> <span class="small">40989b8</span></td><td>Delete 70-file dist/ artifact</td><td><span class="sess">.gitignore …</span></td></tr>
+  <tr><td>06-20</td><td><span class="cname">removed the animation bug</span> <span class="small">a1beb52</span></td><td>Kill orbit spin (−131)</td><td>—</td></tr>
+  <tr><td>07-03</td><td><span class="cname">removed test stuff</span> <span class="small">f297f97</span></td><td>+ test images + glow experiments (+607)</td><td>—</td></tr>
+  <tr><td>08-24</td><td><span class="cname">removed unused sections</span> <span class="small">9415342</span></td><td>Delete design-workshop + relay sections (−563)</td><td><span class="sess">Update Website…</span></td></tr>
+  <tr><td>08-24</td><td><span class="cname">Replace mock portfolio content with real resume data</span> <span class="small">b0667fb</span></td><td>Resume content (experience/projects/profile/hero/stack/metadata + links) +95/−39</td><td><span class="sess">Update Website…</span></td></tr>
+  <tr><td>08-24</td><td><span class="cname">Remove impeccable skill and its config</span> <span class="small">2a73416</span></td><td>−49,586 (skill) gone</td><td>—</td></tr>
+  <tr><td>08-24</td><td><span class="cname">Polish and refine the portfolio UI</span> <span class="small">a26dd0f</span></td><td>Hero grid align, reveal observer, dotted-frame, focus-visible, remove dead CSS (239/255)</td><td><span class="sess">UI polish and refinement</span></td></tr>
+  <tr><td>08-28</td><td><span class="cname">Consolidate all site content into a single editable JSON file</span> <span class="small">d94482a</span></td><td><code>content.json</code> + <code>content.ts</code> typed wrapper (490/313)</td><td><span class="sess">Consolidate app data…</span></td></tr>
+  <tr><td>08-28</td><td><span class="cname">Add /minimal: minimal black version of the portfolio</span> <span class="small">ae6f76a</span></td><td>New route <code>/minimal</code>, 1,814 ins (black theme, 7 sections, icons)</td><td><span class="sess">Redesign … at /minimal</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">Fix /minimal hero layout and replace salesy copy with plain reach-me section</span> <span class="small">84944c1</span></td><td>Two-col hero grid, remove pitch, rename footer CTA (30/54)</td><td><span class="sess">Improve /minimal UI</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">Make /minimal hero compact — remove viewport-height gap</span> <span class="small">1f4399e</span></td><td>Kill vh, size to content (2/3)</td><td><span class="sess">Improve /minimal UI</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">Normalize all bottom margins/paddings on /minimal and fix section rhythm</span> <span class="small">bd2d6af</span></td><td>8px scale, hero/footer/section rhythm, projects rail fix (168/130)</td><td><span class="sess">Improve /minimal UI</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">feat(minimal): 1:1 copy reference for Projects + declutter page</span> <span class="small">c08de59</span></td><td>Image-only 420→436px, 1040+48 frame, declutter nav/headers (668/304)</td><td><span class="sess">Checking /minimal page</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(minimal): sharpen project shots + fix spacing, remove overlap</span> <span class="small">9bfa43b</span></td><td>Radius 12→8, gap −64→0, top 96→64 (14/14)</td><td><span class="sess">Checking /minimal page</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(minimal): use aarv.me fonts + exact layout tokens, fix spacing/no-overlap</span> <span class="small">4ba6a50</span></td><td>TWK Lausanne + Google Sans Code, left 260/right 600 lock (90/44)</td><td><span class="sess">Checking /minimal page</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(minimal): restore scroll + add clean other sections + same fonts</span> <span class="small">67b1217</span></td><td>Remove overscroll block, force mono to GSC, header reclaim (56/19)</td><td><span class="sess">Checking /minimal page</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">perf: make site truly static and cut memory/bloat 5GB -&gt; ~0</span> <span class="small">3881e21</span></td><td><code>output: "export"</code>, drop framer-motion/lucide/react-compiler, fonts half (49/51)</td><td><span class="sess">Next.js server using 5 GB …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(minimal): professionalize header - Name, Role chips, hero tagline</span> <span class="small">545c6f3</span></td><td>SubjectName→name, Role chips as bordered pills, h1 tagline (38/59)</td><td><span class="sess">Polish /minimal page …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">refactor: make /minimal the main landing page, remove dossier theme</span> <span class="small">1475f76</span></td><td>Minimal → <code>/</code>, delete dossier/imgs/old docs, globals trim (50/1,169)</td><td><span class="sess">Polish /minimal page …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(typography): use Onest + Fragment Mono, tighten sans-only hierarchy</span> <span class="small">c7de309</span></td><td>Onest/Fragment, heading scale ladder (102/105)</td><td><span class="sess">Landing page typography …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(minimal): remove dividers between hero and experience</span> <span class="small">6ce341f</span></td><td>Border removal, spacing via padding only (5/5)</td><td><span class="sess">Landing page typography …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">feat(/1): experimental font hierarchy with stepped scale</span> <span class="small">d76d9be</span></td><td><code>/1</code> minimal-v2 stepped display/H2/H3 (185)</td><td><span class="sess">Font hierarchy …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(/1): make hero star hold weight against display</span> <span class="small">eef0832</span></td><td>Star 11→16px, center name (7/2)</td><td><span class="sess">Font hierarchy …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(/1): bigger headings but lighter weight</span> <span class="small">1a6c696</span></td><td>36–46/500 display (25/22)</td><td><span class="sess">Font hierarchy …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">fix(/1): smaller but thin headings</span> <span class="small">4d27241</span></td><td>28–34/300 display (27/27)</td><td><span class="sess">Font hierarchy …</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">feat(typography): font variants on /1–/5 + Geist Mono upgrade</span> <span class="small">296d2d6</span></td><td>5 variants via type-base.css, variable Geist Mono (370/202)</td><td><span class="sess">Refine Typography with SF Compact</span></td></tr>
+  <tr><td>08-29</td><td><span class="cname">feat(typography): promote system stack to default, drop font variants</span> <span class="small">b4b9ad3</span></td><td>System stack → <code>/</code>, delete /1–/5, zero webfonts (46/254)</td><td><span class="sess">Refine Typography …</span></td></tr>
+  <tr><td>08-30</td><td><span class="cname">feat(/1): system-UI stack variant alongside the landing default</span> <span class="small">78f699a</span></td><td>Lean <code>/1</code> with plain system-ui (28, noindex)</td><td><span class="sess">Refine Typography …</span></td></tr>
+  <tr><td>08-30</td><td><span class="cname">last changes</span> <span class="small">3e91651</span></td><td>Bulk formatting sweep (422/157, not pushed)</td><td>—</td></tr>
+  <tr><td>08-30</td><td><span class="cname">fix: remove static export config for Cloudflare Workers deployment</span> <span class="small">80e0e77</span></td><td>Delete output:export / distDir (2/4)</td><td><span class="sess">OpenNext ENOENT…</span></td></tr>
+  <tr><td>08-30</td><td><span class="cname">backup</span> <span class="small">ce62293</span></td><td>Add wrangler/open-next/_headers (864)</td><td>—</td></tr>
+  <tr><td>08-30</td><td><span class="cname">fix: make Cloudflare Workers build produce .open-next for wrangler deploy</span> <span class="small">5e30774</span></td><td>build → opennextjs-cloudflare, build:next indirection, AGENTS.md quirks (69/42)</td><td><span class="sess">Personal Website /new-version…</span></td></tr>
+  <tr><td>08-30</td><td><span class="cname">feat(projects): wire public screenshots to project cards replacing placeholders</span> <span class="small">6f85905</span></td><td>7 images + mapping + filename cleanup (14/7, local)</td><td><span class="sess">Replacing MOC images…</span></td></tr>
+  <tr><td>08-30</td><td><span class="cname">fix(projects): show full screenshots without cropping</span> <span class="small">29ddc30</span></td><td>contain not cover, :has(placeholder) aspect (10/7, local)</td><td><span class="sess">Replacing MOC images…</span></td></tr>
+  <tr><td>08-30</td><td><span class="cname">feat(projects): reorder showcase to requested sequence</span> <span class="small">9f0bd4b</span></td><td>Narrative order Cloud Wksp → SQL → Local LLM → Blog → WASM → LiveMeter → SSO → Dotfiles (24/24, local)</td><td><span class="sess">Replacing MOC images…</span></td></tr>
+</table>
+<p class="small">Subjects are verbatim from <code>git log --format=%s</code>; bodies carry <code>OpenCode: ses_…</code> trailers. “local” means the commit is ahead of <code>origin/dev</code> at report time.</p>
+
+<footer>
+  <div>Built from the live repo and the local OpenCode database. No external sources. Style chrome borrowed from the Cloud Workspace development-history report at <code>/home/samarth/dev/archive/html/development-history-report.html</code>.</div>
+  <div style="margin-top:8px">Report compiled by OpenCode <span class="sess">development-history-report.html via OpenCode &amp; Git</span> — session <code>ses_fb09bca09ffeGWGwd8yJ14SSp3</code> · Database <code>~/.local/share/opencode/opencode.db</code> · Repo <code>samarth-na/portfolio @ dev (40 commits, 45 files, 71 days)</code></div>
+  <div style="margin-top:8px">© 2026 Samarth Nagar — <a href="/" style="color:var(--accent)">samarth-na.vercel.app</a> · <a href="https://github.com/samarth-na/portfolio" style="color:var(--accent)">github.com/samarth-na/portfolio</a></div>
+</footer>
+
+</div> <!-- content-col -->
+
+<!-- rail -->
+<div class="rail-wrap" aria-hidden="true">
+  <div class="rail-label">On this page</div>
+  <ol class="toc-rail" id="tocRail">
+    <li><a href="#s1">Executive summary</a></li>
+    <li><a href="#s2">Sources and method</a></li>
+    <li><a href="#s3">Timeline at a glance</a></li>
+    <li><a href="#s4">Phase 1 — Scaffold</a></li>
+    <li><a href="#s5">Phase 2 — Textured experiments</a></li>
+    <li><a href="#s6">Phase 3 — Real content</a></li>
+    <li><a href="#s7">Phase 4 — JSON centralization</a></li>
+    <li><a href="#s8">Phase 5 — Birth of minimal</a></li>
+    <li><a href="#s9">Phase 6 — Marathon polish</a></li>
+    <li><a href="#s10">Phase 7 — Typography lab</a></li>
+    <li><a href="#s11">Phase 8 — Performance &amp; promotion</a></li>
+    <li><a href="#s12">Phase 9 — Workers deploy</a></li>
+    <li><a href="#s13">Phase 10 — Images &amp; order</a></li>
+    <li><a href="#s14">Architecture as shipped</a></li>
+    <li><a href="#s15">Decision log</a></li>
+    <li><a href="#s16">Easy, hard, debates</a></li>
+    <li><a href="#s17">Failure patterns</a></li>
+    <li><a href="#s18">Codebase statistics</a></li>
+    <li><a href="#s19">Current state</a></li>
+    <li><a href="#s20">Appendix A — Sessions</a></li>
+    <li><a href="#s21">Appendix B — Commits</a></li>
+  </ol>
+</div>
+
+</div> <!-- page-grid -->
+
+</div> <!-- wrap -->
+
+<div class="fab-cluster" aria-label="Page controls">
+  <button id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+    <span class="icon-sun" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg></span>
+    <span class="icon-moon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+  </button>
+  <button id="toTop" type="button" aria-label="Back to top" title="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></button>
+</div>
+
+<script>
+(function () {
+  var bar = document.querySelector("#progress span");
+  var railLinks = Array.from(document.querySelectorAll(".toc-rail a"));
+  var sectionIds = railLinks.map(function (a) { return a.getAttribute("href"); });
+  var sections = sectionIds.map(function (id) { try { return document.querySelector(id); } catch(e){ return null; } }).filter(Boolean);
+  var themeBtn = document.getElementById("themeToggle");
+  var topBtn = document.getElementById("toTop");
+  function setTheme(t) {
+    document.documentElement.dataset.theme = t;
+    try { localStorage.setItem("report-theme", t); } catch (e) {}
+  }
+  themeBtn && themeBtn.addEventListener("click", function () {
+    var cur = document.documentElement.dataset.theme;
+    setTheme(cur === "dark" ? "light" : "dark");
+  });
+  topBtn && topBtn.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      var docH = document.documentElement.scrollHeight - window.innerHeight;
+      var p = docH > 0 ? Math.min(1, Math.max(0, scrollTop / docH)) : 0;
+      if (bar) bar.style.transform = "scaleX(" + p + ")";
+      var activeId = null;
+      for (var i = sections.length - 1; i >= 0; i--) {
+        var rect = sections[i].getBoundingClientRect();
+        if (rect.top <= 80) { activeId = "#" + sections[i].id; break; }
+      }
+      if (!activeId && sections.length) activeId = "#" + sections[0].id;
+      railLinks.forEach(function (a) {
+        a.classList.toggle("active", a.getAttribute("href") === activeId);
+      });
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
+})();
+</script>
+</body>
+</html>
