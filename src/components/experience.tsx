@@ -1,9 +1,9 @@
 import { content } from "@/data/content";
-import { Reveal } from "../reveal";
+import { Reveal } from "./reveal";
 
 const { experience: experienceData } = content;
 
-export function MinimalExperience() {
+export function Experience() {
   return (
     <section id="experience" className="m-section">
       <div className="m-container">

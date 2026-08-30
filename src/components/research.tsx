@@ -1,9 +1,9 @@
 import { content } from "@/data/content";
-import { Reveal } from "../reveal";
+import { Reveal } from "./reveal";
 
 const { research } = content;
 
-export function MinimalResearch() {
+export function Research() {
   return (
     <section id="research" className="m-section">
       <div className="m-container">

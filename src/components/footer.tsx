@@ -1,9 +1,9 @@
 import { content } from "@/data/content";
-import { Reveal } from "../reveal";
+import { Reveal } from "./reveal";
 
 const { footer } = content;
 
-export function MinimalFooter() {
+export function Footer() {
   return (
     <footer className="m-footer">
       <div className="m-container">

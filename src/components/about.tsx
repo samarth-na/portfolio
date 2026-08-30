@@ -1,9 +1,9 @@
 import { content } from "@/data/content";
-import { Reveal } from "../reveal";
+import { Reveal } from "./reveal";
 
 const { profile } = content;
 
-export function MinimalAbout() {
+export function About() {
   return (
     <section id="profile" className="m-section">
       <div className="m-container">

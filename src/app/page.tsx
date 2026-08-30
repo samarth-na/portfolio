@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { MinimalSite } from "@/components/minimal/minimal-site";
-import "./minimal.css";
-import "./type-base.css";
+import { Site } from "@/components/site";
 
 export const metadata = {
   title: "Samarth Nagar — Backend Software Engineer",
@@ -16,9 +14,5 @@ export const metadata = {
 } satisfies Metadata;
 
 export default function Home() {
-  return (
-    <div className="minimal">
-      <MinimalSite />
-    </div>
-  );
+  return <Site />;
 }

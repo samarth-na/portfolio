@@ -3,8 +3,8 @@
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { content } from "@/data/content";
-import { Reveal } from "../reveal";
 import { ArrowUpRightIcon } from "./icons";
+import { Reveal } from "./reveal";
 
 const { projects } = content;
 
@@ -30,7 +30,7 @@ const GLYPHS: Record<string, string> = {
   "PRJ-00": "≡",
 };
 
-export function MinimalProjects() {
+export function Projects() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const activeProject =

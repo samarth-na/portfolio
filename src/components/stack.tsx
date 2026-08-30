@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { content } from "@/data/content";
-import { Reveal } from "../reveal";
+import { Reveal } from "./reveal";
 
 const { stack } = content;
 
@@ -48,7 +48,7 @@ const TAG_COLORS: Record<string, string> = {
   fish: "#7dd3ce",
 };
 
-export function MinimalStack() {
+export function Stack() {
   return (
     <section id="stack" className="m-section">
       <div className="m-container">

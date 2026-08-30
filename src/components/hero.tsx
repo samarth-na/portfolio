@@ -7,7 +7,7 @@ const githubUrl = footer.links.find((link) => link.label === "GitHub")?.url;
 const xUrl = footer.links.find((link) => link.label === "X / Twitter")?.url;
 const linkedInUrl = footer.links.find((link) => link.label === "LinkedIn")?.url;
 
-export function MinimalHero() {
+export function Hero() {
   return (
     <section className="m-hero">
       <div className="m-hero-inner">
