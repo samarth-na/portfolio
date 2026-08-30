@@ -76,12 +76,26 @@ export function Projects() {
     // Re-run after the Reveal entrance finishes (translateY 20px → 0)
     // so the trigger line matches the final layout.
     const delayed = window.setTimeout(update, 700);
+
+    // Screenshots load lazily; re-evaluate the trigger line as each one
+    // resolves so the active description appears on the first scroll pass,
+    // not only after a later scroll event (common on slow mobile networks).
+    const imgs: HTMLImageElement[] = [];
+    for (const el of itemRefs.current) {
+      if (!el) continue;
+      for (const img of el.querySelectorAll("img")) {
+        imgs.push(img);
+        if (!img.complete) img.addEventListener("load", update);
+      }
+    }
+
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
       window.clearTimeout(delayed);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      for (const img of imgs) img.removeEventListener("load", update);
     };
   }, []);
 
