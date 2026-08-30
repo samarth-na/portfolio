@@ -2,6 +2,7 @@ import { About } from "./about";
 import { Experience } from "./experience";
 import { Footer } from "./footer";
 import { Hero } from "./hero";
+import { Papers } from "./papers";
 import { Projects } from "./projects";
 import { Research } from "./research";
 import { Stack } from "./stack";
@@ -15,6 +16,7 @@ export function Site() {
       <Experience />
       <Projects />
       <Stack />
+      <Papers />
       <Research />
       <Footer />
     </main>

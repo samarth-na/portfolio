@@ -213,7 +213,7 @@
     ]
   },
   "research": {
-    "sectionLabel": "05 :: CASE STUDIES",
+    "sectionLabel": "06 :: CASE STUDIES",
     "title": "Research",
     "intro": "Deep dives into production codebases to understand how real systems are architected, documented, and shipped.",
     "status": " 2026",
@@ -236,8 +236,65 @@
       }
     ]
   },
+  "papers": {
+    "sectionLabel": "05 :: THE ARCHIVE",
+    "title": "Papers",
+    "tagline": "Selected reports and notes · four verbatim papers",
+    "statement": "Selected reports and notes, presented like a small journal. Each paper is a verbatim copy — no rewrites — in the same design system.",
+    "meta": [
+      "4 papers",
+      "Latest update August 30, 2026",
+      "Built with Vite · Tailwind"
+    ],
+    "items": [
+      {
+        "id": "PAP-01",
+        "meta": "Development Report · Aug 24, 2026",
+        "title": "Cloud Workspace — Complete Development History Report",
+        "desc": "Four days, ~70 sessions, 61 commits: how a cloud workspace app was built, broken, diagnosed, and shipped to production — compiled from OpenCode session history and git history.",
+        "tags": ["61 commits", "~70 sessions · 4 days", "cloud-workspace"],
+        "link": "/papers/development-history-report-cloud-workspace/"
+      },
+      {
+        "id": "PAP-02",
+        "meta": "Development Report · Aug 30, 2026",
+        "title": "Portfolio — Complete Development History Report",
+        "desc": "Every phase, decision, failure, and fix from first commit to live Cloudflare Workers deployment — 71 days, 46 sessions, 40 commits, compiled from OpenCode session history and git history.",
+        "tags": [
+          "40 commits",
+          "Next.js 16 + React 19 on Workers",
+          "samarth-na/portfolio · dev"
+        ],
+        "link": "/papers/development-history-report/"
+      },
+      {
+        "id": "PAP-03",
+        "meta": "Production Report · Aug 23, 2026",
+        "title": "Cloud Workspace — Production Finalization Report",
+        "desc": "Why earlier production passes failed, how env drift and a WebSocket protocol mismatch were fixed, and how the live deployment was verified with real browser automation.",
+        "tags": [
+          "cloud-workspace · dev",
+          "cloud-workspace-realtime · Workers",
+          "Turso + WebSockets"
+        ],
+        "link": "/papers/production-report/"
+      },
+      {
+        "id": "PAP-04",
+        "meta": "Chapter 1 · Philosophy",
+        "title": "Basics of the Unix Philosophy",
+        "desc": "Thompson's meditations, McIlroy's six dicta, Pike's rules, and the seventeen rules of the Unix tradition — modularity, clarity, composition, simplicity, and the rest — in a single chapter.",
+        "tags": [
+          "Plan 9 · pipes · text streams",
+          "Mike Gancarz · ESR lineage",
+          "17 rules"
+        ],
+        "link": "/papers/unix-philosophy/"
+      }
+    ]
+  },
   "footer": {
-    "sectionLabel": "06 :: TRANSMISSION",
+    "sectionLabel": "07 :: TRANSMISSION",
     "title": "Reach me.",
     "intro": "The fastest way to reach me is email. I also keep GitHub, X, and LinkedIn up to date.",
     "email": "samarth07nagar@gmail.com",

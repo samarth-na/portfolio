@@ -33,6 +33,24 @@ export interface ProjectItem {
   image?: string;
 }
 
+export interface PaperItem {
+  id: string;
+  meta: string;
+  title: string;
+  desc: string;
+  tags: string[];
+  link: string;
+}
+
+export interface Papers {
+  sectionLabel: string;
+  title: string;
+  tagline: string;
+  statement: string;
+  meta: string[];
+  items: PaperItem[];
+}
+
 export interface StackCategory {
   name: string;
   items: string[];
@@ -102,6 +120,7 @@ export interface Content {
     points: string[];
     links: LinkItem[];
   };
+  papers: Papers;
   footer: {
     sectionLabel: string;
     title: string;
