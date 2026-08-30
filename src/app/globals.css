@@ -2063,3 +2063,48 @@ body {
     bottom: 22px;
   }
 }
+
+/* ---------- Experience: header, content, spacing ---------- */
+
+.m-exp-head {
+  margin-bottom: 36px;
+}
+
+.m-exp-head .m-section-title {
+  font-size: var(--t-section);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.m-exp-head .m-statement {
+  max-width: 48ch;
+}
+
+/* 2x vertical rhythm around each entry (was 28px) */
+.m-exp-list .m-exp {
+  padding: 56px 0;
+}
+
+.m-exp-list .m-exp:first-child {
+  padding-top: 8px;
+}
+
+/* Bigger content type */
+.m-exp-list .m-exp-role {
+  font-size: 17.5px;
+  letter-spacing: -0.015em;
+}
+
+.m-exp-role + .m-exp-tags {
+  margin-top: 12px;
+}
+
+.m-exp-list .m-exp-org {
+  font-size: 14.5px;
+}
+
+.m-exp-list .m-exp-point {
+  font-size: 15.5px;
+  line-height: 1.7;
+}

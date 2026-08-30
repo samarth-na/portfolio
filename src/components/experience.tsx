@@ -8,24 +8,31 @@ export function Experience() {
     <section id="experience" className="m-section">
       <div className="m-container">
         <Reveal>
+          <div className="m-exp-head">
+            <span className="m-label">{experienceData.sectionLabel}</span>
+            <h2 className="m-section-title">{experienceData.title}</h2>
+          </div>
+        </Reveal>
+
+        <Reveal>
           <div className="m-exp-list">
             {experienceData.items.map((exp) => (
               <article key={exp.id} className="m-exp">
-                <div className="m-exp-top">
-                  <div className="m-exp-meta">
-                    <span className="m-exp-id">{exp.id}</span>
-                    <span>{exp.period}</span>
-                  </div>
-                  <div className="m-exp-tags">
-                    {exp.tags.map((tag) => (
-                      <span key={tag} className="m-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className="m-exp-meta">
+                  <span className="m-exp-id">{exp.id}</span>
+                  <span>{exp.period}</span>
                 </div>
 
                 <h3 className="m-exp-role">{exp.role}</h3>
+
+                <div className="m-exp-tags">
+                  {exp.tags.map((tag) => (
+                    <span key={tag} className="m-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
                 <p className="m-exp-org">@ {exp.org}</p>
 
                 <ul className="m-exp-points">

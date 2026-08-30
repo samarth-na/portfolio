@@ -91,7 +91,10 @@ export function Projects() {
         <Reveal>
           <div className="m-projects-grid">
             <div className="m-projects-left">
-              <h2 className="m-section-title">{projects.title}</h2>
+              <div>
+                <span className="m-label">{projects.sectionLabel}</span>
+                <h2 className="m-section-title">{projects.title}</h2>
+              </div>
               <div
                 className={`m-projects-active ${activeProject ? "is-visible" : ""}`}
                 aria-live="polite"
