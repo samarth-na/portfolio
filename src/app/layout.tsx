@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full antialiased">
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col mt-16">
         {/* Sets data-theme before first paint to avoid a theme flash. */}
         <Script id="papers-theme-init" strategy="beforeInteractive">
           {THEME_INIT}

@@ -1,18 +1,8 @@
 import data from "./content.json";
 
-export interface NavLink {
-  label: string;
-  href: string;
-}
-
 export interface LinkItem {
   label: string;
   url: string;
-}
-
-export interface LabeledValue {
-  label: string;
-  value: string;
 }
 
 export interface ExperienceItem {
@@ -42,15 +32,6 @@ export interface PaperItem {
   link: string;
 }
 
-export interface Papers {
-  sectionLabel: string;
-  title: string;
-  tagline: string;
-  statement: string;
-  meta: string[];
-  items: PaperItem[];
-}
-
 export interface StackCategory {
   name: string;
   items: string[];
@@ -69,67 +50,48 @@ export interface Content {
   };
   site: {
     name: string;
-    docId: string;
-    portfolioDocId: string;
-    classification: string;
-    status: string;
-    ticker: string[];
-    nav: NavLink[];
-  };
-  hero: {
-    subject: string;
-    displayLines: string[];
-    role: LabeledValue;
-    origin: LabeledValue;
   };
   profile: {
-    sectionLabel: string;
-    title: string;
-    text: string;
     name: string;
-    documentId: string;
     education: string[];
     location: string[];
-    summary: string;
   };
   experience: {
     sectionLabel: string;
     title: string;
-    intro: string;
     items: ExperienceItem[];
   };
   projects: {
     sectionLabel: string;
     title: string;
-    intro: string;
     items: ProjectItem[];
   };
   stack: {
     sectionLabel: string;
     title: string;
-    intro: string;
     tagline: string;
     categories: StackCategory[];
   };
   research: {
-    sectionLabel: string;
     title: string;
-    intro: string;
     status: string;
     caseTitle: string;
     body: string;
     points: string[];
     links: LinkItem[];
   };
-  papers: Papers;
-  footer: {
+  papers: {
     sectionLabel: string;
     title: string;
-    intro: string;
+    tagline: string;
+    meta: string[];
+    items: PaperItem[];
+  };
+  footer: {
+    title: string;
     email: string;
     links: LinkItem[];
     copyright: string;
-    footerTag: string;
   };
 }
 

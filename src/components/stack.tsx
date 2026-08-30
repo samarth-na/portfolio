@@ -65,9 +65,6 @@ export function Stack() {
               {stack.tagline ? (
                 <p className="m-tagline">{stack.tagline}</p>
               ) : null}
-              {stack.intro ? (
-                <p className="m-statement">{stack.intro}</p>
-              ) : null}
               <div className="m-hero-meta">
                 {meta.map((line) => (
                   <span key={line}>{line}</span>
@@ -81,7 +78,7 @@ export function Stack() {
               {stack.categories.map((category) => (
                 <Reveal key={category.name}>
                   <div className="m-stack-card">
-                    <p className="m-label">{category.name}</p>
+                    <h3 className="m-card-title">{category.name}</h3>
                     <div className="m-stack-tags">
                       {category.items.map((item) => {
                         const tagColor = TAG_COLORS[item] ?? "#3a3936";

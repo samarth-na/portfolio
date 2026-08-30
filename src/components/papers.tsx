@@ -23,7 +23,6 @@ export function Papers() {
               <span className="m-label">{papers.sectionLabel}</span>
               <h2 className="m-section-title">{papers.title}</h2>
               <p className="m-tagline">{papers.tagline}</p>
-              <p className="m-statement">{papers.statement}</p>
               <div className="m-hero-meta">
                 {papers.meta.map((line) => (
                   <span key={line}>{line}</span>

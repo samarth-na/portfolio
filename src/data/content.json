@@ -10,53 +10,21 @@
     }
   },
   "site": {
-    "name": "Samarth Nagar",
-    "docId": "SN-RESUME-0626",
-    "portfolioDocId": "SN-2026",
-    "classification": "PUBLIC",
-    "ticker": [
-      "PORTFOLIO DOC :: ID: SN-2026",
-      "BACKEND ENGINEER",
-      "SYSTEMS & INFRASTRUCTURE"
-    ],
-    "nav": [
-      { "label": "PROFILE", "href": "#profile" },
-      { "label": "EXPERIENCE", "href": "#experience" },
-      { "label": "PROJECTS", "href": "#projects" },
-      { "label": "STACK", "href": "#stack" }
-    ]
-  },
-  "hero": {
-    "subject": "SUBJECT :: SAMARTH NAGAR",
-    "displayLines": ["SYSTEM", "OPERATOR"],
-    "role": {
-      "label": "ROLE",
-      "value": "Backend Software Engineer · TypeScript · Node.js · SQL"
-    },
-    "origin": {
-      "label": "ORIGIN",
-      "value": "Indore, India"
-    }
+    "name": "Samarth Nagar"
   },
   "profile": {
-    "sectionLabel": "01 :: ABOUT RECORD",
-    "title": "COLLECTED",
-    "text": "Backend-focused developer obsessed with systems, infrastructure, performance, and browser-native tech.",
     "name": "Samarth Nagar",
-    "documentId": "SN-ABT-001",
     "education": [
       "SAGE University Indore",
       "Institute of Advanced Computing",
       "B.Tech (Hons.) Computer Science & Technology",
       "2023-27 · CGPA 7.8/10"
     ],
-    "location": ["Indore, India", "UTC +05:30"],
-    "summary": "I build TypeScript & Node.js applications, APIs, relational-database-heavy systems, and real-time features. Practical experience with WebSockets, WebRTC, REST APIs, and deployment through CI/CD, containers, Linux servers, and distributed serverless services. I design modular software focused on robustness and resource utilization, inspired by the Unix philosophy."
+    "location": ["Indore, India", "UTC +05:30"]
   },
   "experience": {
     "sectionLabel": "02 :: FIELD REPORT",
     "title": "Experience",
-    "intro": "Deployment logs from live systems I helped ship, secure, or automate.",
     "items": [
       {
         "id": "EXP-01",
@@ -75,7 +43,6 @@
   "projects": {
     "sectionLabel": "03 :: DEPLOYED SYSTEMS",
     "title": "Projects",
-    "intro": "Selected builds where I explored browser-native tech, local AI orchestration, and performance-first web systems.",
     "items": [
       {
         "id": "PRJ-07",
@@ -153,7 +120,6 @@
     "sectionLabel": "04 :: TOOLCHAIN",
     "title": "Stack",
     "tagline": "Languages · APIs · Data · Cloud · Edge",
-    "intro": "Technologies I use to design, deploy, and operate systems from the terminal to the edge — kept current by the work that ships through them.",
     "categories": [
       {
         "name": "Languages",
@@ -214,9 +180,7 @@
     ]
   },
   "research": {
-    "sectionLabel": "06 :: CASE STUDIES",
     "title": "Research",
-    "intro": "Deep dives into production codebases to understand how real systems are architected, documented, and shipped.",
     "status": " 2026",
     "caseTitle": "react.dev Architecture Deep Dive",
     "body": "Analyzed the real production codebase behind react.dev to map architecture decisions: custom MDX components, a build-time SSG pipeline, and the React Compiler already running in production.",
@@ -240,8 +204,7 @@
   "papers": {
     "sectionLabel": "05 :: THE ARCHIVE",
     "title": "Papers",
-    "tagline": "Selected reports and notes · four verbatim papers",
-    "statement": "Selected reports and notes, presented like a small journal. Each paper is a verbatim copy — no rewrites — in the same design system.",
+    "tagline": " four verbatim papers",
     "meta": [
       "4 papers",
       "Latest update August 30, 2026",
@@ -295,9 +258,7 @@
     ]
   },
   "footer": {
-    "sectionLabel": "07 :: TRANSMISSION",
     "title": "Reach me.",
-    "intro": "The fastest way to reach me is email. I also keep GitHub, X, and LinkedIn up to date.",
     "email": "samarth07nagar@gmail.com",
     "links": [
       { "label": "GitHub", "url": "https://github.com/samarth-na" },
