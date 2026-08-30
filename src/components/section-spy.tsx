@@ -41,6 +41,9 @@ export function SectionScrollSpy() {
       for (const head of heads) {
         head.classList.toggle("is-current", head.dataset.fadeHead === next);
       }
+      for (const section of sections) {
+        section.classList.toggle("is-current", section.dataset.spy === next);
+      }
     };
 
     const onScroll = () => {

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { content } from "@/data/content";
 import { Reveal } from "./reveal";
+import { SectionRule } from "./section-rule";
 
 const { stack } = content;
 
@@ -56,6 +57,7 @@ export function Stack() {
   ];
   return (
     <section id="stack" className="m-section" data-spy="stack">
+      <SectionRule index="04" />
       <div className="m-container">
         <div className="m-projects-grid">
           <div className="m-projects-left" data-fade-head="stack">

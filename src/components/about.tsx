@@ -1,11 +1,13 @@
 import { content } from "@/data/content";
 import { Reveal } from "./reveal";
+import { SectionRule } from "./section-rule";
 
 const { profile } = content;
 
 export function About() {
   return (
-    <section id="profile" className="m-section">
+    <section id="profile" className="m-section" data-spy="profile">
+      <SectionRule index="01" />
       <div className="m-container">
         <Reveal>
           <div className="m-about-card">

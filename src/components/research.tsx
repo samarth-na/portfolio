@@ -1,11 +1,13 @@
 import { content } from "@/data/content";
 import { Reveal } from "./reveal";
+import { SectionRule } from "./section-rule";
 
 const { research } = content;
 
 export function Research() {
   return (
-    <section id="research" className="m-section">
+    <section id="research" className="m-section" data-spy="research">
+      <SectionRule index="06" />
       <div className="m-container">
         <Reveal>
           <h2 className="m-section-title" style={{ marginBottom: "24px" }}>

@@ -5,6 +5,7 @@ import { Hero } from "./hero";
 import { Papers } from "./papers";
 import { Projects } from "./projects";
 import { Research } from "./research";
+import { SectionRules } from "./section-rules";
 import { SectionScrollSpy } from "./section-spy";
 import { Stack } from "./stack";
 
@@ -21,6 +22,7 @@ export function Site() {
       <Research />
       <Footer />
       <SectionScrollSpy />
+      <SectionRules />
     </main>
   );
 }

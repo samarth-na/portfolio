@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { content } from "@/data/content";
 import { ArrowUpRightIcon } from "./icons";
 import { Reveal } from "./reveal";
+import { SectionRule } from "./section-rule";
 
 const { projects } = content;
 
@@ -101,6 +102,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="m-section" data-spy="projects">
+      <SectionRule index="03" />
       <div className="m-container">
         <Reveal>
           <div className="m-projects-grid">
