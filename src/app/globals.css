@@ -1236,6 +1236,12 @@ body {
     max-width: none;
   }
 
+  /* No room for the active project description on mobile — the kicker
+     (id — title) still identifies the active card. */
+  .m-projects-active-desc {
+    display: none;
+  }
+
   .m-work {
     width: 100%;
   }
