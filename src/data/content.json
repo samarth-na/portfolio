@@ -152,7 +152,8 @@
   "stack": {
     "sectionLabel": "04 :: TOOLCHAIN",
     "title": "Stack",
-    "intro": "Technologies I use to design, deploy, and operate systems from the terminal to the edge.",
+    "tagline": "Languages · APIs · Data · Cloud · Edge",
+    "intro": "Technologies I use to design, deploy, and operate systems from the terminal to the edge — kept current by the work that ships through them.",
     "categories": [
       {
         "name": "Languages",

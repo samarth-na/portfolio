@@ -108,6 +108,7 @@ export interface Content {
     sectionLabel: string;
     title: string;
     intro: string;
+    tagline: string;
     categories: StackCategory[];
   };
   research: {

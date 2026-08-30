@@ -49,18 +49,30 @@ const TAG_COLORS: Record<string, string> = {
 };
 
 export function Stack() {
+  const meta = [
+    `${stack.categories.length} categories · ${stack.categories.reduce((n, category) => n + category.items.length, 0)} technologies`,
+    "Terminal-first · edge-first",
+    "TypeScript · Node.js · SQL",
+  ];
   return (
     <section id="stack" className="m-section">
       <div className="m-container">
         <div className="m-projects-grid">
           <div className="m-projects-left">
             <Reveal>
+              <span className="m-label">{stack.sectionLabel}</span>
               <h2 className="m-section-title">{stack.title}</h2>
-              {stack.intro ? (
-                <p className="m-section-intro m-projects-intro">
-                  {stack.intro}
-                </p>
+              {stack.tagline ? (
+                <p className="m-tagline">{stack.tagline}</p>
               ) : null}
+              {stack.intro ? (
+                <p className="m-statement">{stack.intro}</p>
+              ) : null}
+              <div className="m-hero-meta">
+                {meta.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </div>
             </Reveal>
           </div>
 
