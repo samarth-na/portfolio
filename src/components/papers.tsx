@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import { content } from "@/data/content";
 import { ArrowUpRightIcon } from "./icons";
 import { Reveal } from "./reveal";
-import { SectionRule } from "./section-rule";
 
 const { papers } = content;
 
@@ -17,7 +16,6 @@ const DOTS: Record<string, string> = {
 export function Papers() {
   return (
     <section id="papers" className="m-section" data-spy="papers">
-      <SectionRule />
       <div className="m-container">
         <div className="m-projects-grid">
           <div className="m-projects-left" data-fade-head="papers">

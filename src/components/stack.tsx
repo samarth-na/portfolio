@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 import { content } from "@/data/content";
 import { Reveal } from "./reveal";
-import { SectionRule } from "./section-rule";
 
 const { stack } = content;
 
@@ -52,12 +51,9 @@ const TAG_COLORS: Record<string, string> = {
 export function Stack() {
   const meta = [
     `${stack.categories.length} categories · ${stack.categories.reduce((n, category) => n + category.items.length, 0)} technologies`,
-    "Terminal-first · edge-first",
-    "TypeScript · Node.js · SQL",
   ];
   return (
     <section id="stack" className="m-section" data-spy="stack">
-      <SectionRule />
       <div className="m-container">
         <div className="m-projects-grid">
           <div className="m-projects-left" data-fade-head="stack">

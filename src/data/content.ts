@@ -46,7 +46,6 @@ export interface Content {
       title: string;
       description: string;
       type: string;
-      image: string;
     };
   };
   site: {

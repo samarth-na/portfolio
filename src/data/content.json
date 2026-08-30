@@ -6,8 +6,7 @@
     "openGraph": {
       "title": "Samarth Nagar — Backend Software Engineer",
       "description": "Backend-focused engineer building TypeScript & Node.js applications, APIs, and real-time systems.",
-      "type": "website",
-      "image": "/thumbnail.png"
+      "type": "website"
     }
   },
   "site": {
@@ -205,12 +204,7 @@
   "papers": {
     "sectionLabel": "05 :: THE ARCHIVE",
     "title": "Papers",
-    "tagline": " four verbatim papers",
-    "meta": [
-      "4 papers",
-      "Latest update August 30, 2026",
-      "Built with Vite · Tailwind"
-    ],
+    "meta": ["Latest update August 30, 2026", "Built with Vite · Tailwind"],
     "items": [
       {
         "id": "PAP-01",
