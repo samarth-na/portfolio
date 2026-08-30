@@ -55,10 +55,10 @@ export function Stack() {
     "TypeScript · Node.js · SQL",
   ];
   return (
-    <section id="stack" className="m-section">
+    <section id="stack" className="m-section" data-spy="stack">
       <div className="m-container">
         <div className="m-projects-grid">
-          <div className="m-projects-left">
+          <div className="m-projects-left" data-fade-head="stack">
             <Reveal>
               <span className="m-label">{stack.sectionLabel}</span>
               <h2 className="m-section-title">{stack.title}</h2>

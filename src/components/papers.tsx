@@ -15,10 +15,10 @@ const DOTS: Record<string, string> = {
 
 export function Papers() {
   return (
-    <section id="papers" className="m-section">
+    <section id="papers" className="m-section" data-spy="papers">
       <div className="m-container">
         <div className="m-projects-grid">
-          <div className="m-projects-left">
+          <div className="m-projects-left" data-fade-head="papers">
             <Reveal>
               <span className="m-label">{papers.sectionLabel}</span>
               <h2 className="m-section-title">{papers.title}</h2>

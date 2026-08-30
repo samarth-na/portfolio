@@ -1229,6 +1229,23 @@ body {
   font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
+/* ---------- Section head spy ---------- */
+
+/* Only the current section's head is visible while scrolling.
+   Armed by SectionScrollSpy (adds `.spy-active` to <html>); without
+   JavaScript the `data-fade-head` attribute is inert and every head
+   stays visible. */
+html.spy-active [data-fade-head] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+html.spy-active [data-fade-head].is-current {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Respect reduced motion: skip decorative animation */
 @media (prefers-reduced-motion: reduce) {
   .m-fade,
@@ -1243,7 +1260,8 @@ body {
 
   .m-card,
   .m-cta,
-  .m-stack-card {
+  .m-stack-card,
+  html.spy-active [data-fade-head] {
     transition: none;
   }
 }

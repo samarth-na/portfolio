@@ -5,6 +5,7 @@ import { Hero } from "./hero";
 import { Papers } from "./papers";
 import { Projects } from "./projects";
 import { Research } from "./research";
+import { SectionScrollSpy } from "./section-spy";
 import { Stack } from "./stack";
 
 /* Site — composes all sections for the landing page. */
@@ -19,6 +20,7 @@ export function Site() {
       <Papers />
       <Research />
       <Footer />
+      <SectionScrollSpy />
     </main>
   );
 }

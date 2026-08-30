@@ -100,11 +100,11 @@ export function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="m-section">
+    <section id="projects" className="m-section" data-spy="projects">
       <div className="m-container">
         <Reveal>
           <div className="m-projects-grid">
-            <div className="m-projects-left">
+            <div className="m-projects-left" data-fade-head="projects">
               <div>
                 <span className="m-label">{projects.sectionLabel}</span>
                 <h2 className="m-section-title">{projects.title}</h2>

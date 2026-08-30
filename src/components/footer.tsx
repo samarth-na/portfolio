@@ -5,11 +5,13 @@ const { footer } = content;
 
 export function Footer() {
   return (
-    <footer className="m-footer">
+    <footer className="m-footer" data-spy="footer">
       <div className="m-container">
         <Reveal>
           <div className="m-footer-inner">
-            <h2 className="m-footer-title">{footer.title}</h2>
+            <h2 className="m-footer-title" data-fade-head="footer">
+              {footer.title}
+            </h2>
 
             <a className="m-email-row" href={`mailto:${footer.email}`}>
               <span className="m-mono">{footer.email}</span>
