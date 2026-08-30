@@ -5,6 +5,7 @@ import { content } from "@/data/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://samarth.page"),
   title: content.meta.title,
   description: content.meta.description,
   authors: [{ name: content.meta.author }],
@@ -12,6 +13,18 @@ export const metadata: Metadata = {
     title: content.meta.openGraph.title,
     description: content.meta.openGraph.description,
     type: content.meta.openGraph.type as "website",
+    images: [
+      {
+        url: content.meta.openGraph.image,
+        width: 1974,
+        height: 1110,
+        alt: content.meta.openGraph.title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [content.meta.openGraph.image],
   },
 };
 

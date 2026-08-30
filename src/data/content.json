@@ -6,7 +6,8 @@
     "openGraph": {
       "title": "Samarth Nagar — Backend Software Engineer",
       "description": "Backend-focused engineer building TypeScript & Node.js applications, APIs, and real-time systems.",
-      "type": "website"
+      "type": "website",
+      "image": "/thumbnail.png"
     }
   },
   "site": {
