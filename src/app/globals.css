@@ -1300,21 +1300,27 @@ html.spy-active [data-fade-head].is-current {
   pointer-events: auto;
 }
 
+/* Mobile: no spy fade — every section head stays visible while
+   scrolling. The spy still runs (class toggling is harmless); CSS
+   pins all heads at full opacity. */
+@media (max-width: 700px) {
+  html.spy-active [data-fade-head] {
+    opacity: 1;
+    pointer-events: auto;
+    transition: none;
+  }
+}
+
 /* Respect reduced motion: skip decorative animation */
 @media (prefers-reduced-motion: reduce) {
   .m-fade,
   .m-fade-1,
   .m-fade-2,
   .m-dot,
-  .m-caret,
   .m-projects-active,
   .m-projects-active-inner {
     animation: none;
     transition: none;
-  }
-
-  .m-caret {
-    opacity: 0.8;
   }
 
   .m-card,
