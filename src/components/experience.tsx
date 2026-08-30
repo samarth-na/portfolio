@@ -1,13 +1,11 @@
 import { content } from "@/data/content";
 import { Reveal } from "./reveal";
-import { SectionRule } from "./section-rule";
 
 const { experience: experienceData } = content;
 
 export function Experience() {
   return (
-    <section id="experience" className="m-section" data-spy="experience">
-      <SectionRule index="02" />
+    <section id="experience" className="m-section">
       <div className="m-container">
         <Reveal>
           <div className="m-exp-head">
