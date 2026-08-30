@@ -6,8 +6,8 @@ const { research } = content;
 
 export function Research() {
   return (
-    <section id="research" className="m-section" data-spy="research">
-      <SectionRule index="06" />
+    <section id="research" className="m-section">
+      <SectionRule />
       <div className="m-container">
         <Reveal>
           <h2 className="m-section-title" style={{ marginBottom: "24px" }}>

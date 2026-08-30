@@ -57,7 +57,7 @@ export function Stack() {
   ];
   return (
     <section id="stack" className="m-section" data-spy="stack">
-      <SectionRule index="04" />
+      <SectionRule />
       <div className="m-container">
         <div className="m-projects-grid">
           <div className="m-projects-left" data-fade-head="stack">

@@ -102,7 +102,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="m-section" data-spy="projects">
-      <SectionRule index="03" />
+      <SectionRule />
       <div className="m-container">
         <Reveal>
           <div className="m-projects-grid">

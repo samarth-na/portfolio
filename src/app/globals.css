@@ -720,58 +720,19 @@ body {
 
 .m-section {
   position: relative;
-  padding: 74px 0 0;
+  padding: 56px 0 0;
   scroll-margin-top: 32px;
 }
 
-/* ---------- Section rules — printed measure marks ---------- */
-
-/* Hairline above each section with a mono index floating over its left
-   edge. The accent fill tracks scroll progress through the section
-   (SectionRules sets `--rule-fill`); the index turns accent while the
-   section is current (SectionScrollSpy adds `.is-current`). */
+/* Plain hairline at the top of each section */
 .m-rule {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 18px;
-  pointer-events: none;
-}
-
-.m-rule-index {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  color: var(--m-text-3);
-  transition: color 260ms ease;
-}
-
-.m-rule-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2px;
   height: 1px;
   background: var(--m-border);
-}
-
-.m-rule-fill {
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  height: 1px;
-  width: var(--rule-fill, 0%);
-  background: var(--m-accent);
-}
-
-[data-spy].is-current .m-rule-index {
-  color: var(--m-accent);
+  pointer-events: none;
 }
 
 .m-section-title {
@@ -911,7 +872,7 @@ body {
 /* ---------- Stack — 1x6 vertical list (mirrors projects) ---------- */
 
 #stack.m-section {
-  padding-top: 106px;
+  padding-top: 88px;
 }
 
 .m-stack-list {
@@ -1353,7 +1314,6 @@ html.spy-active [data-fade-head].is-current {
   .m-card,
   .m-cta,
   .m-stack-card,
-  .m-rule-index,
   html.spy-active [data-fade-head] {
     transition: none;
   }

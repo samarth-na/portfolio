@@ -17,7 +17,7 @@ const DOTS: Record<string, string> = {
 export function Papers() {
   return (
     <section id="papers" className="m-section" data-spy="papers">
-      <SectionRule index="05" />
+      <SectionRule />
       <div className="m-container">
         <div className="m-projects-grid">
           <div className="m-projects-left" data-fade-head="papers">

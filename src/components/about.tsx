@@ -6,8 +6,8 @@ const { profile } = content;
 
 export function About() {
   return (
-    <section id="profile" className="m-section" data-spy="profile">
-      <SectionRule index="01" />
+    <section id="profile" className="m-section">
+      <SectionRule />
       <div className="m-container">
         <Reveal>
           <div className="m-about-card">
