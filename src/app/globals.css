@@ -1244,6 +1244,18 @@ body {
     border-bottom: none;
   }
 
+  /* The active description changes height with each card. On touch screens
+     the rail is in-flow above the list, so every open/close shoves the
+     cards and snaps the scroll position. Hide the panel there — touch
+     cards already show their own id/title overlay. Desktop keeps the
+     sticky rail with the live description; hover-capable narrow windows
+     keep it too because their cards show no overlay. */
+  @media (hover: none), (pointer: coarse) {
+    .m-projects-active {
+      display: none;
+    }
+  }
+
   .m-work {
     width: 600px;
   }
