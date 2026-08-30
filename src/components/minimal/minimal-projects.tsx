@@ -1,4 +1,7 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import { content } from "@/data/content";
 import { Reveal } from "../reveal";
 import { ArrowUpRightIcon } from "./icons";
@@ -28,6 +31,60 @@ const GLYPHS: Record<string, string> = {
 };
 
 export function MinimalProjects() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const activeProject =
+    activeIndex !== null ? projects.items[activeIndex] : null;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      // Trigger line just below the sticky header. On desktop the header
+      // sticks at 144px; keep the line a bit below it so the card that
+      // sits under the header becomes active.
+      const triggerY = Math.max(180, window.innerHeight * 0.38);
+      let next: number | null = null;
+
+      for (let i = 0; i < itemRefs.current.length; i++) {
+        const el = itemRefs.current[i];
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerY && rect.bottom > triggerY) {
+          next = i;
+          break;
+        }
+      }
+
+      // When the trigger sits in the gap between two cards `next` stays
+      // null — the description briefly disappears, then the next card's
+      // description fades in as it crosses the line.
+      setActiveIndex((prev) => (prev === next ? prev : next));
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    // Re-run after the Reveal entrance finishes (translateY 20px → 0)
+    // so the trigger line matches the final layout.
+    const delayed = window.setTimeout(update, 700);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.clearTimeout(delayed);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <section id="projects" className="m-section">
       <div className="m-container">
@@ -35,6 +92,25 @@ export function MinimalProjects() {
           <div className="m-projects-grid">
             <div className="m-projects-left">
               <h2 className="m-section-title">{projects.title}</h2>
+              <div
+                className={`m-projects-active ${activeProject ? "is-visible" : ""}`}
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {activeProject ? (
+                  <div
+                    key={activeProject.id}
+                    className="m-projects-active-inner"
+                  >
+                    <div className="m-projects-active-kicker">
+                      {activeProject.id} — {activeProject.title}
+                    </div>
+                    <p className="m-projects-active-desc">
+                      {activeProject.desc}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
             </div>
 
             <div className="m-work">
@@ -43,6 +119,7 @@ export function MinimalProjects() {
                   const accent = ACCENTS[index % ACCENTS.length];
                   const style = { "--dot": accent } as CSSProperties;
                   const glyph = GLYPHS[project.id] ?? "·";
+                  const isActive = activeIndex === index;
 
                   return (
                     <a
@@ -50,7 +127,12 @@ export function MinimalProjects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="m-shot"
+                      ref={(el) => {
+                        itemRefs.current[index] = el;
+                      }}
+                      data-index={index}
+                      data-active={isActive ? "true" : "false"}
+                      className={`m-shot ${isActive ? "is-active" : ""}`}
                       style={style}
                       aria-label={`${project.title} — ${project.desc}`}
                       title={project.title}
