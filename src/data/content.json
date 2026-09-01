@@ -33,7 +33,7 @@
         "period": "Jan 2026 – Mar 2026",
         "tags": ["TypeScript", "Supabase", "API Security", "Codegen"],
         "points": [
-          "Eliminated server-side asset inference and storage by generating assets on-demand on the client — cut associated inference and storage usage by 100%",
+          "Eliminated server-side asset inference and storage by generating assets on-demand on the client, cut associated inference and storage usage by 100%",
           "Built an internal static code-generation pipeline for the asset-generation workflow; audited internal APIs and fixed security issues across 118 endpoints",
           "Configured Supabase services for offline deployments and designed an offline-online data synchronization engine for event operations"
         ]
@@ -112,7 +112,9 @@
         "title": "Dotfiles & Dev Environment",
         "desc": "Terminal-first Linux workflow configured with Neovim, tmux, fish, and Lazygit. Fedora-based daily driver tuned for backend and systems work.",
         "tags": ["Neovim", "tmux", "Fedora", "Shell"],
-        "link": "https://github.com/samarth-na/dotfiles"
+        "link": "https://github.com/samarth-na/dotfiles",
+
+        "image": "/dotfiles.png"
       }
     ]
   },

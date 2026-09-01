@@ -17,9 +17,12 @@ export function About() {
               <span className="m-label">Role</span>
               <div className="flex flex-wrap gap-1.5">
                 <span className="m-chip">Backend Engineer</span>
+                <span className="m-chip">Fullstack Engineer</span>
                 <span className="m-chip">TypeScript</span>
+                <span className="m-chip">JavaScript</span>
                 <span className="m-chip">SQL</span>
                 <span className="m-chip">Linux</span>
+                <span className="m-chip">System Admin</span>
                 <span className="m-chip">DevOps</span>
               </div>
             </div>
