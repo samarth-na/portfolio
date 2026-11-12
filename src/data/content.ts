@@ -89,7 +89,6 @@ export interface Content {
   };
   footer: {
     title: string;
-    email: string;
     links: LinkItem[];
     copyright: string;
   };

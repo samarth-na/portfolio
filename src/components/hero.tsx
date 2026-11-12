@@ -1,5 +1,5 @@
 import { content } from "@/data/content";
-import { GithubIcon, LinkedInIcon, MailIcon, XIcon } from "./icons";
+import { GithubIcon, LinkedInIcon, XIcon } from "./icons";
 
 const { site, footer } = content;
 
@@ -18,10 +18,17 @@ export function Hero() {
         </p>
 
         <div className="m-hero-ctas m-fade m-fade-2">
-          <a className="m-cta m-cta-primary" href={`mailto:${footer.email}`}>
-            <MailIcon />
-            Email
-          </a>
+          {linkedInUrl && (
+            <a
+              className="m-cta m-cta-primary"
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon />
+              LinkedIn
+            </a>
+          )}
           {githubUrl && (
             <a
               className="m-cta"
@@ -31,17 +38,6 @@ export function Hero() {
             >
               <GithubIcon />
               GitHub
-            </a>
-          )}
-          {linkedInUrl && (
-            <a
-              className="m-cta"
-              href={linkedInUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon />
-              LinkedIn
             </a>
           )}
           {xUrl && (

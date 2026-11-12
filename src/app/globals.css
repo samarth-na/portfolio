@@ -1010,7 +1010,7 @@ body {
   color: var(--m-text);
 }
 
-.m-email-row {
+.m-contact-row {
   margin-top: 12px;
   max-width: 560px;
   display: flex;
@@ -1025,18 +1025,18 @@ body {
     background 0.25s ease;
 }
 
-.m-email-row:hover {
+.m-contact-row:hover {
   border-color: #4c4b46;
   background: var(--m-bg-hover);
 }
 
-.m-email-row .m-mono {
+.m-contact-row .m-mono {
   font-size: 0.9rem;
   color: var(--m-text);
   word-break: break-all;
 }
 
-.m-email-arrow {
+.m-contact-arrow {
   margin-left: auto;
   color: var(--m-text-3);
   font-size: 1rem;
@@ -1045,7 +1045,7 @@ body {
     transform 0.25s ease;
 }
 
-.m-email-row:hover .m-email-arrow {
+.m-contact-row:hover .m-contact-arrow {
   color: var(--m-text);
   transform: translateX(3px);
 }

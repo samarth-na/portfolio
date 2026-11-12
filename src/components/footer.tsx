@@ -3,6 +3,11 @@ import { Reveal } from "./reveal";
 
 const { footer } = content;
 
+const linkedInUrl = footer.links.find((link) => link.label === "LinkedIn")?.url;
+const linkedInLabel = linkedInUrl
+  ?.replace(/^https?:\/\/(www\.)?/, "")
+  .replace(/\/$/, "");
+
 export function Footer() {
   return (
     <footer className="m-footer" data-spy="footer">
@@ -13,12 +18,19 @@ export function Footer() {
               {footer.title}
             </h2>
 
-            <a className="m-email-row" href={`mailto:${footer.email}`}>
-              <span className="m-mono">{footer.email}</span>
-              <span className="m-email-arrow" aria-hidden="true">
-                →
-              </span>
-            </a>
+            {linkedInUrl && (
+              <a
+                className="m-contact-row"
+                href={linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="m-mono">{linkedInLabel}</span>
+                <span className="m-contact-arrow" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            )}
 
             <div className="m-footer-bottom">
               <span>{footer.copyright}</span>
