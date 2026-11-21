@@ -14,16 +14,15 @@ export function About() {
               <span className="m-field-value">{profile.name}</span>
             </div>
             <div className="m-field">
-              <span className="m-label">Role</span>
+              <span className="m-label">Focus</span>
               <div className="flex flex-wrap gap-1.5">
-                <span className="m-chip">Backend Engineer</span>
-                <span className="m-chip">Fullstack Engineer</span>
+                <span className="m-chip">Software Engineer</span>
+                <span className="m-chip">DevOps</span>
+                <span className="m-chip">System Administration</span>
                 <span className="m-chip">TypeScript</span>
-                <span className="m-chip">JavaScript</span>
+                <span className="m-chip">Go</span>
                 <span className="m-chip">SQL</span>
                 <span className="m-chip">Linux</span>
-                <span className="m-chip">System Admin</span>
-                <span className="m-chip">DevOps</span>
               </div>
             </div>
             <div className="m-field">

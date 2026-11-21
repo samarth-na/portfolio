@@ -13,8 +13,8 @@ export function Hero() {
       <div className="m-hero-inner">
         <h1 className="m-name m-fade">{site.name}</h1>
         <p className="m-statement m-fade m-fade-1">
-          I build TypeScript &amp; Node.js applications, APIs and real-time
-          systems, focused on reliability, performance and clean data models.
+          I build APIs, real-time systems, and developer tools with TypeScript,
+          Node.js, and Go, with a focus on reliability and clean data models.
         </p>
 
         <div className="m-hero-ctas m-fade m-fade-2">

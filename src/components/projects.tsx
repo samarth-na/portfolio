@@ -25,6 +25,7 @@ const GLYPHS: Record<string, string> = {
   "PRJ-05": "⬢",
   "PRJ-04": "⬣",
   "PRJ-03": "◆",
+  "PRJ-16": "⌘",
   "PRJ-02": "⬔",
   "PRJ-01": "▭",
   "PRJ-00": "≡",
