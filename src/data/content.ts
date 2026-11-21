@@ -72,12 +72,6 @@ export interface Content {
     tagline: string;
     categories: StackCategory[];
   };
-  blog: {
-    sectionLabel: string;
-    title: string;
-    desc: string;
-    categories: LinkItem[];
-  };
   research: {
     title: string;
     status: string;

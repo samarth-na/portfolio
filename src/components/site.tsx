@@ -1,5 +1,4 @@
 import { About } from "./about";
-import { Blog } from "./blog";
 import { Experience } from "./experience";
 import { Footer } from "./footer";
 import { Hero } from "./hero";
@@ -18,7 +17,6 @@ export function Site() {
       <Experience />
       <Projects />
       <Stack />
-      <Blog />
       <Papers />
       <Research />
       <Footer />

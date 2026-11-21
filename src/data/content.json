@@ -198,19 +198,6 @@
       }
     ]
   },
-  "blog": {
-    "sectionLabel": "05 :: BLOG",
-    "title": "Blog & Notes",
-    "desc": "Long-form posts, short thoughts, and weekly logs on software engineering, systems, and developer tools.",
-    "categories": [
-      { "label": "Blog", "url": "https://samarth-blog.vercel.app/blog" },
-      {
-        "label": "Thoughts",
-        "url": "https://samarth-blog.vercel.app/thoughts"
-      },
-      { "label": "Weeklogs", "url": "https://samarth-blog.vercel.app/weeklogs" }
-    ]
-  },
   "research": {
     "title": "Research",
     "status": "2026",
@@ -234,7 +221,7 @@
     ]
   },
   "papers": {
-    "sectionLabel": "06 :: WRITING",
+    "sectionLabel": "05 :: WRITING",
     "title": "Papers",
     "meta": ["Notes from 2026", "Built with Vite · Tailwind"],
     "items": [
