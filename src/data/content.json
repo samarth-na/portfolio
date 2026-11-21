@@ -31,11 +31,22 @@
         "role": "Software Engineer",
         "org": "BrandCollabs",
         "period": "Jan 2026 – Jun 2026",
-        "tags": ["TypeScript", "Supabase", "API Security", "Codegen"],
+        "tags": [
+          "TypeScript",
+          "React",
+          "Next.js",
+          "PostgreSQL",
+          "Docker",
+          "Supabase"
+        ],
         "points": [
-          "Moved static asset generation to the client so assets are produced on demand, removing server-side inference and the related storage cost.",
-          "Built an internal static code-generation pipeline for the asset workflow. Reviewed 118 API endpoints and helped resolve the issues found.",
-          "Configured containerized Supabase services for offline deployment and built a sync engine to reconcile event data between offline and online states."
+          "Most of the work was on a product that generated static assets on a server and stored them in S3. I moved generation into the browser, so assets are made only when someone asks for one. That removed the server-side inference work and the storage bucket it depended on, and with them the recurring cost.",
+          "Helped move Supabase from a managed hosted plan to a self-hosted deployment running in Docker. It took more setup, but the team got control over the environment and stopped running into the limits that came with the hosted plan.",
+          "Spent a lot of time in the database layer: changed schemas, migrated existing tables, and updated the authentication flow that relied on them. I also added caching in the Next.js app, which brought p90 cold starts down by up to about 500 ms.",
+          "Reviewed roughly 118 API endpoints and checked database integrity, using Postman and AI-assisted tooling to find problems. I worked with the rest of the team to fix what we found rather than just writing it down.",
+          "Built an internal code-generation pipeline for the asset workflow, so the repetitive part of that work stopped being manual.",
+          "Built and improved dashboards, forms, and shared UI components in React so the internal tools were easier to use day to day.",
+          "Worked directly with non-technical colleagues to understand what they actually needed, explain the trade-offs in plain language, and turn those conversations into changes in the product."
         ]
       }
     ]
@@ -47,7 +58,7 @@
       {
         "id": "PRJ-07",
         "title": "Cloud Workspace",
-        "desc": "Collaborative cloud workspace with real-time messaging, shared tasks, file/image uploads, scheduled meetings, and peer-to-peer video calls. Chat runs on WebSockets with Cloudflare Durable Objects for stateful coordination; role-based access via Better Auth.",
+        "desc": "A shared workspace for small teams: messaging, group chats, tasks, files, and meetings in one place. Chat runs over WebSockets backed by Cloudflare Durable Objects, with a REST and polling fallback so it keeps working when sockets drop. Sign-in, workspace roles, and token handling use Better Auth.",
         "tags": [
           "Next.js",
           "Cloudflare Workers",
@@ -60,17 +71,65 @@
         "image": "/cloud-workspace.png"
       },
       {
+        "id": "PRJ-05",
+        "title": "SQL Visualizer",
+        "desc": "Paste PostgreSQL DDL and get an interactive ER diagram. It reads tables, keys, and constraints — including schema-qualified names and foreign keys — and lays them out so you can actually see how the schema fits together. Export the result as PNG or SVG.",
+        "tags": ["SQL Parsing", "Interactive Graph", "SPA"],
+        "link": "https://schema-visualizer-plum.vercel.app",
+        "image": "/sql-ddl.png"
+      },
+      {
         "id": "PRJ-02",
         "title": "Local AI Assistant",
-        "desc": "Privacy-first chat interface for locally hosted Ollama models. Streams responses, discovers installed models automatically, and keeps chat history in the browser.",
+        "desc": "A chat UI for Ollama models running on your own machine. Responses stream token by token, installed models are detected automatically, and conversation history stays in your browser. No account, no API key, and no data sent to a cloud provider.",
         "tags": ["React", "TypeScript", "Ollama", "Vite"],
         "link": "https://github.com/samarth-na/assistant",
         "image": "/local-ai-inference.png"
       },
       {
+        "id": "PRJ-01",
+        "title": "Personal Blog Platform",
+        "desc": "A place for longer posts, short thoughts, and weekly logs. Content lives in MDX files, so publishing is a git push rather than a trip through a CMS. Search, code highlighting, and a theme toggle are built in.",
+        "tags": ["Next.js", "MDX", "TypeScript", "Tailwind"],
+        "link": "https://samarth-blog.vercel.app",
+        "image": "/blog.png"
+      },
+      {
+        "id": "PRJ-03",
+        "title": "Client-Side Video Processing",
+        "desc": "Convert, resize, compress, and trim video in the browser with ffmpeg.wasm. Files are never uploaded — all processing happens locally, including GIF palette optimization and multithreading where the browser supports it.",
+        "tags": ["WebAssembly", "FFmpeg", "Next.js", "Client-side"],
+        "link": "https://github.com/samarth-na/clientside-video-editor",
+        "image": "/wasm-video-editor.png"
+      },
+      {
+        "id": "PRJ-06",
+        "title": "Live Token Meter",
+        "desc": "An OpenCode plugin that shows live tokens per second, usage from the last response, and session totals in the CLI footer. Published on npm. The live estimate settles against the provider's actual usage numbers once a response finishes.",
+        "tags": ["OpenCode Plugin", "TypeScript", "npm"],
+        "link": "https://www.npmjs.com/package/live-token-meter",
+        "image": "/live-token-meter.png"
+      },
+      {
+        "id": "PRJ-04",
+        "title": "Single Sign-On Service",
+        "desc": "A small sign-on service built from scratch: bcrypt-hashed passwords, expiring JWTs, and middleware that protects every route except signup and signin. No off-the-shelf auth library doing the work behind the scenes.",
+        "tags": ["Node.js", "Nitro", "SQLite", "JWT"],
+        "link": "https://github.com/samarth-na/single-sign-on",
+        "image": "/single-sign-on.png"
+      },
+      {
+        "id": "PRJ-00",
+        "title": "Dotfiles & Dev Environment",
+        "desc": "A terminal-first Linux setup built around Neovim, tmux, fish, and Lazygit. It is the daily driver I use for systems and backend work, kept in version control so a fresh machine is a few commands away.",
+        "tags": ["Neovim", "tmux", "Fedora", "Shell"],
+        "link": "https://github.com/samarth-na/dotfiles",
+        "image": "/dotfiles.png"
+      },
+      {
         "id": "PRJ-16",
         "title": "goshell",
-        "desc": "Minimal shell in Go built with the standard library. Runs external programs and multi-stage pipelines with os.Pipe, and includes cd, exit, and history built-ins with !! and !n re-execution.",
+        "desc": "A minimal shell in Go built with the standard library. It runs external programs and multi-stage pipelines by connecting processes with os.Pipe, and includes cd, exit, and history built-ins with !! and !n re-execution.",
         "tags": ["Go", "Pipelines", "Standard Library", "Processes"],
         "link": "https://github.com/samarth-na"
       }
