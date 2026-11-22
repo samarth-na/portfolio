@@ -12,7 +12,18 @@ export const metadata: Metadata = {
     title: content.meta.openGraph.title,
     description: content.meta.openGraph.description,
     type: content.meta.openGraph.type as "website",
+    // Empty 1x1 image with no fetchable URL. Preview crawlers reject it,
+    // leaving a text-only card instead of scraping a page image.
+    images: [
+      {
+        url: "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+        width: 1,
+        height: 1,
+        alt: "",
+      },
+    ],
   },
+  twitter: { card: "summary" },
 };
 
 const THEME_INIT = `(function(){try{var t=localStorage.getItem("papers-theme");if(!t)t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t;}catch(e){}})();`;
