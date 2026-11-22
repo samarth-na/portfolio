@@ -5,7 +5,7 @@ import { Reveal } from "./reveal";
 
 const { papers } = content;
 
-/* Status dot per paper — order matches content.json items. */
+/* Status dot per paper - order matches content.json items. */
 const DOTS: Record<string, string> = {
   "PAP-01": "#4ade80",
   "PAP-02": "#4ade80",
@@ -41,7 +41,7 @@ export function Papers() {
                     style={
                       { "--dot": DOTS[paper.id] ?? "#4ade80" } as CSSProperties
                     }
-                    aria-label={`${paper.title} — ${paper.desc}`}
+                    aria-label={`${paper.title}: ${paper.desc}`}
                     title={paper.title}
                   >
                     <div className="m-card-head">

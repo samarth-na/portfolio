@@ -61,7 +61,7 @@ export function Projects() {
       }
 
       // When the trigger sits in the gap between two cards `next` stays
-      // null — the description briefly disappears, then the next card's
+      // null - the description briefly disappears, then the next card's
       // description fades in as it crosses the line.
       setActiveIndex((prev) => (prev === next ? prev : next));
     };
@@ -121,7 +121,7 @@ export function Projects() {
                     className="m-projects-active-inner"
                   >
                     <div className="m-projects-active-kicker">
-                      {activeProject.id} — {activeProject.title}
+                      {activeProject.id} - {activeProject.title}
                     </div>
                     <p className="m-projects-active-desc">
                       {activeProject.desc}
@@ -152,7 +152,7 @@ export function Projects() {
                       data-active={isActive ? "true" : "false"}
                       className={`m-shot ${isActive ? "is-active" : ""}`}
                       style={style}
-                      aria-label={`${project.title} — ${project.desc}`}
+                      aria-label={`${project.title}: ${project.desc}`}
                       title={project.title}
                     >
                       {project.image ? (

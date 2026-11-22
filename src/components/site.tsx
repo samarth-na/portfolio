@@ -8,7 +8,7 @@ import { Research } from "./research";
 import { SectionScrollSpy } from "./section-spy";
 import { Stack } from "./stack";
 
-/* Site — composes all sections for the landing page. */
+/* Site - composes all sections for the landing page. */
 export function Site() {
   return (
     <main id="main" className="m-page" tabIndex={-1}>

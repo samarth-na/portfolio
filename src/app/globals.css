@@ -134,10 +134,10 @@ body {
   }
 }
 
-/* Site styles — based on https://www.aarv.me/ — external fonts removed for perf.
-   Platform system stack (SF Pro / Segoe UI / Roboto) — 0 extra requests, no webfonts. */
+/* Site styles - based on https://www.aarv.me/ - external fonts removed for perf.
+   Platform system stack (SF Pro / Segoe UI / Roboto) - 0 extra requests, no webfonts. */
 
-/* Typography primitives — system sans for UI, system mono for meta */
+/* Typography primitives - system sans for UI, system mono for meta */
 
 .m-mono,
 .mono {
@@ -156,14 +156,14 @@ body {
   color: var(--m-text-3);
 }
 
-/* Page frame — reference has 1040 + 48 gutters */
+/* Page frame - reference has 1040 + 48 gutters */
 .m-page {
   max-width: 1040px;
   margin-inline: auto;
   padding: 64px 48px 80px;
 }
 
-/* Shared container — now inside .m-page, so no extra outer gutters */
+/* Shared container - now inside .m-page, so no extra outer gutters */
 .m-container {
   max-width: none;
   margin-inline: 0;
@@ -220,7 +220,7 @@ body {
   text-wrap: pretty;
 }
 
-/* Hero CTAs — one primary, one quiet */
+/* Hero CTAs - one primary, one quiet */
 .m-hero-ctas {
   margin-top: 20px;
   display: flex;
@@ -302,7 +302,7 @@ body {
   color: var(--m-text-3);
 }
 
-/* ---------- Selected work — 1:1 copy of aarv.me ---------- */
+/* ---------- Selected work - 1:1 copy of aarv.me ---------- */
 /* ref: main { gap:80, py:144, flex row centered } + aside 260 + carousel 600 */
 
 .m-projects-grid {
@@ -402,7 +402,7 @@ body {
   width: 100%;
 }
 
-/* Carousel item — full screenshot, no crop */
+/* Carousel item - full screenshot, no crop */
 .m-shot {
   display: block;
   position: relative;
@@ -712,7 +712,7 @@ body {
   border-radius: 7px;
 }
 
-/* ---------- Sections — clear ladder: eyebrow > title > intro > body ---------- */
+/* ---------- Sections - clear ladder: eyebrow > title > intro > body ---------- */
 
 .m-section {
   padding: 56px 0 0;
@@ -854,7 +854,7 @@ body {
   background: var(--m-border-strong);
 }
 
-/* ---------- Stack — 1x6 vertical list (mirrors projects) ---------- */
+/* ---------- Stack - 1x6 vertical list (mirrors projects) ---------- */
 
 #stack.m-section {
   padding-top: 88px;
@@ -894,7 +894,7 @@ body {
   gap: 8px;
 }
 
-/* Brand-bordered tags — tag color appears on hover only */
+/* Brand-bordered tags - tag color appears on hover only */
 .m-stack-tags .m-tag {
   transition: border-color 0.2s ease;
 }
@@ -1131,7 +1131,7 @@ body {
   }
 }
 
-/* ---------- Responsive — match aarv.me breakpoints 1064 / 700 ---------- */
+/* ---------- Responsive - match aarv.me breakpoints 1064 / 700 ---------- */
 
 @media (max-width: 1064px) {
   .m-page {
@@ -1188,8 +1188,8 @@ body {
     max-width: none;
   }
 
-  /* No room for the active project description on mobile — the kicker
-     (id — title) still identifies the active card. */
+  /* No room for the active project description on mobile - the kicker
+     (id - title) still identifies the active card. */
   .m-projects-active-desc {
     display: none;
   }
@@ -1216,7 +1216,7 @@ body {
   }
 }
 
-/* Mono overrides — ensure labels use system mono stack */
+/* Mono overrides - ensure labels use system mono stack */
 .m-label,
 .m-mono,
 .mono,
@@ -1252,7 +1252,7 @@ html.spy-active [data-fade-head].is-current {
   pointer-events: auto;
 }
 
-/* Mobile: no spy fade — every section head stays visible while
+/* Mobile: no spy fade - every section head stays visible while
    scrolling. The spy still runs (class toggling is harmless); CSS
    pins all heads at full opacity. */
 @media (max-width: 700px) {
@@ -1263,7 +1263,7 @@ html.spy-active [data-fade-head].is-current {
   }
 }
 
-/* Mobile: no reveal animation — sections and cards render fully
+/* Mobile: no reveal animation - sections and cards render fully
    visible. The Reveal component still toggles classes; CSS keeps
    everything at opacity 1. */
 @media (max-width: 700px) {
@@ -1297,7 +1297,7 @@ html.spy-active [data-fade-head].is-current {
 
 /* ---------- Type scale overrides ---------- */
 
-/* Type refinement layer — stepped scale, lighter display, tightened meta tracking, sans field values, lifted body copy for dark background. */
+/* Type refinement layer - stepped scale, lighter display, tightened meta tracking, sans field values, lifted body copy for dark background. */
 
 /* Hero name: sans face with tighter tracking for SF Pro's default spacing. */
 .m-name {
@@ -1345,7 +1345,7 @@ html.spy-active [data-fade-head].is-current {
   letter-spacing: -0.01em;
 }
 
-/* Body copy: one size — the `--t-body` scale, lifted one step on dark */
+/* Body copy: one size - the `--t-body` scale, lifted one step on dark */
 .m-exp-point,
 .m-card-desc,
 .m-research-body,
@@ -1398,7 +1398,7 @@ html.spy-active [data-fade-head].is-current {
   font-size: 11px;
 }
 
-/* Field values: mono at 13px was cramped — sans for values,
+/* Field values: mono at 13px was cramped - sans for values,
    mono stays for labels/ids */
 .m-field-value {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
@@ -1426,7 +1426,7 @@ html.spy-active [data-fade-head].is-current {
 
 /* ---------- Papers archive overrides ---------- */
 
-/* Bigger type on section rails (Projects, Stack) — matches the archive
+/* Bigger type on section rails (Projects, Stack) - matches the archive
    landing's display scale without out-sizing the hero name. */
 .m-projects-left .m-section-title {
   font-size: var(--t-section);
@@ -1435,7 +1435,7 @@ html.spy-active [data-fade-head].is-current {
   letter-spacing: -0.02em;
 }
 
-/* Theme toggle — fixed above the corner mark, black/white aware */
+/* Theme toggle - fixed above the corner mark, black/white aware */
 .m-theme-toggle {
   position: fixed;
   right: 22px;

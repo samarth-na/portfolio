@@ -1,10 +1,10 @@
 {
   "meta": {
-    "title": "Samarth Nagar — Software Engineer",
+    "title": "Samarth Nagar - Software Engineer",
     "description": "Software engineer working with TypeScript, Node.js, and Go on APIs, databases, real-time systems, and developer tools. Based in Indore, India.",
     "author": "Samarth Nagar",
     "openGraph": {
-      "title": "Samarth Nagar — Software Engineer",
+      "title": "Samarth Nagar - Software Engineer",
       "description": "Software engineer building APIs, real-time systems, and developer tools with TypeScript, Node.js, and Go.",
       "type": "website"
     }
@@ -73,7 +73,7 @@
       {
         "id": "PRJ-05",
         "title": "SQL Visualizer",
-        "desc": "Paste PostgreSQL DDL and get an interactive ER diagram. It reads tables, keys, and constraints — including schema-qualified names and foreign keys — and lays them out so you can actually see how the schema fits together. Export the result as PNG or SVG.",
+        "desc": "Paste PostgreSQL DDL and get an interactive ER diagram. It reads tables, keys, and constraints, including schema-qualified names and foreign keys, and lays them out so you can actually see how the schema fits together. Export the result as PNG or SVG.",
         "tags": ["SQL Parsing", "Interactive Graph", "SPA"],
         "link": "https://schema-visualizer-plum.vercel.app",
         "image": "/sql-ddl.png"
@@ -97,7 +97,7 @@
       {
         "id": "PRJ-03",
         "title": "Client-Side Video Processing",
-        "desc": "Convert, resize, compress, and trim video in the browser with ffmpeg.wasm. Files are never uploaded — all processing happens locally, including GIF palette optimization and multithreading where the browser supports it.",
+        "desc": "Convert, resize, compress, and trim video in the browser with ffmpeg.wasm. Files are never uploaded. All processing happens locally, including GIF palette optimization and multithreading where the browser supports it.",
         "tags": ["WebAssembly", "FFmpeg", "Next.js", "Client-side"],
         "link": "https://github.com/samarth-na/clientside-video-editor",
         "image": "/wasm-video-editor.png"
@@ -204,7 +204,7 @@
     "caseTitle": "react.dev Architecture Deep Dive",
     "body": "Analyzed the real production codebase behind react.dev to map architecture decisions: custom MDX components, a build-time SSG pipeline, and the React Compiler already running in production.",
     "points": [
-      "No state management library needed — URL + useState + Context sufficient",
+      "No state management library needed. URL + useState + Context sufficient",
       "50+ custom MDX components behind each doc page",
       "Custom SSG pipeline that serializes React tree to JSON at build time",
       "Build-time eval() workarounds acknowledged as intentional hacks"
@@ -228,16 +228,16 @@
       {
         "id": "PAP-01",
         "meta": "Development Report · Aug 24, 2026",
-        "title": "Cloud Workspace — Complete Development History Report",
-        "desc": "Four days, ~70 sessions, 56 commits: how a cloud workspace app was built, broken, diagnosed, and shipped to production — compiled from OpenCode session history and git history.",
+        "title": "Cloud Workspace: Complete Development History Report",
+        "desc": "Four days, ~70 sessions, 56 commits: how a cloud workspace app was built, broken, diagnosed, and shipped to production, compiled from OpenCode session history and git history.",
         "tags": ["56 commits", "~70 sessions · 4 days", "cloud-workspace"],
         "link": "/papers/development-history-report-cloud-workspace/"
       },
       {
         "id": "PAP-02",
         "meta": "Development Report · Aug 30, 2026",
-        "title": "Portfolio — Complete Development History Report",
-        "desc": "Every phase, decision, failure, and fix from first commit to live Cloudflare Workers deployment — 71 days, 46 sessions, 61 commits, compiled from OpenCode session history and git history.",
+        "title": "Portfolio: Complete Development History Report",
+        "desc": "Every phase, decision, failure, and fix from first commit to live Cloudflare Workers deployment: 71 days, 46 sessions, 61 commits, compiled from OpenCode session history and git history.",
         "tags": [
           "61 commits",
           "Next.js 16 + React 19 on Workers",
@@ -248,7 +248,7 @@
       {
         "id": "PAP-03",
         "meta": "Production Report · Aug 23, 2026",
-        "title": "Cloud Workspace — Production Finalization Report",
+        "title": "Cloud Workspace: Production Finalization Report",
         "desc": "Why earlier production passes failed, how env drift and a WebSocket protocol mismatch were fixed, and how the live deployment was verified with real browser automation.",
         "tags": [
           "cloud-workspace · dev",
@@ -261,7 +261,7 @@
         "id": "PAP-04",
         "meta": "Chapter 1 · Philosophy",
         "title": "Basics of the Unix Philosophy",
-        "desc": "Thompson's meditations, McIlroy's six dicta, Pike's rules, and the seventeen rules of the Unix tradition — modularity, clarity, composition, simplicity, and the rest — in a single chapter.",
+        "desc": "Thompson's meditations, McIlroy's six dicta, Pike's rules, and the seventeen rules of the Unix tradition, including modularity, clarity, composition, simplicity, and the rest, in a single chapter.",
         "tags": [
           "Plan 9 · pipes · text streams",
           "Mike Gancarz · ESR lineage",

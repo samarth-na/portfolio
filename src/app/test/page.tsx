@@ -8,7 +8,7 @@ import "./test.css";
 const { site, profile, experience, projects, stack, papers, research } =
   content;
 
-/* Headers in DOM order — the slot shows exactly one at a time. */
+/* Headers in DOM order - the slot shows exactly one at a time. */
 const SECTIONS = [
   { id: "t-about", label: "01 :: ABOUT RECORD", title: "Collected" },
   {
@@ -114,7 +114,7 @@ export default function TestPage() {
 
   return (
     <main className="t-page">
-      {/* Pinned title slot — one visible title at a time. */}
+      {/* Pinned title slot - one visible title at a time. */}
       <div className="t-slot" aria-live="polite">
         <div className="t-slot-inner">
           <div className="t-slot-stack">
@@ -156,7 +156,7 @@ export default function TestPage() {
 
       <header className="t-hero">
         <span className="t-hero-label">
-          Route :: /test — pinned section headers
+          Route :: /test - pinned section headers
         </span>
         <h1 className="t-hero-title">
           One section title <em>sticks</em> at a time.
@@ -164,7 +164,7 @@ export default function TestPage() {
         <p className="t-hero-note">
           Each title pins to the top of the viewport while its section scrolls.
           When the section is done and the next one arrives, the old title
-          slides out and the new one fades in — a crossfade with no overlap.
+          slides out and the new one fades in as a crossfade with no overlap.
           Sections are separated by wide gaps with a hairline divider.
         </p>
         <a className="t-hero-back" href="/">

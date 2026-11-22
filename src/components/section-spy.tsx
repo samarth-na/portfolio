@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-/* SectionScrollSpy — one section head visible at a time.
+/* SectionScrollSpy - one section head visible at a time.
 
    The section whose box straddles the trigger line (38% of the viewport,
    min 180px) is the "current" one. Its head gets `.is-current`; every

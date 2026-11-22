@@ -1,4 +1,4 @@
-/* /test — pinned section-title experiment. Loaded only by the /test page. */
+/* /test - pinned section-title experiment. Loaded only by the /test page. */
 
 .t-page {
   max-width: 1040px;
@@ -34,7 +34,7 @@
   min-width: 0;
 }
 
-/* All titles occupy the same grid cell — only one can be visible. */
+/* All titles occupy the same grid cell - only one can be visible. */
 .t-slot-item {
   grid-area: 1 / 1;
   display: flex;
